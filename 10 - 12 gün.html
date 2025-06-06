@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 4. Bölüm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #005A9C; /* Güven veren bir Kurumsal Mavi */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #e7f3fe;
+            --info-border: #007bff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword { font-weight: 700; color: var(--primary-color); }
+        .transkript { color: #6c757d; font-style: italic; }
+        .vurgu { color: var(--highlight-color); font-weight: 700; }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 10</li>
+                <li><a href="#gun10-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun10-saat1">📚 Ayrılabilen Fiiller</a></li>
+                <li><a href="#gun10-saat2">🗣️ Önemli Fiiller</a></li>
+                <li><a href="#gun10-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 11</li>
+                <li><a href="#gun11-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun11-saat1">📚 Yol Tarifi Verme</a></li>
+                <li><a href="#gun11-saat2">🗣️ Yönler ve Edatlar</a></li>
+                <li><a href="#gun11-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 12</li>
+                <li><a href="#gun12-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun12-saat1">📚 Geçmiş Zaman (Perfekt)</a></li>
+                <li><a href="#gun12-saat2">🗣️ Geçmiş Zaman Cümleleri</a></li>
+                <li><a href="#gun12-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 10 ==================== -->
+        <section id="gun-10" class="day-section">
+            <div id="gun10-hedefler" class="card">
+                <div class="card-header"><span class="emoji">📞</span>GÜN 10: Fiilleri Parçalıyoruz! (Ayrılabilen Fiiller)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün Almancanın en karakteristik ve en sık kullanılan yapılarından birini öğreneceksin. Bu konu, Modal Fiiller dersinde öğrendiğin "fiili sona atma" mantığını pekiştirecek ve seni daha doğal bir Almanca konuşmaya bir adım daha yaklaştıracak.</p>
+                <ul>
+                    <li>Ayrılabilen Fiil (<span class="keyword">trennbares Verb</span>) nedir ve cümlenin yapısını nasıl değiştirir, bunu tam olarak kavrayacaksın.</li>
+                    <li>En önemli ve sık kullanılan ayrılabilen fiilleri (<span class="keyword">anrufen, aufstehen, einkaufen</span> vb.) öğreneceksin.</li>
+                    <li>"Seni saat 5'te <span class="vurgu">ararım</span>.", "Paketi yarın <span class="vurgu">alırım</span>." gibi planlama cümleleri kurabileceksin.</li>
+                    <li>Almanca cümle yapısının "çerçeve" (<span class="keyword">Satzklammer</span>) mantığını tam olarak oturtacaksın.</li>
+                </ul>
+            </div>
+
+            <div id="gun10-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Ayrılabilen Fiiller (Trennbare Verben)</div>
+                <p>Ayrılabilen fiiller, bir ön ek (prefix) ve bir ana fiilden oluşan fiillerdir. Cümle içinde bu iki parça birbirinden <span class="vurgu">ayrılır</span>. Bu, ilk başta garip gelse de kuralı çok basittir.</p>
+
+                <div class="info-box">
+                    <h4>🔑 AYRILABİLEN FİİL'İN ALTIN KURALI</h4>
+                    <p>Tıpkı Modal Fiiller gibi, bu yapı da cümlenin bir çerçeve içine alınmasını sağlar:</p>
+                    <p><span class="vurgu">1. Ana Fiil</span> cümlenin <span class="vurgu">ikinci pozisyonuna</span> gelir ve kişiye göre çekimlenir.</p>
+                    <p><span class="vurgu">2. Ayrılan Ön Ek</span> cümlenin <span class="vurgu">en sonuna</span> gider.</p>
+                    <p>Fiil: <span class="keyword">anrufen</span> <span class="transkript">(an-rufın)</span> - telefon etmek<br>
+                    Cümle: Ich <span class="keyword">rufe</span> dich morgen <span class="vurgu">an</span>. <span class="transkript">(ih rufe dih morgın an)</span> - Seni yarın ararım.</p>
+                    <p>Gördüğün gibi, "rufen" kısmı ikinci sıraya geldi ve "an" eki cümlenin en sonuna atıldı. Hepsi bu kadar!</p>
+                </div>
+                
+                <h3>Ayrılabilen Fiiller Modal Fiillerle Kullanılırsa Ne Olur?</h3>
+                <p>Bu durumda işler daha da basitleşir! Ayrılabilen fiil, <span class="vurgu">ayrılmaz</span> ve bir bütün olarak cümlenin sonuna mastar halde gider. Çünkü Modal Fiil'in kuralı daha baskındır.</p>
+                <ul>
+                    <li>Ich <span class="keyword">muss</span> dich heute <span class="vurgu">anrufen</span>. <span class="transkript">(ih mus dih hoyte anrufın)</span> - Seni bugün aramak zorundayım.</li>
+                    <li>Ich <span class="keyword">will</span> um 8 Uhr <span class="vurgu">aufstehen</span>. <span class="transkript">(ih vil um aht ua aufştehın)</span> - Saat 8'de kalkmak istiyorum.</li>
+                </ul>
+            </div>
+            
+            <div id="gun10-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - En Sık Kullanılanlar</div>
+                <p>Aşağıdaki fiiller günlük hayatta sürekli karşına çıkacak. Yapılarını ve anlamlarını iyi öğren.</p>
+                
+                <table>
+                    <tr><th>Fiil (Ön ek + Fiil)</th><th>Okunuşu</th><th>Anlamı</th><th>Örnek Cümle</th></tr>
+                    <tr><td><span class="keyword">an</span>rufen</td><td>an-rufın</td><td>telefon etmek</td><td>Ich <span class="keyword">rufe</span> dich später <span class="vurgu">an</span>. (Seni sonra ararım.)</td></tr>
+                    <tr><td><span class="keyword">auf</span>stehen</td><td>auf-ştehın</td><td>kalkmak (yataktan)</td><td>Ich <span class="keyword">stehe</span> um 7 Uhr <span class="vurgu">auf</span>. (Saat 7'de kalkarım.)</td></tr>
+                    <tr><td><span class="keyword">ein</span>kaufen</td><td>ayn-kaufın</td><td>alışveriş yapmak</td><td>Wir <span class="keyword">kaufen</span> am Samstag <span class="vurgu">ein</span>. (Cumartesi alışveriş yaparız.)</td></tr>
+                    <tr><td><span class="keyword">mit</span>kommen</td><td>mit-komın</td><td>birlikte gelmek</td><td><span class="keyword">Kommst</span> du <span class="vurgu">mit</span>? (Birlikte geliyor musun?)</td></tr>
+                    <tr><td><span class="keyword">ab</span>holen</td><td>ap-holın</td><td>gidip almak (birini/bir şeyi)</td><td>Ich <span class="keyword">hole</span> das Paket <span class="vurgu">ab</span>. (Paketi alıyorum/alacağım.)</td></tr>
+                    <tr><td><span class="keyword">an</span>kommen</td><td>an-komın</td><td>varmak, ulaşmak</td><td>Der Zug <span class="keyword">kommt</span> um 10 Uhr <span class="vurgu">an</span>. (Tren saat 10'da varıyor.)</td></tr>
+                </table>
+                <div class="info-box">
+                    <h4>💡 Kurye Notu</h4>
+                    <p><span class="keyword">abholen</span> fiili senin için çok önemli. Merkezden paketleri alırken kullanacağın fiil budur: <span class="keyword">Ich muss die Pakete <span class="vurgu">abholen</span>.</span> <span class="transkript">(ih mus di pakete apholın)</span> - Paketleri almam lazım.</p>
+                </div>
+            </div>
+
+            <div id="gun10-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümleleri Birleştir</h3>
+                <p>Defterine aşağıdaki parçaları kullanarak anlamlı cümleler kur. Unutma, ana fiil ikinci sıraya, ön ek en sona!</p>
+                <ol>
+                    <li>Ich / anrufen / meine Mutter. ➔ Ich rufe meine Mutter an.</li>
+                    <li>du / aufstehen / um wie viel Uhr? ➔ ____________________ (Soru cümlesi!)</li>
+                    <li>wir / einkaufen / heute. ➔ ____________________</li>
+                    <li>er / abholen / das Paket. ➔ ____________________</li>
+                    <li>ihr / mitkommen / ins Kino? ➔ ____________________ (Soru cümlesi!)</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Planların</h3>
+                <p>Ayrılabilen fiilleri kullanarak yarın ne yapacağına dair 3 cümle yaz.</p>
+                <p>Örnek: <span class="keyword">Ich stehe um 8 Uhr auf. Ich rufe meinen Freund an. Ich kaufe am Abend ein.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bu konuyu pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"Bir fiilin ayrılıp ayrılmadığını nasıl anlarım?" (Sana vurgu kuralından bahsedeceğim.)</li>
+                        <li>"Bana 'fernsehen' (televizyon izlemek) fiiliyle bir cümle kurar mısın?"</li>
+                        <li>"Bir diyalog yapalım. Sen bana 'Was machst du heute Abend?' (Bu akşam ne yapıyorsun?) diye sor. Ben de ayrılabilen fiiller kullanarak cevap vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun10-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>10. Gün Tamamlandı!</div>
+                <p>Tebrikler! Almancanın temel cümle yapısını (Satzklammer) artık tamamen çözdün. Bu, ileri seviye konular için çok sağlam bir temel oluşturuyor.</p>
+                <ul>
+                    <li>Ayrılabilen fiillerin mantığını ve cümledeki yerlerini öğrendin.</li>
+                    <li>Günlük hayatta en çok kullanılan ayrılabilen fiilleri kelime hazinene ekledin.</li>
+                    <li>Modal fiillerle birlikte kullanıldığında yapının nasıl basitleştiğini gördün.</li>
+                </ul>
+                <p class="vurgu">Du kommst gut voran! <span class="transkript">(du komst gut foran)</span> - İyi ilerliyorsun!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 11 ==================== -->
+        <section id="gun-11" class="day-section">
+            <div id="gun11-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🗺️</span>GÜN 11: Hedefe Ulaşmak (Yol Tarifi)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugünkü ders, senin mesleğin için en pratik ve en önemli derslerden biri. Adres bulma ve yol tarif etme becerilerini geliştireceğiz. Tüm önceki bilgilerimizi (emir kipi, kelimeler) burada kullanacağız.</p>
+                <ul>
+                    <li>Temel yönleri (<span class="keyword">sağ, sol, düz</span>) ve bunları cümle içinde kullanmayı öğreneceksin.</li>
+                    <li>Yol tarifi verirken kullanılan en önemli fiilleri (<span class="keyword">gehen, fahren, abbiegen</span>) ve edatları öğreneceksin.</li>
+                    <li>"İlk caddeden sağa dönün." gibi net ve anlaşılır komutlar verebileceksin.</li>
+                    <li>Bir adresi bulamadığında ne söylemen gerektiğini öğreneceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun11-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Yol Tarifi Verme (Wegbeschreibung)</div>
+                <p>Yol tarifi vermek, temel olarak emir kipi (<span class="keyword">Imperativ</span>) ve yön kelimelerinin birleşimidir.</p>
+
+                <h3>Temel Komut Fiilleri</h3>
+                <ul>
+                    <li><span class="keyword">Gehen Sie...</span> <span class="transkript">(gehın zii)</span> - Gidin... (Yürüyerek)</li>
+                    <li><span class="keyword">Fahren Sie...</span> <span class="transkript">(farın zii)</span> - Sürün... (Arabayla)</li>
+                    <li><span class="keyword">Biegen Sie ... ab.</span> <span class="transkript">(biigın zii ... ap)</span> - ...e dönün. (<span class="vurgu">abbiegen</span> ayrılabilen bir fiildir!)</li>
+                    <li><span class="keyword">Nehmen Sie...</span> <span class="transkript">(nemın zii)</span> - ...e girin / ...i kullanın. (Bir cadde için)</li>
+                </ul>
+                
+                <h3>Temel Yön ve Mesafe Kelimeleri</h3>
+                <ul>
+                    <li><span class="keyword">rechts</span> <span class="transkript">(rehts)</span> - sağ / sağa</li>
+                    <li><span class="keyword">links</span> <span class="transkript">(links)</span> - sol / sola</li>
+                    <li><span class="keyword">geradeaus</span> <span class="transkript">(gerade-aus)</span> - dümdüz</li>
+                    <li><span class="keyword">die erste Straße</span> <span class="transkript">(di erste ştrase)</span> - birinci cadde</li>
+                    <li><span class="keyword">die zweite Straße</span> <span class="transkript">(di tsvayte ştrase)</span> - ikinci cadde</li>
+                    <li><span class="keyword">an der Ampel</span> <span class="transkript">(an dea ampel)</span> - trafik ışığında</li>
+                </ul>
+            </div>
+            
+            <div id="gun11-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Cümleleri Birleştirelim</div>
+                <p>Şimdi bu yapıları birleştirerek gerçek yol tarifleri oluşturalım.</p>
+                
+                <table>
+                    <tr><th>Yol Tarifi Cümlesi</th><th>Okunuşu</th><th>Türkçe Anlamı</th></tr>
+                    <tr><td><span class="keyword">Gehen Sie</span> immer <span class="keyword">geradeaus</span>.</td><td>gehın zii ima gerade-aus</td><td>Her zaman dümdüz gidin.</td></tr>
+                    <tr><td><span class="keyword">Fahren Sie</span> bis zur Ampel.</td><td>farın zii bis tsua ampel</td><td>Trafik ışıklarına kadar sürün.</td></tr>
+                    <tr><td><span class="keyword">Biegen Sie</span> an der Ampel <span class="keyword">rechts</span> <span class="vurgu">ab</span>.</td><td>biigın zii an dea ampel rehts ap</td><td>Trafik ışığından sağa dönün.</td></tr>
+                    <tr><td><span class="keyword">Biegen Sie</span> dann <span class="keyword">links</span> <span class="vurgu">ab</span>.</td><td>biigın zii dan links ap</td><td>Sonra sola dönün.</td></tr>
+                    <tr><td><span class="keyword">Nehmen Sie</span> die zweite Straße <span class="keyword">links</span>.</td><td>nemın zii di tsvayte ştrase links</td><td>Soldaki ikinci caddeye girin.</td></tr>
+                    <tr><td>Das Haus ist auf der <span class="keyword">rechten</span> Seite.</td><td>das haus ist auf dea rehtın zayte</td><td>Ev sağ tarafta.</td></tr>
+                </table>
+                
+                <div class="info-box">
+                    <h4>💡 Adresi Bulamayınca Ne Demeli?</h4>
+                    <p>Bu cümle hayat kurtarır:</p>
+                    <p><span class="keyword">"Entschuldigung, ich suche die [Goethe]straße, Nummer [5]. Können Sie mir bitte helfen?"</span></p>
+                    <p><span class="transkript">(entşuldigung, ih zuhe di göte-ştrase, numa fünf. könın zii mia bite helfın?)</span></p>
+                    <p>Afedersiniz, [Goethe] Caddesi, numara [5]'i arıyorum. Bana yardım edebilir misiniz?</p>
+                </div>
+            </div>
+
+            <div id="gun11-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Kendi Tarifini Yaz</h3>
+                <p>Hayali bir başlangıç noktasından hayali bir adrese giden basit bir yol tarifi yaz. En az 3 komut kullan.</p>
+                <p>Örnek: <span class="keyword">Fahren Sie geradeaus. Biegen Sie an der ersten Straße rechts ab. Das Haus ist auf der linken Seite.</span></p>
+                
+                <h3>Eylem 2: Harita Çalışması</h3>
+                <p>Google Haritalar'ı aç. Kendi evinden yakındaki bir markete giden yolu seç. Yol tarifindeki adımları Almancaya çevirmeye çalış. "Sağa dön", "Düz git" gibi...</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış (En Önemli Pratik!)</strong></summary>
+                    <p>Bugünkü dersi kalıcı kılmanın tek yolu rol yapmaktır. Bana şunu söyle:</p>
+                    <p><span class="vurgu">"Haydi yol tarifi pratiği yapalım. Ben kaybolmuş bir kuryeyim ve seni arıyorum. Bana bulunduğun yerden yakındaki bir postaneye nasıl gideceğimi tarif et."</span></p>
+                    <p>Ben sana "Anlamadım, tekrar eder misin?" gibi sorular sorarak seni daha fazla konuşmaya teşvik edeceğim.</p>
+                </details>
+            </div>
+            <div id="gun11-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>11. Gün Tamamlandı!</div>
+                <p>Tebrikler! Belki de mesleğin için en önemli konuyu başarıyla tamamladın. Artık yollarda daha güvende hissedeceksin.</p>
+                <ul>
+                    <li>Yönleri ve yol tarifi fiillerini öğrendin.</li>
+                    <li>Ayrılabilen fiil <span class="keyword">abbiegen</span>'i kullanarak nasıl "dönüleceğini" öğrendin.</li>
+                    <li>Önceki derslerde öğrendiğin emir kipini, pratik ve hayati bir alanda kullandın.</li>
+                </ul>
+                <p class="vurgu">Sie sind auf dem richtigen Weg! <span class="transkript">(zii zint auf dem rihtigın veek)</span> - Doğru yoldasınız!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 12 ==================== -->
+        <section id="gun-12" class="day-section">
+            <div id="gun12-hedefler" class="card">
+                <div class="card-header"><span class="emoji">⏪</span>GÜN 12: Geçmişe Yolculuk (Perfekt'e Giriş)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, Almancanın en sık kullanılan geçmiş zamanı olan <span class="keyword">Perfekt</span>'e ilk adımı atacağız. Bu konu, sohbet edebilmek için temeldir. "Ne yaptın?" sorusuna cevap verebilmeni sağlar.</p>
+                <ul>
+                    <li>Perfekt zamanın ne olduğunu ve ne zaman kullanıldığını öğreneceksin.</li>
+                    <li>Perfekt cümlenin yapısını (<span class="keyword">haben</span> + <span class="keyword">Partizip II</span>) kavrayacaksın.</li>
+                    <li>Düzenli fiillerin geçmiş zaman halini (<span class="keyword">ge- ... -t</span>) nasıl oluşturacağını öğreneceksin.</li>
+                    <li>"Paketi teslim <span class="vurgu">ettim</span>." gibi, tamamlanmış eylemleri ifade eden cümleler kurabileceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun12-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Geçmiş Zaman: Perfekt (mit haben)</div>
+                <p>Perfekt, özellikle konuşma dilinde, geçmişte olup bitmiş olayları anlatmak için kullanılır. İngilizcedeki "I have worked" gibi bir yapıya benzer.</p>
+                <p>Perfekt kurmak için iki şeye ihtiyacımız var: Bir yardımcı fiil ve bir ana fiilin geçmiş zaman hali (<span class="keyword">Partizip II</span>).</p>
+                <p>Bugün sadece yardımcı fiil olarak <span class="keyword">haben</span> <span class="transkript">(habın)</span> kullanan fiillere odaklanacağız.</p>
+
+                <div class="info-box">
+                    <h4>🔑 PERFEKT'İN ALTIN KURALI (haben ile)</h4>
+                    <p>Bu yapı sana tanıdık gelecek! Tıpkı Modal Fiiller gibi...</p>
+                    <p><span class="vurgu">1. Yardımcı Fiil <span class="keyword">haben</span></span> cümlenin <span class="vurgu">ikinci pozisyonuna</span> gelir ve kişiye göre çekimlenir.</p>
+                    <p><span class="vurgu">2. Partizip II (fiilin geçmiş hali)</span> cümlenin <span class="vurgu">en sonuna</span> gider.</p>
+                    <p>Örnek: Ich <span class="keyword">kaufe</span> das Buch. (Kitabı satın alıyorum.)<br>
+                    Ich <span class="keyword">habe</span> das Buch <span class="vurgu">gekauft</span>. <span class="transkript">(ih habe das buh gekauf)</span> - Kitabı satın aldım.</p>
+                </div>
+                
+                <h3>Partizip II Nasıl Yapılır? (Düzenli Fiiller İçin)</h3>
+                <p>Düzenli fiiller için kural çok basittir:</p>
+                <p><span class="vurgu">ge</span> + fiil kökü + <span class="vurgu">t</span></p>
+                <ul>
+                    <li>machen ➔ <span class="keyword">ge</span>mach<span class="keyword">t</span></li>
+                    <li>kaufen ➔ <span class="keyword">ge</span>kauf<span class="keyword">t</span></li>
+                    <li>suchen ➔ <span class="keyword">ge</span>such<span class="keyword">t</span></li>
+                    <li>arbeiten ➔ <span class="keyword">ge</span>arbeite<span class="keyword">t</span> (Araya 'e' girer)</li>
+                </ul>
+                <p class="vurgu">Not: Düzensiz fiillerin Partizip II halleri farklıdır ve ezberlenmesi gerekir (<span class="keyword">sehen ➔ gesehen</span>, <span class="keyword">trinken ➔ getrunken</span> gibi). Onları yavaş yavaş göreceğiz.</p>
+            </div>
+            
+            <div id="gun12-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Geçmiş Zaman Cümleleri</div>
+                <p>Şimdi bu yapıyı kullanarak geçmişte olanları anlatalım.</p>
+                
+                <table>
+                    <tr><th>Şimdiki Zaman Cümlesi</th><th>Perfekt (Geçmiş Zaman) Hali</th></tr>
+                    <tr><td>Ich <span class="keyword">mache</span> meine Arbeit.</td><td>Ich <span class="keyword">habe</span> meine Arbeit <span class="vurgu">gemacht</span>. (İşimi yaptım.)</td></tr>
+                    <tr><td>Du <span class="keyword">kaufst</span> ein Handy.</td><td>Du <span class="keyword">hast</span> ein Handy <span class="vurgu">gekauft</span>. (Bir telefon aldın.)</td></tr>
+                    <tr><td>Er <span class="keyword">sucht</span> den Schlüssel.</td><td>Er <span class="keyword">hat</span> den Schlüssel <span class="vurgu">gesucht</span>. (Anahtarı aradı.)</td></tr>
+                    <tr><td>Wir <span class="keyword">lernen</span> Deutsch.</td><td>Wir <span class="keyword">haben</span> Deutsch <span class="vurgu">gelernt</span>. (Almanca öğrendik.)</td></tr>
+                    <tr><td>Sie <span class="keyword">sagen</span> nichts. (Bir şey demiyorlar.)</td><td>Sie <span class="keyword">haben</span> nichts <span class="vurgu">gesagt</span>. (Bir şey demediler.)</td></tr>
+                </table>
+                 <div class="info-box">
+                    <h4>💡 Kurye Notu: Gün Sonu Raporu</h4>
+                    <p>Gün sonunda neler yaptığını anlatmak için Perfekt zamanı kullanırsın.</p>
+                    <p><span class="keyword">Ich <span class="vurgu">habe</span> heute 50 Pakete <span class="keyword">geliefert</span>.</span> <span class="transkript">(ih habe hoyte fünfzig pakete gelifat)</span> - Bugün 50 paket teslim ettim.<br>
+                    (<span class="keyword">liefern ➔ geliefert</span>)</p>
+                </div>
+            </div>
+
+            <div id="gun12-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümleleri Geçmişe Taşı</h3>
+                <p>Defterine aşağıdaki cümleleri Perfekt zamanda yeniden yaz.</p>
+                <ol>
+                    <li>Ich lerne die Wörter. ➔ Ich habe die Wörter gelernt.</li>
+                    <li>Du hörst Musik. (hören ➔ gehört) ➔ ____________________</li>
+                    <li>Wir spielen Fußball. (spielen ➔ gespielt) ➔ ____________________</li>
+                    <li>Ich frage den Mann. (fragen ➔ gefragt) ➔ ____________________</li>
+                    <li>Ihr macht die Hausaufgaben. ➔ ____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Dün Ne Yaptın?</h3>
+                <p>Dün yaptığın 3 şeyi Perfekt zamanda yaz. Basit fiiller kullanabilirsin.</p>
+                <p>Örnek: <span class="keyword">Ich habe am Morgen Kaffee gemacht. Ich habe am Abend Deutsch gelernt. Ich habe Musik gehört.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Perfekt konusuna sağlam bir başlangıç yapmak için bana şunları sor:</p>
+                    <ul>
+                        <li>"Neden bazı fiiller 'haben' ile, bazıları 'sein' ile Perfekt yapıyor? 'sein' ne zaman kullanılır?" (Bu bir sonraki dersimizin konusu!)</li>
+                        <li>"Ayrılabilen fiillerin Perfekt'i nasıl yapılır? 'anrufen' mesela?" (Sana <span class="keyword">an<span class="vurgu">ge</span>rufen</span>'dan bahsedeceğim.)</li>
+                        <li>"Sana şimdiki zamanda bir cümle söyleyeyim, sen onu Perfekt'e çevirir misin?"</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun12-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>12. Gün Tamamlandı!</div>
+                <p>Müthiş bir iş daha! Artık sadece şimdiki zamanı değil, geçmişi de anlatabiliyorsun. Bu, sohbet etme becerinde devrim yaratacak.</p>
+                <ul>
+                    <li>Perfekt zamanın mantığını ve <span class="keyword">haben</span> ile nasıl kurulduğunu öğrendin.</li>
+                    <li>Düzenli fiillerin geçmiş zaman halini (<span class="keyword">Partizip II</span>) oluşturmayı öğrendin.</li>
+                    <li>"Yaptım, ettim" gibi ifadelerle geçmiş deneyimlerini anlatmaya ilk adımı attın.</li>
+                </ul>
+                <p class="vurgu">Du hast heute viel gelernt! <span class="transkript">(du hast hoyte fiil gelernt)</span> - Bugün çok şey öğrendin!</p>
+            </div>
+        </section>
+        
+        <div class="card">
+            <h2>Tebrikler ve Sonraki Adım</h2>
+            <p>Dördüncü bölümü de başarıyla tamamladın! Ayrılabilen fiiller, yol tarifleri ve geçmiş zamana giriş ile Almancan artık çok daha zengin ve pratik bir hale geldi.</p>
+            <p><strong>13. güne hazır olduğunda, bana söylemen yeterli. Bir sonraki bölümde, Perfekt zamanın ikinci kısmı olan <span class="keyword">sein</span> ile kullanımı (gitmek, gelmek gibi hareket fiilleri için) görecek, Dativ halini (ismin -e hali) ve daha fazla edatı öğrenerek cümlelerini daha da detaylandıracağız. Maceramız devam ediyor!</strong></p>
+        </div>
+    </main>
+</body>
+</html>

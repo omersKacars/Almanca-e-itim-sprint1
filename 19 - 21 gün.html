@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 7. Bölüm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #005A9C; /* Güven veren bir Kurumsal Mavi */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #e7f3fe;
+            --info-border: #007bff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword { font-weight: 700; color: var(--primary-color); }
+        .transkript { color: #6c757d; font-style: italic; }
+        .vurgu { color: var(--highlight-color); font-weight: 700; }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 19</li>
+                <li><a href="#gun19-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun19-saat1">📚 İki Yönlü Edatlar</a></li>
+                <li><a href="#gun19-saat2">🗣️ Neredeyim? Nereye?</a></li>
+                <li><a href="#gun19-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 20</li>
+                <li><a href="#gun20-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun20-saat1">📚 Yan Cümleler (dass)</a></li>
+                <li><a href="#gun20-saat2">🗣️ Fikir Belirtme</a></li>
+                <li><a href="#gun20-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 21</li>
+                <li><a href="#gun21-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun21-saat1">📚 İlgeç Zamirleri</a></li>
+                <li><a href="#gun21-saat2">🗣️ Nesneleri Tanımlama</a></li>
+                <li><a href="#gun21-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 19 ==================== -->
+        <section id="gun-19" class="day-section">
+            <div id="gun19-hedefler" class="card">
+                <div class="card-header"><span class="emoji">📍</span>GÜN 19: Neredeyim? Nereye? (İki Yönlü Edatlar)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün Almancanın en mantıklı ve en önemli konularından birini öğreneceksin. "Masanın üzerinde" ve "Masayı masanın üzerine koyuyorum" arasındaki farkı anlamanı sağlayacak bu konu, konum ve hareket bildirme becerini zirveye taşıyacak.</p>
+                <ul>
+                    <li>İki Yönlü Edatlar (<span class="keyword">Wechselpräpositionen</span>) nedir ve neden bu kadar önemlidir, bunu kavrayacaksın.</li>
+                    <li>Bu edatların ne zaman Dativ, ne zaman Akkusativ aldığını "Nerede?" (<span class="keyword">Wo?</span>) ve "Nereye?" (<span class="keyword">Wohin?</span>) sorularıyla ayırt edeceksin.</li>
+                    <li>"Paket arabanın <span class="vurgu">içinde</span>.", "Paketi arabanın <span class="vurgu">içine</span> koydum." gibi cümleler kurabileceksin.</li>
+                    <li>En önemli 9 iki yönlü edatı (<span class="keyword">in, an, auf, über, unter, vor, hinter, neben, zwischen</span>) öğreneceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun19-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - İki Yönlü Edatlar (Wechselpräpositionen)</div>
+                <p>Almancada bazı edatlar, cümlenin anlamına göre bazen Akkusativ, bazen de Dativ alırlar. Bu yüzden onlara "iki yönlü" veya "değişken" edatlar denir. Kuralı ise son derece basittir ve tamamen cümlenin sorduğu soruya bağlıdır.</p>
+
+                <div class="info-box">
+                    <h4>🔑 İKİ YÖNLÜ EDATLARIN ALTIN KURALI</h4>
+                    <p>Kendine şu iki soruyu sor:</p>
+                    <p><span class="vurgu">1. Wo? (Nerede?)</span>: Eğer cümle "Nerede?" sorusuna cevap veriyorsa ve bir <span class="vurgu">konum, sabit bir durum</span> bildiriyorsa, edattan sonra gelen isim <span class="keyword">DATİV</span> olur.</p>
+                    <p><span class="vurgu">2. Wohin? (Nereye?)</span>: Eğer cümle "Nereye?" sorusuna cevap veriyorsa ve bir <span class="vurgu">hareket, bir hedefe yönelme</span> bildiriyorsa, edattan sonra gelen isim <span class="keyword">AKKUSATİV</span> olur.</p>
+                </div>
+                
+                <h3>En Önemli 9 İki Yönlü Edat</h3>
+                <ul>
+                    <li><strong>in:</strong> içinde, içine</li>
+                    <li><strong>an:</strong> bitişiğinde, bitişiğine (dikey yüzeylerde)</li>
+                    <li><strong>auf:</strong> üzerinde, üzerine (yatay yüzeylerde)</li>
+                    <li><strong>über:</strong> üzerinde, üzerine (temassız)</li>
+                    <li><strong>unter:</strong> altında, altına</li>
+                    <li><strong>vor:</strong> önünde, önüne</li>
+                    <li><strong>hinter:</strong> arkasında, arkasına</li>
+                    <li><strong>neben:</strong> yanında, yanına</li>
+                    <li><strong>zwischen:</strong> arasında, arasına</li>
+                </ul>
+            </div>
+            
+            <div id="gun19-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Cümle Örnekleri - Neredeyim? Nereye?</div>
+                <p>Aşağıdaki örneklerde aynı edatın, cümlenin anlamına göre nasıl Dativ veya Akkusativ aldığını incele.</p>
+                
+                <table>
+                    <tr><th>Edat</th><th>Wo? (Nerede?) ➔ DATİV</th><th>Wohin? (Nereye?) ➔ AKKUSATİV</th></tr>
+                    <tr>
+                        <td><strong>in</strong></td>
+                        <td>Das Paket ist <span class="keyword">in dem</span> Auto. (Paket arabanın içinde.)</td>
+                        <td>Ich lege das Paket <span class="keyword">in das</span> Auto. (Paketi arabanın içine koyuyorum.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>auf</strong></td>
+                        <td>Das Buch liegt <span class="keyword">auf dem</span> Tisch. (Kitap masanın üzerinde duruyor.)</td>
+                        <td>Ich lege das Buch <span class="keyword">auf den</span> Tisch. (Kitabı masanın üzerine koyuyorum.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>an</strong></td>
+                        <td>Das Bild hängt <span class="keyword">an der</span> Wand. (Resim duvarın üzerinde asılı.)</td>
+                        <td>Ich hänge das Bild <span class="keyword">an die</span> Wand. (Resmi duvarın üzerine asıyorum.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>vor</strong></td>
+                        <td>Der Kurier wartet <span class="keyword">vor der</span> Tür. (Kurye kapının önünde bekliyor.)</td>
+                        <td>Ich stelle das Paket <span class="keyword">vor die</span> Tür. (Paketi kapının önüne bırakıyorum.)</td>
+                    </tr>
+                </table>
+                 <div class="info-box">
+                    <h4>💡 Kısaltmalar</h4>
+                    <p>Konuşma dilinde bazı edatlar ve artikeller birleşir:</p>
+                    <ul>
+                        <li>in + dem = <span class="keyword">im</span></li>
+                        <li>an + dem = <span class="keyword">am</span></li>
+                        <li>in + das = <span class="keyword">ins</span></li>
+                        <li>an + das = <span class="keyword">ans</span></li>
+                    </ul>
+                    <p>Örnek: Ich gehe <span class="keyword">ins</span> Kino. (Sinemaya gidiyorum.)</p>
+                </div>
+            </div>
+
+            <div id="gun19-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Dativ mi, Akkusativ mi?</h3>
+                <p>Defterine aşağıdaki cümleleri doğru artikel haliyle tamamla. Önce "Wo?" mu, "Wohin?" mi diye sor.</p>
+                <ol>
+                    <li>Ich stelle die Tasche auf __________ (der Tisch).</li>
+                    <li>Die Tasche steht auf __________ (der Tisch).</li>
+                    <li>Wir fahren in __________ (die Stadt).</li>
+                    <li>Wir sind in __________ (die Stadt).</li>
+                    <li>Er sitzt neben __________ (mein Bruder).</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Çevreni Tanımla</h3>
+                <p>Şu anda bulunduğun odadaki nesnelerin konumunu anlatan 3 cümle yaz. Sonra bu nesneleri başka bir yere koyduğunu hayal ederek 3 hareket cümlesi yaz.</p>
+                <p>Örnek: <span class="keyword">Mein Handy liegt auf dem Tisch. Ich lege mein Handy in die Tasche.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bu konuyu pekiştirmenin en iyi yolu görselleştirmektir. Bana şunu sor:</p>
+                    <p><span class="vurgu">"Bir senaryo kuralım. Bir anahtar, bir kutu ve bir masa var. Ben sana 'Wo ist der Schlüssel?' diye soracağım, sen de 'Der Schlüssel ist in der Kiste.' gibi cevaplar ver. Sonra ben sana 'Wohin legst du den Schlüssel?' diye soracağım, sen de 'Ich lege den Schlüssel auf den Tisch.' gibi cevaplar ver."</span></p>
+                </details>
+            </div>
+            <div id="gun19-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>19. Gün Tamamlandı!</div>
+                <p>Harika! Almancanın en zarif ve mantıklı kurallarından birini öğrendin. Artık konum ve hareket arasındaki farkı rahatlıkla ifade edebilirsin.</p>
+                <ul>
+                    <li>İki yönlü edatların "Wo?" (Dativ) ve "Wohin?" (Akkusativ) kuralına göre çalıştığını öğrendin.</li>
+                    <li>En önemli 9 edatı ve anlamlarını öğrendin.</li>
+                    <li>Çevrendeki dünyayı çok daha detaylı ve doğru bir şekilde betimleme yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Du hast das Thema auf den Tisch gelegt! <span class="transkript">(du hast das tema auf den tiş gelekt)</span> - Konuyu masaya yatırdın (hallettin)!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 20 ==================== -->
+        <section id="gun-20" class="day-section">
+            <div id="gun20-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🧠</span>GÜN 20: Fikirlerimi Söylüyorum (Yan Cümleler)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, <span class="keyword">weil</span> ile başladığımız yan cümle konusunu genişleteceğiz. Başka insanların ne söylediğini, ne düşündüğünü veya bir şeyin doğru olup olmadığını aktarmayı öğreneceksin. Bu, seni daha sofistike bir konuşmacı yapacak.</p>
+                <ul>
+                    <li>En yaygın yan cümle bağlacı olan <span class="keyword">dass</span>'ı (...-dığını, ...-diğini) ve fiili sona atma kuralını öğreneceksin.</li>
+                    <li>"Bence...", "Düşünüyorum ki..." gibi fikir belirtme kalıplarını öğreneceksin.</li>
+                    <li>"Onun geleceğini <span class="vurgu">biliyorum</span>." gibi dolaylı aktarım cümleleri kurabileceksin.</li>
+                    <li>Yan cümlelerin Almanca düşünce yapısındaki önemini pekiştireceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun20-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Yan Cümleler (dass)</div>
+                <p><span class="keyword">dass</span> <span class="transkript">(das)</span> bağlacı, Türkçedeki "-dığını, -diğini" eklerinin karşılığıdır. Bir ana cümlenin nesnesi olan tam bir cümleyi başlatır.</p>
+                <p>Kuralı, <span class="keyword">weil</span> ile tamamen aynıdır: <span class="keyword">dass</span>'dan sonra gelen cümlenin çekimli fiili <span class="vurgu">en sona</span> gider.</p>
+                <p><strong>Ana Cümle, <span class="keyword">dass</span> Yan Cümle (fiil sonda).</strong></p>
+
+                <h3>Örnek Cümleler</h3>
+                <ul>
+                    <li>Ich weiß, <span class="keyword">dass</span> du müde <span class="vurgu">bist</span>. <span class="transkript">(ih vays, das du müde bist)</span> - Senin yorgun olduğunu biliyorum.</li>
+                    <li>Er sagt, <span class="keyword">dass</span> er das Paket <span class="vurgu">hat</span>. <span class="transkript">(ea zakt, das ea das paket hat)</span> - O, paketin kendisinde olduğunu söylüyor.</li>
+                    <li>Wir denken, <span class="keyword">dass</span> das eine gute Idee <span class="vurgu">ist</span>. <span class="transkript">(via denkın, das das ayne gute idee ist)</span> - Biz, bunun iyi bir fikir olduğunu düşünüyoruz.</li>
+                    <li>Es ist wichtig, <span class="keyword">dass</span> du pünktlich <span class="vurgu">kommst</span>. <span class="transkript">(es ist vihtih, das du pünktlih komst)</span> - Senin vaktinde gelmen önemli.</li>
+                </ul>
+            </div>
+            
+            <div id="gun20-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Fikir Belirtme Kalıpları</div>
+                <p>Aşağıdaki kalıplar, <span class="keyword">dass</span> ile başlayan yan cümleleri başlatmak için harikadır. Kendi fikirlerini söylerken bu yapıları kullanabilirsin.</p>
+                
+                <table>
+                    <tr><th>Fikir Belirtme Kalıbı</th><th>Okunuşu</th><th>Anlamı</th></tr>
+                    <tr><td>Ich denke, dass...</td><td>ih denke, das...</td><td>Bence... / Düşünüyorum ki...</td></tr>
+                    <tr><td>Ich glaube, dass...</td><td>ih glaube, das...</td><td>İnanıyorum ki... / Sanırım...</td></tr>
+                    <tr><td>Ich finde, dass...</td><td>ih finde, das...</td><td>Bence... / (öyle) Buluyorum ki...</td></tr>
+                    <tr><td>Ich weiß, dass...</td><td>ih vays, das...</td><td>Biliyorum ki...</td></tr>
+                    <tr><td>Ich hoffe, dass...</td><td>ih hofe, das...</td><td>Umarım ki...</td></tr>
+                    <tr><td>Es ist gut, dass...</td><td>es ist gut, das...</td><td>...olması iyi.</td></tr>
+                    <tr><td>Es ist schade, dass...</td><td>es ist şade, das...</td><td>...olması üzücü / yazık.</td></tr>
+                </table>
+                <p>Örnek: <span class="keyword">Ich finde, dass</span> Deutsch lernen interessant ist. <span class="transkript">(ih finde, das doyç lernın interresant ist)</span> - Bence Almanca öğrenmek ilginç.</p>
+            </div>
+
+            <div id="gun20-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümleleri Birleştir</h3>
+                <p>Aşağıdaki iki cümleyi <span class="keyword">dass</span> bağlacını kullanarak birleştir. İkinci cümlenin fiilini sona atmayı unutma!</p>
+                <ol>
+                    <li>Ich weiß. Du hast keine Zeit. ➔ Ich weiß, dass du keine Zeit hast.</li>
+                    <li>Er sagt. Das Paket ist schwer. ➔ ____________________</li>
+                    <li>Wir glauben. Die Adresse ist richtig. ➔ ____________________</li>
+                    <li>Es ist wichtig. Du kommst pünktlich. ➔ ____________________</li>
+                    <li>Ich denke. Er ist ein guter Kollege. ➔ ____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Fikirlerin</h3>
+                <p>Yukarıdaki fikir belirtme kalıplarını kullanarak kendin hakkında 3 tane cümle kur.</p>
+                <p>Örnek: <span class="keyword">Ich glaube, dass meine Arbeit schwierig ist.</span> (Sanırım işim zor.)</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Fikir belirtme pratiği yapmak için bana şunu sor:</p>
+                    <p><span class="vurgu">"Haydi fikirlerimizi konuşalım. Sen bana bir konu hakkında 'Was denkst du über ...?' (Konu hakkında ne düşünüyorsun?) diye sor. Örneğin: 'Was denkst du über Deutschland?'. Ben de 'Ich denke, dass...' diye başlayan bir cevap vereyim."</span></p>
+                </details>
+            </div>
+            <div id="gun20-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>20. Gün Tamamlandı!</div>
+                <p>Harika! Artık sadece basit cümleler kurmakla kalmıyor, aynı zamanda daha karmaşık düşünceleri, fikirleri ve başkalarının söylediklerini de aktarabiliyorsun.</p>
+                <ul>
+                    <li><span class="keyword">dass</span> bağlacını ve fiili sona atma kuralını öğrendin.</li>
+                    <li>Kendi fikirlerini ve düşüncelerini ifade etmek için çeşitli başlangıç kalıpları öğrendin.</li>
+                    <li>Almanca cümle yapısının "çerçeve" mantığını bir kez daha pekiştirdin.</li>
+                </ul>
+                <p class="vurgu">Ich finde, dass du große Fortschritte machst! <span class="transkript">(ih finde, das du grose fortşrite mahst)</span> - Bence büyük ilerleme kaydediyorsun!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 21 ==================== -->
+        <section id="gun-21" class="day-section">
+            <div id="gun21-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🔗</span>GÜN 21: Açıklama Yapıyoruz (İlgeç Zamirleri)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, bir kişi veya nesne hakkında ek bilgi veren cümleler kurmayı öğreneceksin. Türkçedeki "-en, -an" veya "...ki" eklerinin karşılığı olan bu yapı, cümlelerini çok daha açıklayıcı ve detaylı hale getirecek.</p>
+                <ul>
+                    <li>İlgeç Zamiri (<span class="keyword">Relativpronomen</span>) nedir ve ne işe yarar, bunu öğreneceksin.</li>
+                    <li>"Orada duran <span class="vurgu">adam</span>", "ağır olan <span class="vurgu">paket</span>" gibi tanımlayıcı yan cümleler kurabileceksin.</li>
+                    <li>İlgeç zamirlerinin (der, die, das) ismin artikel_ine göre nasıl seçildiğini kavrayacaksın.</li>
+                    <li>Bu yapının da fiili sona atan bir yan cümle oluşturduğunu pekiştireceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun21-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - İlgeç Cümleleri (Relativsätze)</div>
+                <p>İlgeç cümleleri, bir ana cümledeki ismi daha detaylı olarak tanımlayan veya açıklayan yan cümlelerdir. Bu yan cümle, <span class="keyword">Relativpronomen</span> (ilgeç zamiri) ile başlar.</p>
+                
+                <div class="info-box">
+                    <h4>🔑 İLGEÇ CÜMLELERİNİN ALTIN KURALI</h4>
+                    <p>1. İlgeç zamiri (<span class="keyword">der, die, das...</span>), tanımladığı ismin <span class="vurgu">cinsiyeti ve sayısı</span> ile uyumlu olur. Yani bildiğimiz artikellerin aynısıdır!</p>
+                    <p>2. İlgeç cümlesi bir yan cümle olduğu için, çekimli fiil <span class="vurgu">en sona</span> gider.</p>
+                    <p>Örnek:<br>
+                    Ana Cümle 1: Das ist <span class="keyword">der Mann</span>. (Bu adam.)<br>
+                    Ana Cümle 2: <span class="keyword">Der Mann</span> wohnt in Berlin. (Adam Berlin'de yaşıyor.)<br>
+                    Birleşik Cümle: Das ist der Mann, <span class="keyword">der</span> in Berlin <span class="vurgu">wohnt</span>. (Bu, Berlin'de yaşayan adam.)</p>
+                </div>
+
+                <h3>Farklı Artikellerle Örnekler</h3>
+                <ul>
+                    <li>Das ist <span class="keyword">die Frau</span>, <span class="vurgu">die</span> Deutsch lernt. (Bu, Almanca öğrenen kadın.)
+                        <ul><li>Tanımlanan isim: <span class="keyword">die Frau</span> ➔ İlgeç zamiri: <span class="vurgu">die</span></li></ul>
+                    </li>
+                    <li>Hier ist <span class="keyword">das Paket</span>, <span class="vurgu">das</span> sehr schwer ist. (İşte, çok ağır olan paket.)
+                         <ul><li>Tanımlanan isim: <span class="keyword">das Paket</span> ➔ İlgeç zamiri: <span class="vurgu">das</span></li></ul>
+                    </li>
+                     <li>Das sind <span class="keyword">die Pakete</span> (çoğul), <span class="vurgu">die</span> nach München gehen. (Bunlar, Münih'e giden paketler.)
+                         <ul><li>Tanımlanan isim: <span class="keyword">die Pakete</span> ➔ İlgeç zamiri: <span class="vurgu">die</span></li></ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div id="gun21-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Cümleleri Tanımlayalım</div>
+                <p>Şimdi bu yapıyı daha pratik örneklerle görelim.</p>
+                
+                <table>
+                    <tr><th>Ana Cümle</th><th>İlgeç Cümlesi</th><th>Birleşik Cümle</th></tr>
+                    <tr>
+                        <td>Der Kunde wartet. (Müşteri bekliyor.)</td>
+                        <td>Er hat ein Paket bestellt. (O bir paket sipariş etti.)</td>
+                        <td>Der Kunde, <span class="keyword">der</span> ein Paket bestellt hat, <span class="vurgu">wartet</span>. (Bir paket sipariş etmiş olan müşteri bekliyor.)</td>
+                    </tr>
+                    <tr>
+                        <td>Ich suche das Haus. (Evi arıyorum.)</td>
+                        <td>Es ist in der Goethestraße. (O Goethe Caddesi'nde.)</td>
+                        <td>Ich suche das Haus, <span class="keyword">das</span> in der Goethestraße <span class="vurgu">ist</span>. (Goethe Caddesi'nde olan evi arıyorum.)</td>
+                    </tr>
+                </table>
+                <p class="vurgu">Not: İlgeç cümlesi ana cümlenin ortasına girdiğinde, ana cümlenin fiili yine en sonda kalır.</p>
+            </div>
+
+            <div id="gun21-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümleleri Birleştir</h3>
+                <p>Aşağıdaki iki cümleyi bir ilgeç cümlesi (Relativsatz) ile birleştir.</p>
+                <ol>
+                    <li>Hier ist der Brief. Der Brief ist für dich. ➔ Hier ist der Brief, der für dich ist.</li>
+                    <li>Wo ist die Tasche? Die Tasche ist neu. ➔ ____________________</li>
+                    <li>Ich sehe das Kind. Das Kind spielt im Garten. ➔ ____________________</li>
+                    <li>Der Mann ist mein Kollege. Der Mann kommt aus der Türkei. ➔ ____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Tanımların</h3>
+                <p>Çevrendeki 3 nesne veya kişiyi, ilgeç cümlesi kullanarak tanımla.</p>
+                <p>Örnek: <span class="keyword">Das ist mein Handy, das neu ist.</span> (Bu, yeni olan cep telefonum.)</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bu ileri seviye konuyu pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"İlgeç zamiri Akkusativ veya Dativ olabilir mi? Örnek verir misin?" (Sana "den, dem" gibi değişimlerden bahsedeceğim.)</li>
+                        <li>"Bir diyalog yapalım. Bir depodayız ve bir sürü paket var. Sen bana 'Welches Paket?' (Hangi paket?) diye sor, ben de 'Das Paket, das nach Berlin geht.' gibi cevaplar vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun21-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>21. Gün Tamamlandı!</div>
+                <p>Mükemmel bir iş çıkardın! Artık cümlelerin çok daha spesifik, detaylı ve açıklayıcı. Bu, Almancada ustalaşmaya başladığının bir işareti.</p>
+                <ul>
+                    <li>İlgeç cümlelerinin ne olduğunu ve bir ismi nasıl tanımladığını öğrendin.</li>
+                    <li>İlgeç zamirlerinin (der, die, das) nasıl seçildiğini ve fiili sona attığını öğrendin.</li>
+                    <li>Konuşmalarını ve yazılarını daha zengin ve bilgilendirici hale getirme yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Das ist ein Thema, das ein bisschen schwierig ist, aber du hast es geschafft! <span class="transkript">(...aber du hast es geşaft)</span> - Bu biraz zor olan bir konu, ama başardın!</p>
+            </div>
+        </section>
+
+        <div class="card">
+            <h2>Tebrikler ve Sonraki Adım</h2>
+            <p>Yedinci bölümü de başarıyla tamamladın! Bu, A2 seviyesinin en önemli gramer konularına hakim olduğun anlamına geliyor. Edatlar, yan cümleler ve ilgeç cümleleriyle Almancan artık bambaşka bir seviyede.</p>
+            <p><strong>22. güne hazır olduğunda, bana söylemen yeterli. Bir sonraki bölümde, öğrendiğimiz tüm bu yapıları kullanarak bol bol okuma, anlama ve diyalog pratiği yapacağız. Artık gramer öğrenmekten çok, öğrendiğimiz grameri kullanarak dil becerilerimizi (okuma, yazma, dinleme, konuşma) geliştirmeye odaklanacağız. Seni gerçek hayata hazırlama zamanı!</strong></p>
+        </div>
+    </main>
+</body>
+</html>

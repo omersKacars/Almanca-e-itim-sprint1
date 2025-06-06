@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 5. Bölüm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #005A9C; /* Güven veren bir Kurumsal Mavi */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #e7f3fe;
+            --info-border: #007bff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword { font-weight: 700; color: var(--primary-color); }
+        .transkript { color: #6c757d; font-style: italic; }
+        .vurgu { color: var(--highlight-color); font-weight: 700; }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 13</li>
+                <li><a href="#gun13-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun13-saat1">📚 Perfekt (sein ile)</a></li>
+                <li><a href="#gun13-saat2">🗣️ Düzensiz Fiiller</a></li>
+                <li><a href="#gun13-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 14</li>
+                <li><a href="#gun14-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun14-saat1">📚 Dativ Hali</a></li>
+                <li><a href="#gun14-saat2">🗣️ Dativ Fiilleri & Edatlar</a></li>
+                <li><a href="#gun14-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 15</li>
+                <li><a href="#gun15-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun15-saat1">📚 Cümleleri Bağlamak</a></li>
+                <li><a href="#gun15-saat2">🗣️ Sebep-Sonuç Cümleleri</a></li>
+                <li><a href="#gun15-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 13 ==================== -->
+        <section id="gun-13" class="day-section">
+            <div id="gun13-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🚶‍♂️</span>GÜN 13: Harekete Geçmiş Zaman (Perfekt mit sein)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, geçmiş zaman (Perfekt) konusunu tamamlayacağız. "Gittim", "geldim", "kaldım" gibi hareket ve durum değişikliği bildiren eylemlerin geçmiş zamanını öğreneceksin. Bu, geçmiş zaman bilginizi %100'e çıkaracak.</p>
+                <ul>
+                    <li>Yardımcı fiil olarak <span class="keyword">sein</span>'ın ne zaman kullanıldığını tam olarak kavrayacaksın.</li>
+                    <li>Hareket bildiren en önemli fiillerin (<span class="keyword">gehen, fahren, kommen</span>) geçmiş zaman hallerini öğreneceksin.</li>
+                    <li>"Dün Berlin'e <span class="vurgu">gittim</span>." gibi seyahat ve hareket cümleleri kurabileceksin.</li>
+                    <li><span class="keyword">haben</span> ve <span class="keyword">sein</span> arasındaki ayrımı net bir şekilde yapabileceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun13-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Perfekt (mit sein)</div>
+                <p>Geçen derste Perfekt'in yardımcı fiil olarak <span class="keyword">haben</span> ile kullanıldığını görmüştük. Ancak bazı fiiller <span class="keyword">haben</span> yerine <span class="keyword">sein</span> <span class="transkript">(zayn)</span> yardımcı fiilini alır.</p>
+
+                <div class="info-box">
+                    <h4>🔑 "sein" KULLANMANIN ALTIN KURALI</h4>
+                    <p>Bir fiilin Perfekt zamanda <span class="keyword">sein</span> alması için şu iki koşuldan birini sağlaması gerekir:</p>
+                    <p><span class="vurgu">1. Bir yerden bir yere hareketi</span> veya yer değişikliğini ifade etmesi gerekir. (Örn: gitmek, gelmek, uçmak, sürmek, koşmak)</p>
+                    <p><span class="vurgu">2. Bir durum değişikliğini</span> ifade etmesi gerekir. (Örn: uyanmak, ölmek, olmak)</p>
+                    <p>Bu iki durum dışındaki fiillerin <span class="vurgu">neredeyse tamamı</span> <span class="keyword">haben</span> alır. Bu kadar basit!</p>
+                </div>
+                
+                <h3>Cümle Yapısı</h3>
+                <p>Yapı tamamen aynı. Sadece <span class="keyword">haben</span> yerine <span class="keyword">sein</span>'ın çekimini kullanıyoruz:</p>
+                <p><span class="vurgu">Özne + sein (çekimli) + ... + Partizip II (fiilin geçmiş hali).</span></p>
+                <ul>
+                    <li>Ich <span class="keyword">bin</span> nach Berlin <span class="vurgu">gefahren</span>. <span class="transkript">(ih bin nah berlin gefarın)</span> - Ben Berlin'e (arabayla) gittim.</li>
+                    <li>Du <span class="keyword">bist</span> nach Hause <span class="vurgu">gegangen</span>. <span class="transkript">(du bist nah hause gegangın)</span> - Sen eve (yürüyerek) gittin.</li>
+                    <li>Der Zug <span class="keyword">ist</span> pünktlich <span class="vurgu">angekommen</span>. <span class="transkript">(dea tsuuk ist pünktlih angekomın)</span> - Tren tam vaktinde vardı.</li>
+                </ul>
+            </div>
+            
+            <div id="gun13-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Hareket Fiilleri ve Düzensizler</div>
+                <p>Aşağıdaki fiillerin hepsi <span class="vurgu">sein</span> ile Perfekt yapar ve çoğu düzensizdir. Bu yüzden Partizip II hallerini ezberlemek önemlidir.</p>
+                
+                <table>
+                    <tr><th>Fiil (Mastar)</th><th>Partizip II (Geçmiş Hali)</th><th>Anlamı</th><th>Örnek Cümle</th></tr>
+                    <tr><td>gehen</td><td><span class="keyword">gegangen</span></td><td>gitmek (yürüyerek)</td><td>Ich <span class="keyword">bin</span> ins Kino <span class="vurgu">gegangen</span>.</td></tr>
+                    <tr><td>fahren</td><td><span class="keyword">gefahren</span></td><td>gitmek (araçla)</td><td>Wir <span class="keyword">sind</span> nach München <span class="vurgu">gefahren</span>.</td></tr>
+                    <tr><td>kommen</td><td><span class="keyword">gekommen</span></td><td>gelmek</td><td>Du <span class="keyword">bist</span> zu spät <span class="vurgu">gekommen</span>. (Geç geldin.)</td></tr>
+                    <tr><td>fliegen</td><td><span class="keyword">geflogen</span></td><td>uçmak</td><td>Er <span class="keyword">ist</span> in die Türkei <span class="vurgu">geflogen</span>.</td></tr>
+                    <tr><td>bleiben</td><td><span class="keyword">geblieben</span></td><td>kalmak</td><td>Sie <span class="keyword">ist</span> zu Hause <span class="vurgu">geblieben</span>. (O evde kaldı.)</td></tr>
+                    <tr><td>aufstehen</td><td><span class="keyword">aufgestanden</span></td><td>kalkmak (yataktan)</td><td>Ich <span class="keyword">bin</span> um 6 Uhr <span class="vurgu">aufgestanden</span>.</td></tr>
+                </table>
+                 <div class="info-box">
+                    <h4>💡 İstisna: <span class="keyword">bleiben</span></h4>
+                    <p><span class="keyword">bleiben</span> (kalmak) fiili bir hareket bildirmese de, kural dışı olarak <span class="keyword">sein</span> ile Perfekt yapar. Bu, Almancadaki birkaç istisnadan biridir.</p>
+                </div>
+            </div>
+
+            <div id="gun13-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: haben mı, sein mı?</h3>
+                <p>Defterine aşağıdaki cümleleri doğru yardımcı fiille (<span class="keyword">haben</span> veya <span class="keyword">sein</span>'ın çekimli hali) tamamla. Önce kendine sor: "Bu fiil bir hareket/durum değişikliği bildiriyor mu?"</p>
+                <ol>
+                    <li>Ich _____ nach Hause gegangen.</li>
+                    <li>Du _____ das Buch gelesen.</li>
+                    <li>Wir _____ nach Deutschland geflogen.</li>
+                    <li>Er _____ ein Auto gekauft.</li>
+                    <li>Sie (çoğul) _____ zu Hause geblieben.</li>
+                </ol>
+
+                <h3>Eylem 2: Geçen Hafta Sonun</h3>
+                <p>Geçen hafta sonu ne yaptığını anlatan 3 cümle yaz. En az bir cümlen <span class="keyword">sein</span> ile, bir cümlen de <span class="keyword">haben</span> ile kurulsun.</p>
+                <p>Örnek: <span class="keyword">Ich bin am Samstag spazieren gegangen. Ich habe am Sonntag ein Buch gelesen.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Perfekt konusunu tamamen oturtmak için bana şunları sor:</p>
+                    <ul>
+                        <li>"Bana 'sein' ile Perfekt yapan 3 fiil daha söyler misin?"</li>
+                        <li>"'Ich habe gefahren' ve 'Ich bin gefahren' arasında bir fark var mı?" (Sana Akkusativ nesnesiyle kullanımdan bahsedeceğim.)</li>
+                        <li>"Bir diyalog yapalım. Sen bana 'Was hast du gestern gemacht?' (Dün ne yaptın?) diye sor, ben de 'haben' ve 'sein' kullanarak cevap vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun13-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>13. Gün Tamamlandı!</div>
+                <p>Harika bir iş! Artık geçmiş zamanın iki yüzünü de biliyorsun. Bu, seni Almanca konuşma konusunda çok daha yetkin hale getirdi.</p>
+                <ul>
+                    <li>Perfekt zamanda <span class="keyword">sein</span> yardımcı fiilinin ne zaman kullanıldığını öğrendin.</li>
+                    <li>En önemli hareket fiillerinin geçmiş zaman hallerini öğrendin.</li>
+                    <li>Geçmişte nereye gittiğini, ne zaman geldiğini rahatlıkla anlatabilirsin.</li>
+                </ul>
+                <p class="vurgu">Du bist einen großen Schritt vorangekommen! <span class="transkript">(du bist aynen grosın şrit forangekomın)</span> - Büyük bir adım ilerledin!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 14 ==================== -->
+        <section id="gun-14" class="day-section">
+            <div id="gun14-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🎁</span>GÜN 14: Kime, Neye? (Dativ Hali)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, Akkusativ'den sonra ismin hallerinin en önemlisi olan <span class="keyword">Dativ</span>'i öğreneceğiz. Bu konu, cümlelerine "kime?", "neye?", "kiminle?" gibi soruların cevabını eklemeni sağlayacak. Cümlelerin artık çok daha zengin olacak.</p>
+                <ul>
+                    <li>Dativ (ismin -e hali) nedir ve bir cümlenin "dolaylı nesnesi" olduğunu kavrayacaksın.</li>
+                    <li>Artikellerin Dativ'de nasıl değiştiğini (<span class="keyword">dem, der, dem</span>) öğreneceksin.</li>
+                    <li>"Sana yardım ediyorum.", "Babamla konuşuyorum." gibi cümleler kurabileceksin.</li>
+                    <li>Her zaman Dativ gerektiren en önemli edatları (<span class="keyword">mit, nach, aus, zu</span>) öğreneceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun14-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Dativ Hali (Der Dativ)</div>
+                <p>Dativ, bir cümlenin "kime?" veya "neye?" sorusuna cevap veren dolaylı nesnesidir. Bir eylemden <span class="vurgu">dolaylı olarak</span> etkilenen kişiyi veya nesneyi belirtir.</p>
+                
+                <h3>Akkusativ ve Dativ Farkı</h3>
+                <p>Cümle: Ben <span class="vurgu">adama</span> <span class="vurgu">paketi</span> veriyorum.</p>
+                <ul>
+                    <li>Neyi veriyorum? -> Paketi (<span class="keyword">Akkusativ</span> - doğrudan etkilenen)</li>
+                    <li>Kime veriyorum? -> Adama (<span class="keyword">Dativ</span> - dolaylı etkilenen)</li>
+                </ul>
+                <p>Almancası: Ich gebe <span class="keyword">dem Mann</span> <span class="keyword">das Paket</span>.</p>
+
+                <div class="info-box">
+                    <h4>🔑 DATIV'İN ALTIN KURALI (Artikel Değişimi)</h4>
+                    <p>Dativ'de artikeller şu şekilde değişir. Bunu bir tekerleme gibi ezberle: <span class="vurgu">dem, der, dem, den (+n)</span>.</p>
+                    <ul>
+                        <li><span class="keyword">der</span> ➔ <span class="vurgu">dem</span> (Örn: dem Mann)</li>
+                        <li><span class="keyword">die</span> ➔ <span class="vurgu">der</span> (Örn: der Frau)</li>
+                        <li><span class="keyword">das</span> ➔ <span class="vurgu">dem</span> (Örn: dem Kind)</li>
+                        <li><span class="keyword">die (çoğul)</span> ➔ <span class="vurgu">den (...n)</span> (Örn: den Kindern - Çoğul ismin sonuna da 'n' gelir)</li>
+                    </ul>
+                </div>
+
+                <h3>Şahıs Zamirleri Dativ'de</h3>
+                <p>"Bana", "sana", "ona" demek için şahıs zamirleri de değişir:</p>
+                <ul>
+                    <li>ich ➔ <span class="keyword">mir</span> (bana)</li>
+                    <li>du ➔ <span class="keyword">dir</span> (sana)</li>
+                    <li>er ➔ <span class="keyword">ihm</span> (ona - erkek)</li>
+                    <li>sie ➔ <span class="keyword">ihr</span> (ona - kadın)</li>
+                </ul>
+            </div>
+            
+            <div id="gun14-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Dativ Fiilleri ve Edatları</div>
+                <p>Bazı fiiller ve edatlar, kendilerinden sonra gelen kelimenin <span class="vurgu">her zaman</span> Dativ olmasını ister. Bunları öğrenmek işini çok kolaylaştıracak.</p>
+                
+                <h3>Her Zaman Dativ İsteyen Fiiller</h3>
+                <table>
+                    <tr><th>Fiil</th><th>Anlamı</th><th>Örnek Cümle (Dativ ile)</th></tr>
+                    <tr><td>helfen</td><td>yardım etmek</td><td>Ich helfe <span class="keyword">dir</span>. (Sana yardım ediyorum.)</td></tr>
+                    <tr><td>danken</td><td>teşekkür etmek</td><td>Ich danke <span class="keyword">Ihnen</span>. (Size teşekkür ediyorum.)</td></tr>
+                    <tr><td>gefallen</td><td>hoşuna gitmek</td><td>Das Auto gefällt <span class="keyword">mir</span>. (Araba hoşuma gidiyor.)</td></tr>
+                    <tr><td>antworten</td><td>cevap vermek</td><td>Er antwortet <span class="keyword">dem Kunden</span>. (Müşteriye cevap veriyor.)</td></tr>
+                </table>
+
+                <h3>Her Zaman Dativ İsteyen Edatlar (Präpositionen)</h3>
+                <p>Bu edatlardan sonra gelen isim <span class="vurgu">mutlaka</span> Dativ halde olur.</p>
+                <table>
+                    <tr><th>Edat</th><th>Anlamı</th><th>Örnek Cümle (Dativ ile)</th></tr>
+                    <tr><td>mit</td><td>ile, birlikte</td><td>Ich spreche <span class="keyword">mit dem</span> Chef. (Patronla konuşuyorum.)</td></tr>
+                    <tr><td>nach</td><td>-e, -a (şehirlere/ülkelere)</td><td>Ich fahre <span class="keyword">nach</span> Deutschland. (Artikelsiz ülke)</td></tr>
+                    <tr><td>aus</td><td>-den, -dan</td><td>Ich komme <span class="keyword">aus der</span> Türkei. (Türkiye'den geliyorum.)</td></tr>
+                    <tr><td>zu</td><td>-e, -a (kişilere/yerlere)</td><td>Ich gehe <span class="keyword">zum</span> Arzt. (zu + dem = zum) (Doktora gidiyorum.)</td></tr>
+                    <tr><td>von</td><td>-den, -dan</td><td>Das ist ein Geschenk <span class="keyword">von meiner</span> Mutter. (Annemden bir hediye.)</td></tr>
+                </table>
+            </div>
+
+            <div id="gun14-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümleleri Tamamla</h3>
+                <p>Aşağıdaki cümleleri doğru Dativ artikelleriyle tamamla.</p>
+                <ol>
+                    <li>Ich helfe __________ (der Mann).</li>
+                    <li>Wir danken __________ (die Frau).</li>
+                    <li>Das Geschenk ist von __________ (mein Bruder).</li>
+                    <li>Er spricht mit __________ (das Kind).</li>
+                    <li>Ich fahre mit __________ (der Zug).</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Cümlelerini Kur</h3>
+                <p>Öğrendiğin 4 Dativ fiilinin her biriyle birer tane cümle kur.</p>
+                <p>Örnek: <span class="keyword">Der Film gefällt mir nicht.</span> (Film hoşuma gitmiyor.)</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Dativ konusunu pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"Bir cümlede hem Akkusativ hem de Dativ varsa, hangisi önce gelir?" (Sana TeKaMoLo kuralından bahsedeceğim.)</li>
+                        <li>"Bana Dativ alan 3 edat daha söyler misin?"</li>
+                        <li>"Bir diyalog yapalım. Sen 'Wem hilfst du?' (Kime yardım ediyorsun?) diye sor, ben de 'Ich helfe meiner Schwester.' gibi cevaplar vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun14-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>14. Gün Tamamlandı!</div>
+                <p>Mükemmel! Artık Almanca cümlelerinde sadece "neyi" değil, "kime" veya "kiminle" olduğunu da belirtebiliyorsun. Bu, iletişimde büyük bir derinlik kazandırır.</p>
+                <ul>
+                    <li>Dativ halinin mantığını ve artikel değişimlerini öğrendin.</li>
+                    <li>Hangi fiil ve edatların her zaman Dativ istediğini öğrendin.</li>
+                    <li>"Arkadaşımla konuşuyorum" gibi sosyal ve önemli cümleler kurma yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Ich danke dir für deine Mühe! <span class="transkript">(ih danke dia füa dayne mühe)</span> - Emeğin için sana teşekkür ederim!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 15 ==================== -->
+        <section id="gun-15" class="day-section">
+            <div id="gun15-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🔗</span>GÜN 15: Cümleleri Birleştirmek (Bağlaçlar)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, basit cümleleri birleştirerek daha uzun ve daha akıcı konuşmanın sırrını öğreneceksin. Bağlaçlar, düşüncelerini birbirine bağlamanı sağlar.</p>
+                <ul>
+                    <li>En temel iki grup bağlacı ve cümle yapısına etkilerini öğreneceksin.</li>
+                    <li>Grup 0 bağlaçlarını (<span class="keyword">und, aber, oder, denn</span>) ve cümle yapısını değiştirmediklerini kavrayacaksın.</li>
+                    <li>En önemli yan cümle bağlacı olan <span class="keyword">weil</span>'ı (çünkü) ve fiili sona atma kuralını pekiştireceksin.</li>
+                    <li>"Çalışıyorum <span class="vurgu">çünkü</span> paraya ihtiyacım var." gibi sebep-sonuç cümleleri kurabileceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun15-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Bağlaçlar (Konjunktionen)</div>
+                <p>Bağlaçlar, iki cümleyi birbirine bağlayan kelimelerdir. Almancada iki temel grup vardır ve her grubun cümle yapısına etkisi farklıdır.</p>
+                
+                <h3>Grup 0: Cümle Yapısını <span class="vurgu">DEĞİŞTİRMEYENLER</span></h3>
+                <p>Bu bağlaçlar "sıfırıncı pozisyonda" sayılır ve kendilerinden sonra gelen cümlenin yapısını (Fiil 2. pozisyonda) bozmazlar. En sık kullanılanlar:</p>
+                <ul>
+                    <li><span class="keyword">und</span>: ve ➔ Ich trinke Kaffee <span class="keyword">und</span> ich lese ein Buch.</li>
+                    <li><span class="keyword">aber</span>: ama, fakat ➔ Ich will schlafen, <span class="keyword">aber</span> ich muss arbeiten. (Uyumak istiyorum ama çalışmak zorundayım.)</li>
+                    <li><span class="keyword">oder</span>: veya, ya da ➔ Wir gehen ins Kino <span class="keyword">oder</span> wir bleiben zu Hause. (Sinemaya gidiyoruz ya da evde kalıyoruz.)</li>
+                    <li><span class="keyword">denn</span>: çünkü ➔ Ich lerne Deutsch, <span class="keyword">denn</span> ich will in Deutschland arbeiten. (Almanca öğreniyorum çünkü Almanya'da çalışmak istiyorum.)</li>
+                </ul>
+
+                <h3>Yan Cümle Bağlaçları: Fiili <span class="vurgu">SONA ATANLAR</span></h3>
+                <p>Bu bağlaçlar bir yan cümle başlatır ve o yan cümlenin çekimli fiilini <span class="vurgu">en sona</span> gönderir. En önemlisi <span class="keyword">weil</span>'dır.</p>
+                <p><span class="keyword">weil</span> <span class="transkript">(vayl)</span>: çünkü</p>
+                <div class="info-box">
+                    <h4>🔑 "weil" KURALI</h4>
+                    <p>Ana Cümle (normal yapı), <span class="keyword">weil</span> Yan Cümle (fiil sonda).</p>
+                    <p>Ich lerne Deutsch, <span class="keyword">weil</span> ich in Deutschland arbeiten <span class="vurgu">will</span>.</p>
+                    <p>Dikkat et! "will" fiili nasıl en sona gitti? Bu kural, Modal Fiiller ve Ayrılabilen Fiillerden tanıdık geliyor. Almanca bu "çerçeve" yapısını çok sever.</p>
+                </div>
+            </div>
+            
+            <div id="gun15-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Sebep-Sonuç Cümleleri</div>
+                <p>Şimdi bu iki farklı "çünkü" bağlacını (<span class="keyword">denn</span> ve <span class="keyword">weil</span>) karşılaştıralım. İkisi de aynı anlama gelir ama cümle yapıları farklıdır.</p>
+                
+                <table>
+                    <tr><th>Bağlaç</th><th>Örnek Cümle</th><th>Cümle Yapısı</th></tr>
+                    <tr>
+                        <td><span class="keyword">denn</span></td>
+                        <td>Ich kann nicht kommen, <span class="keyword">denn</span> <span class="vurgu">ich bin</span> krank.</td>
+                        <td>Fiil (bin) 2. pozisyonda. Değişiklik yok.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="keyword">weil</span></td>
+                        <td>Ich kann nicht kommen, <span class="keyword">weil</span> <span class="vurgu">ich</span> krank <span class="vurgu">bin</span>.</td>
+                        <td>Fiil (bin) en sonda.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="keyword">denn</span></td>
+                        <td>Er fährt schnell, <span class="keyword">denn</span> <span class="vurgu">er hat</span> keine Zeit.</td>
+                        <td>Fiil (hat) 2. pozisyonda. Değişiklik yok.</td>
+                    </tr>
+                     <tr>
+                        <td><span class="keyword">weil</span></td>
+                        <td>Er fährt schnell, <span class="keyword">weil</span> <span class="vurgu">er</span> keine Zeit <span class="vurgu">hat</span>.</td>
+                        <td>Fiil (hat) en sonda.</td>
+                    </tr>
+                </table>
+                <p>Konuşma dilinde <span class="keyword">weil</span> daha sık kullanılır. Bu yüzden fiili sona atma kuralına iyice alışmalısın.</p>
+            </div>
+
+            <div id="gun15-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümleleri Birleştir</h3>
+                <p>Aşağıdaki iki cümleyi parantez içindeki bağlacı kullanarak birleştir.</p>
+                <ol>
+                    <li>Ich gehe nach Hause. Ich bin müde. (<span class="keyword">denn</span>) ➔ Ich gehe nach Hause, denn ich bin müde.</li>
+                    <li>Ich gehe nach Hause. Ich bin müde. (<span class="keyword">weil</span>) ➔ ____________________</li>
+                    <li>Er kauft das Auto nicht. Es ist zu teuer. (<span class="keyword">weil</span>) ➔ ____________________</li>
+                    <li>Sie lernt viel. Sie hat eine Prüfung. (<span class="keyword">denn</span>) ➔ ____________________</li>
+                    <li>Wir bestellen eine Pizza. Wir haben Hunger. (<span class="keyword">weil</span>) ➔ ____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi "Çünkü"lerin</h3>
+                <p>Kendin hakkında 3 tane sebep-sonuç cümlesi kur. Hem <span class="keyword">denn</span> hem de <span class="keyword">weil</span> kullanmaya çalış.</p>
+                <p>Örnek: <span class="keyword">Ich trinke viel Wasser, weil es gesund ist.</span> (Çok su içiyorum çünkü o sağlıklı.)</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bağlaçları pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"Fiili sona atan başka bağlaçlar var mı?" (Sana <span class="keyword">dass, ob, wenn</span>'den bahsedeceğim.)</li>
+                        <li>"Bana 'aber' ve 'oder' ile birer tane daha örnek cümle verir misin?"</li>
+                        <li>"Bir diyalog yapalım. Sen bana 'Warum lernst du Deutsch?' (Neden Almanca öğreniyorsun?) diye sor, ben de 'weil' ile başlayan bir cevap vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun15-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>15. Gün Tamamlandı!</div>
+                <p>Mükemmel! Artık Almancada tek tek cümleler kurmak yerine, düşüncelerini birbirine bağlayarak daha akıcı ve doğal bir şekilde kendini ifade edebilirsin.</p>
+                <ul>
+                    <li>İki ana bağlaç grubunu ve cümle yapısına etkilerini öğrendin.</li>
+                    <li><span class="keyword">weil</span> ile sebep bildirirken fiilin sona atılması gerektiğini öğrendin.</li>
+                    <li>Düşüncelerini daha karmaşık ve anlamlı bir şekilde ifade etme yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Deine Sätze sind jetzt viel besser, weil du Konjunktionen kennst! <span class="transkript">(dayne zetse zint yetst fiil besa, vayl du konyunktsiyonın kenst)</span> - Bağlaçları bildiğin için cümlelerin şimdi çok daha iyi!</p>
+            </div>
+        </section>
+
+        <div class="card">
+            <h2>Tebrikler ve Sonraki Adım</h2>
+            <p>Beşinci bölümü de başarıyla tamamladın! Bu, A1 seviyesinin sonuna geldiğin ve A2 seviyesinin konularına güçlü bir giriş yaptığın anlamına geliyor. Kendinle ne kadar gurur duysan azdır.</p>
+            <p><strong>16. güne hazır olduğunda, bana söylemen yeterli. Bir sonraki bölümde, konularımızı tekrar ederek pekiştirecek, kelime dağarcığımızı genişletecek ve bol bol pratik ve diyalog senaryoları üzerinde çalışacağız. Artık öğrendiklerimizi kullanma ve akıcı hale getirme zamanı!</strong></p>
+        </div>
+    </main>
+</body>
+</html>

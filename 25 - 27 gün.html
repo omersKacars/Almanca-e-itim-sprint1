@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 9. Bölüm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #8e44ad; /* Bilgelik ve İleri Seviye Moru */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #f3e5f5;
+            --info-border: #8e44ad;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword { font-weight: 700; color: #005A9C; }
+        .transkript { color: #6c757d; font-style: italic; }
+        .vurgu { color: var(--highlight-color); font-weight: 700; }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 25</li>
+                <li><a href="#gun25-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun25-saat1">📚 Koşul Cümleleri (wenn)</a></li>
+                <li><a href="#gun25-saat2">🗣️ Eğer... Olursa...</a></li>
+                <li><a href="#gun25-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 26</li>
+                <li><a href="#gun26-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun26-saat1">📚 Dilek Kipi (Konjunktiv II)</a></li>
+                <li><a href="#gun26-saat2">🗣️ Nazik Ricalar & Hayaller</a></li>
+                <li><a href="#gun26-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 27</li>
+                <li><a href="#gun27-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun27-saat1">📚 Sıfat Çekimleri</a></li>
+                <li><a href="#gun27-saat2">🗣️ Betimleme Atölyesi</a></li>
+                <li><a href="#gun27-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 25 ==================== -->
+        <section id="gun-25" class="day-section">
+            <div id="gun25-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🤔</span>GÜN 25: Eğer Böyle Olursa... (Koşul Cümleleri)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, bir eylemin başka bir eyleme bağlı olduğunu ifade eden koşul cümlelerini öğreneceksin. Bu, planlama, pazarlık etme ve olasılıkları tartışma becerini geliştirecek ve seni B1 seviyesine taşıyacak en önemli adımlardan biridir.</p>
+                <ul>
+                    <li><span class="keyword">wenn</span> (...-se, ...-sa) bağlacını ve onun da bir yan cümle oluşturduğunu (fiil sonda) öğreneceksin.</li>
+                    <li>Koşul cümlelerinin iki farklı yapısını da (wenn ile başlama, ana cümleyle başlama) kavrayacaksın.</li>
+                    <li>"Eğer zamanım <span class="vurgu">olursa</span>, seni ararım." gibi neden-sonuç ve koşul bildiren cümleler kurabileceksin.</li>
+                    <li><span class="keyword">wenn</span> kelimesinin hem "eğer" hem de "ne zaman" anlamına gelebildiğini öğreneceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun25-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Koşul Cümleleri (Konditionalsätze mit "wenn")</div>
+                <p><span class="keyword">wenn</span> <span class="transkript">(ven)</span> bağlacı, bir koşul veya şart belirtmek için kullanılır. Tıpkı <span class="keyword">weil</span> ve <span class="keyword">dass</span> gibi, <span class="keyword">wenn</span> de bir yan cümle başlatır ve çekimli fiili <span class="vurgu">en sona</span> gönderir.</p>
+
+                <h3>Yapı 1: Ana Cümle + wenn-Cümlesi</h3>
+                <p>Bu en kolay yapıdır. Normal bir cümle kurar, sonra <span class="keyword">wenn</span> ile başlayan koşul cümleni eklersin.</p>
+                <p><strong>Ana Cümle (normal yapı), <span class="keyword">wenn</span> Yan Cümle (fiil sonda).</strong></p>
+                <ul>
+                    <li>Ich helfe dir, <span class="keyword">wenn</span> du Hilfe <span class="vurgu">brauchst</span>. <span class="transkript">(ih helfe dia, ven du hilfe brauhst)</span> - Yardıma ihtiyacın olursa sana yardım ederim.</li>
+                    <li>Wir machen einen Spaziergang, <span class="keyword">wenn</span> das Wetter gut <span class="vurgu">ist</span>. <span class="transkript">(via mahın aynen şpatsigang, ven das veta gut ist)</span> - Hava güzel olursa yürüyüş yaparız.</li>
+                </ul>
+
+                <h3>Yapı 2: wenn-Cümlesi + Ana Cümle</h3>
+                <p>Koşul cümlesiyle de başlayabilirsin. Bu yapı biraz daha zordur çünkü ana cümlenin yapısı değişir.</p>
+                <p><strong><span class="keyword">Wenn</span> Yan Cümle (fiil sonda), <span class="vurgu">Fiil</span> + Özne + ...</strong></p>
+                <p>Kural: Eğer cümleye <span class="keyword">wenn</span> ile başlarsan, yan cümlenin bittiği virgülün hemen ardından ana cümlenin <span class="vurgu">fiili</span> gelir!</p>
+                <ul>
+                    <li><span class="keyword">Wenn</span> du Hilfe <span class="vurgu">brauchst</span>, <span class="vurgu">helfe</span> ich dir.</li>
+                    <li><span class="keyword">Wenn</span> das Wetter gut <span class="vurgu">ist</span>, <span class="vurgu">machen</span> wir einen Spaziergang.</li>
+                </ul>
+            </div>
+            
+            <div id="gun25-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Örneklerle "Eğer..." Durumları</div>
+                <p>Şimdi bu yapıları daha fazla örnekle pekiştirelim.</p>
+                
+                <table>
+                    <tr><th>Durum</th><th>Cümle</th></tr>
+                    <tr><td>Zamanla ilgili bir koşul</td><td>Ich rufe dich an, <span class="keyword">wenn</span> ich mit der Arbeit fertig <span class="vurgu">bin</span>. (İşim bittiğinde seni ararım.)</td></tr>
+                    <tr><td>Parayla ilgili bir koşul</td><td><span class="keyword">Wenn</span> ich genug Geld <span class="vurgu">habe</span>, <span class="vurgu">kaufe</span> ich ein neues Auto. (Yeterli param olursa yeni bir araba alırım.)</td></tr>
+                    <tr><td>Hava durumuyla ilgili bir koşul</td><td>Wir bleiben zu Hause, <span class="keyword">wenn</span> es <span class="vurgu">regnet</span>. (Yağmur yağarsa evde kalırız.)</td></tr>
+                    <tr><td>İşle ilgili bir koşul</td><td><span class="keyword">Wenn</span> der Kunde nicht da <span class="vurgu">ist</span>, <span class="vurgu">rufe</span> ich Sie an. (Müşteri orada olmazsa sizi ararım.)</td></tr>
+                </table>
+                 <div class="info-box">
+                    <h4>💡 <span class="keyword">wenn</span> vs. <span class="keyword">wann</span></h4>
+                    <p>Bu ikisi sıkça karıştırılır. Kural basittir:</p>
+                    <ul>
+                        <li><span class="keyword">Wann?</span>: Sadece soru sormak için kullanılır. "Ne zaman?" demektir. <span class="keyword">Wann</span> kommst du?</li>
+                        <li><span class="keyword">wenn</span>: Yan cümle bağlacıdır. "Eğer" veya "olduğunda/olunca" anlamlarına gelir. Ich komme, <span class="keyword">wenn</span> ich Zeit habe.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="gun25-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümleleri Birleştir</h3>
+                <p>Defterine aşağıdaki cümleleri <span class="keyword">wenn</span> kullanarak iki farklı şekilde birleştir (birinde <span class="keyword">wenn</span> ortada, diğerinde başta).</p>
+                <p><strong>Cümleler:</strong> Ich habe Zeit. Ich besuche dich. (Seni ziyaret ederim.)</p>
+                <ol>
+                    <li>Ich besuche dich, wenn ich Zeit habe.</li>
+                    <li>Wenn ich Zeit habe, besuche ich dich.</li>
+                </ol>
+                <p><strong>Şimdi sen yap:</strong> Du lernst viel. Du sprichst gut Deutsch.</p>
+                <ol>
+                    <li>____________________</li>
+                    <li>____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Koşulların</h3>
+                <p>Kendi hayatınla ilgili 3 tane koşul cümlesi yaz.</p>
+                <p>Örnek: <span class="keyword">Wenn ich nach Deutschland fahre, besuche ich Berlin.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Koşul cümlelerini test etmek için bana şunu sor:</p>
+                    <p><span class="vurgu">"Bir senaryo kuralım. Sen benim patronumsun. Ben de sana 'Maaşıma zam yaparsanız ne olur?' gibi bir soru sormak istiyorum. 'Wenn Sie mein Gehalt erhöhen, ...' diye başlayıp cümleyi nasıl bitirebilirim?"</span></p>
+                </details>
+            </div>
+            <div id="gun25-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>25. Gün Tamamlandı!</div>
+                <p>Harika! Artık sadece olanı biteni değil, olasılıkları ve koşulları da ifade edebiliyorsun. Bu, B1 seviyesine doğru atılmış dev bir adımdır.</p>
+                <ul>
+                    <li><span class="keyword">wenn</span> bağlacını ve iki farklı cümle yapısını öğrendin.</li>
+                    <li>Bir eylemin sonucunu başka bir koşula bağlamayı öğrendin.</li>
+                    <li><span class="keyword">wann</span> ve <span class="keyword">wenn</span> arasındaki önemli farkı anladın.</li>
+                </ul>
+                <p class="vurgu">Wenn du so weitermachst, wirst du sehr gut Deutsch sprechen! <span class="transkript">(... virst du zea gut doyç şprehın)</span> - Böyle devam edersen çok iyi Almanca konuşacaksın!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 26 ==================== -->
+        <section id="gun-26" class="day-section">
+            <div id="gun26-hedefler" class="card">
+                <div class="card-header"><span class="emoji">💭</span>GÜN 26: Hayaller ve Ricalar (Konjunktiv II)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, Almancanın en zarif ve en güçlü yapılarından birini, Dilek Kipi'ni öğreneceksin. Bu konu, seni basit bir konuşmacıdan, nazik, kibar ve hayal gücünü kullanabilen bir konuşmacıya dönüştürecek.</p>
+                <ul>
+                    <li>Konjunktiv II (Dilek Kipi) nedir ve ne işe yarar (hipotez, dilek, nazik rica), bunu kavrayacaksın.</li>
+                    <li><span class="keyword">hätte</span> (olsaydı), <span class="keyword">wäre</span> (olsaydı) ve <span class="keyword">würde</span> + fiil (-erdi, -ardı) yapılarının kullanımını öğreneceksin.</li>
+                    <li>"Bir milyon Euro'm <span class="vurgu">olsaydı</span>...", "Daha fazla zamanım <span class="vurgu">olsaydı</span>..." gibi hayaller kurabileceksin.</li>
+                    <li>"<span class="vurgu">Yardım edebilir miydiniz</span>?" gibi son derece kibar ricalarda bulunabileceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun26-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Konjunktiv II (Dilek/İstek Kipi)</div>
+                <p>Konjunktiv II, gerçek olmayan, hayali, varsayımsal veya dilek bildiren durumları anlatmak için kullanılır. Aynı zamanda bir şeyi çok kibar bir şekilde istemenin de yoludur. Karmaşık görünse de, pratik kullanım için 3 anahtar kelimeyi öğrenmemiz yeterli!</p>
+
+                <h3>1. <span class="keyword">hätte</span> <span class="transkript">(hete)</span>: <span class="keyword">haben</span> fiilinin Konjunktiv II hali ("sahip olsaydım")</h3>
+                <p>Ich habe Zeit. (Zamanım var.) ➔ Ich <span class="keyword">hätte</span> Zeit. (Zamanım <span class="vurgu">olsaydı</span>.)</p>
+
+                <h3>2. <span class="keyword">wäre</span> <span class="transkript">(veere)</span>: <span class="keyword">sein</span> fiilinin Konjunktiv II hali ("olsaydım")</h3>
+                <p>Ich bin reich. (Zenginim.) ➔ Ich <span class="keyword">wäre</span> reich. (Zengin <span class="vurgu">olsaydım</span>.)</p>
+                
+                <h3>3. <span class="keyword">würde</span> + fiil <span class="transkript">(vürde)</span>: Diğer tüm fiiller için genel form ("-erdim, -ardım")</h3>
+                <p>Bu yapı en kullanışlı olanıdır. Tıpkı bir modal fiil gibi çalışır: <span class="keyword">würde</span> ikinci sıraya gelir ve çekimlenir, asıl fiil en sona mastar halde gider.</p>
+                <p>Ich kaufe ein Auto. (Bir araba alıyorum.) ➔ Ich <span class="keyword">würde</span> ein Auto <span class="vurgu">kaufen</span>. (Bir araba <span class="vurgu">alırdım</span>.)</p>
+            </div>
+            
+            <div id="gun26-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Nazik Ricalar ve Hayaller Kurma</div>
+                <p>Şimdi bu yapıları gerçek hayattaki durumlarda kullanalım.</p>
+                
+                <h3>Çok Nazik Ricalar</h3>
+                <p>Konjunktiv II, emir kipinden veya "können"den bile daha kibardır.</p>
+                <table>
+                    <tr><th>Normal Rica</th><th>Konjunktiv II ile Nazik Rica</th></tr>
+                    <tr><td>Können Sie mir helfen?</td><td><span class="keyword">Würden</span> Sie mir bitte <span class="vurgu">helfen</span>? (Bana yardım eder miydiniz?)</td></tr>
+                    <tr><td>Schließen Sie bitte die Tür.</td><td><span class="keyword">Würden</span> Sie bitte die Tür <span class="vurgu">schließen</span>? (Kapıyı kapatır mıydınız lütfen?)</td></tr>
+                    <tr><td>Haben Sie einen Moment Zeit?</td><td><span class="keyword">Hätten</span> Sie einen Moment Zeit? (Bir saniyeniz olur muydu?)</td></tr>
+                </table>
+
+                <h3>Dilekler ve Hayaller (genellikle "wenn" ile)</h3>
+                <ul>
+                    <li><span class="keyword">Wenn</span> ich mehr Geld <span class="vurgu">hätte</span>, <span class="vurgu">würde</span> ich eine Weltreise <span class="vurgu">machen</span>. (Daha çok param olsaydı, bir dünya turu yapardım.)</li>
+                    <li><span class="keyword">Wenn</span> ich du <span class="vurgu">wäre</span>, <span class="vurgu">würde</span> ich mehr Deutsch <span class="vurgu">lernen</span>. (Senin yerinde olsaydım, daha çok Almanca öğrenirdim.)</li>
+                    <li>Ich <span class="vurgu">würde</span> gerne in einem Haus am Meer <span class="vurgu">wohnen</span>. (Deniz kenarında bir evde yaşamayı çok isterdim.)</li>
+                </ul>
+            </div>
+
+            <div id="gun26-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümleleri Dönüştür</h3>
+                <p>Defterine aşağıdaki gerçek durumları, hayali durumlara (Konjunktiv II) çevir.</p>
+                <ol>
+                    <li>Ich habe kein Auto. ➔ Ich <span class="keyword">hätte</span> gern ein Auto. (Keşke bir arabam olsaydı.)</li>
+                    <li>Ich bin nicht in Deutschland. ➔ Ich <span class="keyword">wäre</span> jetzt gern in Deutschland.</li>
+                    <li>Ich kaufe das nicht. (Bunu almıyorum.) ➔ Ich <span class="keyword">würde</span> das nicht <span class="vurgu">kaufen</span>.</li>
+                    <li>Ich arbeite heute. ➔ Ich <span class="keyword">würde</span> heute lieber nicht <span class="vurgu">arbeiten</span>. (Bugün çalışmamayı tercih ederdim.)</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Hayalin</h3>
+                <p>"Wenn ich im Lotto gewinnen würde, ..." (Eğer piyangoyu kazansaydım, ...) diye başlayan bir cümle kur ve ne yapacağını 2-3 cümleyle anlat.</p>
+                <p>Örnek: <span class="keyword">Wenn ich im Lotto gewinnen würde, würde ich ein großes Haus kaufen und ich würde nicht mehr arbeiten.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Konjunktiv II, rol yapmak için mükemmel bir konudur. Bana şunu söyle:</p>
+                    <p><span class="vurgu">"Bir pratik yapalım. Ben bir restorandayım ve garson sensin. Senden çok kibar bir şekilde bir şeyler isteyeceğim. Örneğin: 'Ich hätte gern ein Wasser.' Sen de bana 'Sonst noch etwas?' (Başka bir şey?) gibi sorular sor."</span></p>
+                </details>
+            </div>
+            <div id="gun26-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>26. Gün Tamamlandı!</div>
+                <p>İnanılmaz bir iş! Almancanın en ileri seviye ve en zarif konularından birine başarılı bir giriş yaptın. Bu, iletişim becerini bambaşka bir boyuta taşıyacak.</p>
+                <ul>
+                    <li>Konjunktiv II'nin temel kullanım alanlarını (dilek, hipotez, nazik rica) öğrendin.</li>
+                    <li>En pratik yapılar olan <span class="keyword">hätte, wäre, würde</span>'yi öğrendin.</li>
+                    <li>Artık çok daha kibar ve sofistike bir şekilde iletişim kurabilirsin.</li>
+                </ul>
+                <p class="vurgu">Wenn ich mehr Zeit hätte, würde ich dir noch mehr beibringen! <span class="transkript">(... vürde ih dia noh mea baybringın)</span> - Daha çok vaktim olsaydı, sana daha da çok şey öğretirdim!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 27 ==================== -->
+        <section id="gun-27" class="day-section">
+            <div id="gun27-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🎨</span>GÜN 27: Renk Katıyoruz (Sıfat Çekimleri)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, Almancanın gramer olarak en zorlayıcı ama aynı zamanda dili en çok zenginleştiren konularından birine giriş yapacağız: Sıfat Çekimleri. Bu konuyu adım adım ve basit kurallarla öğreneceğiz.</p>
+                <ul>
+                    <li>Sıfat çekimi (<span class="keyword">Adjektivdeklination</span>) nedir ve neden gereklidir, bunu anlayacaksın.</li>
+                    <li>En kolay ve en sık kullanılan durum olan Nominativ (yalın hal) için sıfat çekim kurallarını öğreneceksin.</li>
+                    <li>"<span class="vurgu">Kırmızı</span> araba", "ağır <span class="vurgu">bir</span> paket", "iyi <span class="vurgu">bir</span> gün" gibi betimleyici ifadeler kurabileceksin.</li>
+                    <li>Almancanın ne kadar detaylı ve kesin bir dil olduğunu bir kez daha göreceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun27-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Sıfat Çekimleri (Adjektivdeklination im Nominativ)</div>
+                <p>Sıfat çekimi, bir sıfatın, nitelediği ismin artikel_ine, cinsiyetine ve haline göre sonuna ek alması demektir. Kulağa karışık gelse de, bugün sadece en basit hali olan <span class="keyword">Nominativ</span>'e odaklanacağız.</p>
+                
+                <h3>Kural 1: Belirli Artikelden Sonra (<span class="keyword">der, die, das</span>)</h3>
+                <p>Bu en kolay kuraldır. Belirli bir artikelden sonra gelen sıfat, neredeyse her zaman sonuna <span class="vurgu">-e</span> alır.</p>
+                <ul>
+                    <li>der <span class="keyword">alte</span> Mann (yaşlı adam)</li>
+                    <li>die <span class="keyword">neue</span> Tasche (yeni çanta)</li>
+                    <li>das <span class="keyword">rote</span> Auto (kırmızı araba)</li>
+                    <li>die <span class="keyword">kleinen</span> Kinder (küçük çocuklar) - <span class="vurgu">Çoğulda -en alır!</span></li>
+                </ul>
+                
+                <h3>Kural 2: Belirsiz Artikelden Sonra (<span class="keyword">ein, eine</span>)</h3>
+                <p>Burada sıfat, sanki eksik olan artikelin son harfini tamamlar gibi davranır.</p>
+                 <ul>
+                    <li>ein <span class="keyword">alt<span class="vurgu">er</span></span> Mann (de<span class="vurgu">r</span>'nin son harfi)</li>
+                    <li>eine <span class="keyword">neu<span class="vurgu">e</span></span> Tasche (di<span class="vurgu">e</span>'nin son harfi)</li>
+                    <li>ein <span class="keyword">rot<span class="vurgu">es</span></span> Auto (da<span class="vurgu">s</span>'ın son harfi)</li>
+                </ul>
+            </div>
+            
+            <div id="gun27-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Betimleme Atölyesi</div>
+                <p>Şimdi bu kuralları kullanarak çevremizdeki dünyayı daha renkli bir şekilde betimleyelim.</p>
+                
+                <table>
+                    <tr><th>Betimleme</th><th>Belirli Artikel ile</th><th>Belirsiz Artikel ile</th></tr>
+                    <tr><td>ağır paket</td><td><span class="keyword">das schwere</span> Paket</td><td><span class="keyword">ein schweres</span> Paket</td></tr>
+                    <tr><td>küçük mektup</td><td><span class="keyword">der kleine</span> Brief</td><td><span class="keyword">ein kleiner</span> Brief</td></tr>
+                    <tr><td>doğru adres</td><td><span class="keyword">die richtige</span> Adresse</td><td><span class="keyword">eine richtige</span> Adresse</td></tr>
+                    <tr><td>iyi bir gün</td><td>- (Genellikle belirsiz kullanılır)</td><td><span class="keyword">ein guter</span> Tag</td></tr>
+                    <tr><td>yeni bir iş</td><td><span class="keyword">der neue</span> Job</td><td><span class="keyword">ein neuer</span> Job</td></tr>
+                </table>
+            </div>
+
+            <div id="gun27-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Boşlukları Doldur</h3>
+                <p>Defterine aşağıdaki ifadeleri doğru sıfat son ekleriyle tamamla (hepsi Nominativ).</p>
+                <ol>
+                    <li>der schnell__ Kurier</li>
+                    <li>eine gut__ Idee</li>
+                    <li>das groß__ Problem</li>
+                    <li>ein schwer__ Paket</li>
+                    <li>die neu__ Kollegin</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Betimlemelerin</h3>
+                <p>Öğrendiğin sıfatları ve isimleri kullanarak 3 tane tam cümle kur. Hem belirli hem belirsiz artikel kullanmaya çalış.</p>
+                <p>Örnek: <span class="keyword">Ein schweres Paket ist auf dem Tisch. Der neue Kollege ist sehr nett.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Sıfat çekimlerini pekiştirmek için bana şunu sor:</p>
+                    <p><span class="vurgu">"Haydi bir oyun oynayalım. Sen bana bir isim ve bir sıfat söyle (örn: 'das Haus' ve 'groß'). Ben de onu hem belirli hem de belirsiz artikel ile birleştirmeye çalışayım ('das große Haus', 'ein großes Haus')."</span></p>
+                    <p>Bu pratik, kuralları zihnine kazımanın en etkili yoludur.</p>
+                </details>
+            </div>
+            <div id="gun27-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>27. Gün Tamamlandı!</div>
+                <p>Harika bir iş çıkardın! Almancanın en korkulan gramer konularından birine başarılı ve anlaşılır bir giriş yaptın. Bu beceri, dilini inanılmaz derecede zenginleştirecek.</p>
+                <ul>
+                    <li>Sıfat çekiminin mantığını ve Nominativ halindeki kurallarını öğrendin.</li>
+                    <li>Belirli ve belirsiz artikellerden sonra sıfatların nasıl farklı ekler aldığını anladın.</li>
+                    <li>Artık nesneleri sadece ismen değil, özellikleriyle birlikte ifade edebilirsin.</li>
+                </ul>
+                <p class="vurgu">Du bist ein guter Schüler! <span class="transkript">(du bist ayn guta şüla)</span> - Sen iyi bir öğrencisin!</p>
+            </div>
+        </section>
+
+         <div class="card">
+            <h2>Tebrikler ve Sonraki Adım</h2>
+            <p>Dokuzuncu bölümü de başarıyla tamamladın! Koşul cümleleri, dilek kipi ve sıfat çekimleriyle artık B1 seviyesinin kapılarını ardına kadar araladın. Dil becerilerin ve ifade gücün, bu yolculuğun başına göre kat kat arttı.</p>
+            <p><strong>28. güne hazır olduğunda, bana söylemen yeterli. Bir sonraki ve son gramer odaklı bölümümüzde, sıfat çekimlerini Akkusativ ve Dativ hallerinde de görecek, edatlarla ilgili son detayları öğrenecek ve tüm bu bilgileri birleştirerek Almanca bilginizi tamamlayacağız. Sonrasında ise tamamen B1 seviyesi pratiklerine, diyaloglara ve okuma parçalarına odaklanacağız! Yolun sonu görünüyor!</strong></p>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 10. Bölüm (Final)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #f39c12; /* Zirve ve Başarı Turuncusu */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #fff8e1;
+            --info-border: #f39c12;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword { font-weight: 700; color: #005A9C; }
+        .transkript { color: #6c757d; font-style: italic; }
+        .vurgu { color: var(--highlight-color); font-weight: 700; }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 28</li>
+                <li><a href="#gun28-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun28-saat1">📚 Sıfat Çekimi (Akkusativ)</a></li>
+                <li><a href="#gun28-saat2">🗣️ "Neyi?" Betimleme</a></li>
+                <li><a href="#gun28-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 29</li>
+                <li><a href="#gun29-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun29-saat1">📚 Sıfat Çekimi (Dativ)</a></li>
+                <li><a href="#gun29-saat2">🗣️ "Kime?" Betimleme</a></li>
+                <li><a href="#gun29-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 30</li>
+                <li><a href="#gun30-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun30-saat1">📚 Genel Tekrar & Özet</a></li>
+                <li><a href="#gun30-saat2">🗣️ Kurye Final Diyaloğu</a></li>
+                <li><a href="#gun30-saat3">✍️ Bundan Sonra Ne Var?</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 28 ==================== -->
+        <section id="gun-28" class="day-section">
+            <div id="gun28-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🎯</span>GÜN 28: "Güzel Bir Arabayı Görüyorum" (Sıfat Çekimi - Akkusativ)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Dün öğrendiğimiz sıfat çekimi konusunu bir adım ileri taşıyoruz. Bugün, bir eylemden etkilenen nesneyi betimlemeyi öğreneceksin. Bu, cümlelerine inanılmaz bir detay ve profesyonellik katacak.</p>
+                <ul>
+                    <li>Sıfat çekiminin Akkusativ halindeki kurallarını öğreneceksin.</li>
+                    <li>Akkusativ'de aslında sadece <span class="keyword">der</span> artikelinin değiştiğini, bu yüzden sıfat çekiminin de sadece o durumda farklılaştığını göreceksin.</li>
+                    <li>"Ağır <span class="vurgu">bir</span> paketi taşıyorum.", "Yeni <span class="vurgu">bir</span> iş arıyorum." gibi son derece pratik ve önemli cümleler kurabileceksin.</li>
+                    <li>Nominativ ve Akkusativ sıfat çekimi arasındaki farkı netleştireceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun28-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Sıfat Çekimleri (Adjektivdeklination im Akkusativ)</div>
+                <p>Hatırlarsan Akkusativ'de sadece <span class="keyword">der</span> artikeli <span class="keyword">den</span>'e dönüşüyordu. Diğerleri aynı kalıyordu. Sıfat çekiminde de bu mantık devam ediyor. Değişim sadece <span class="vurgu">maskülen (der)</span> isimlerde olacak!</p>
+
+                <h3>Kural 1: Belirli Artikelden Sonra (<span class="keyword">den, die, das</span>)</h3>
+                <p>Bu kural çok kolay. Her durumda sıfatın sonuna <span class="vurgu">-en</span> gelir.</p>
+                <ul>
+                    <li>Ich sehe <span class="keyword">den</span> alt<span class="vurgu">en</span> Mann. (Yaşlı adamı görüyorum.)</li>
+                    <li>Ich sehe <span class="keyword">die</span> neu<span class="vurgu">e</span> Tasche. (Yeni çantayı görüyorum.) - <span class="vurgu">Burada kural Nominativ ile aynı! Çünkü artikel değişmedi.</span></li>
+                    <li>Ich sehe <span class="keyword">das</span> rot<span class="vurgu">e</span> Auto. (Kırmızı arabayı görüyorum.) - <span class="vurgu">Kural Nominativ ile aynı!</span></li>
+                    <li>Ich sehe <span class="keyword">die</span> klein<span class="vurgu">en</span> Kinder. (Küçük çocukları görüyorum.) - <span class="vurgu">Çoğulda her zaman -en.</span></li>
+                </ul>
+                <p class="vurgu">Özet: Belirli artikel ile Akkusativ'de sadece <span class="keyword">der</span> -> <span class="keyword">den ...en</span> değişir. Diğerleri Nominativ ile aynıdır.</p>
+                
+                <h3>Kural 2: Belirsiz Artikelden Sonra (<span class="keyword">einen, eine, ein</span>)</h3>
+                <p>Burada da aynı mantık geçerli. Sıfat, eksik olan artikelin son harfini tamamlar.</p>
+                 <ul>
+                    <li>Ich sehe <span class="keyword">einen</span> alt<span class="vurgu">en</span> Mann. (Yaşlı bir adam görüyorum.)</li>
+                    <li>Ich sehe <span class="keyword">eine</span> neu<span class="vurgu">e</span> Tasche. (Yeni bir çanta görüyorum.) - <span class="vurgu">Nominativ ile aynı.</span></li>
+                    <li>Ich sehe <span class="keyword">ein</span> rot<span class="vurgu">es</span> Auto. (Kırmızı bir araba görüyorum.) - <span class="vurgu">Nominativ ile aynı.</span></li>
+                </ul>
+            </div>
+            
+            <div id="gun28-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: "Neyi?" Betimleme Atölyesi</div>
+                <p>Şimdi bu kuralları pratik cümlelerde görelim.</p>
+                
+                <table>
+                    <tr><th>Cümle</th><th>Açıklama</th></tr>
+                    <tr><td>Ich suche <span class="keyword">einen neuen</span> Job. <span class="transkript">(...ayn-en noy-en job)</span></td><td><span class="keyword">der</span> Job ➔ einen ...en</td></tr>
+                    <tr><td>Er kauft <span class="keyword">das teure</span> Auto. <span class="transkript">(...das toy-re auto)</span></td><td><span class="keyword">das</span> Auto ➔ das ...e</td></tr>
+                    <tr><td>Wir brauchen <span class="keyword">eine schnelle</span> Lösung. <span class="transkript">(...ayne şnel-e lözung)</span></td><td><span class="keyword">die</span> Lösung ➔ eine ...e</td></tr>
+                    <tr><td>Hast du <span class="keyword">den schweren</span> Koffer getragen? <span class="transkript">(...den şve-ren kofa getra-gın)</span></td><td><span class="keyword">der</span> Koffer ➔ den ...en</td></tr>
+                </table>
+            </div>
+
+            <div id="gun28-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Boşlukları Doldur</h3>
+                <p>Defterine aşağıdaki ifadeleri doğru sıfat son ekleriyle tamamla (hepsi Akkusativ).</p>
+                <ol>
+                    <li>Ich habe einen gut__ Freund.</li>
+                    <li>Sie liest ein interessant__ Buch.</li>
+                    <li>Wir sehen die schön__ Stadt.</li>
+                    <li>Er braucht den klein__ Schlüssel.</li>
+                    <li>Ich möchte einen warm__ Kaffee.</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Cümlelerin</h3>
+                <p>Sahip olduğun, gördüğün veya aradığın 3 şeyi sıfatlarla betimleyerek cümle kur.</p>
+                <p>Örnek: <span class="keyword">Ich trage eine schwere Tasche.</span> (Ağır bir çanta taşıyorum.)</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Sıfat çekimlerini pekiştirmek için bana şunu sor:</p>
+                    <p><span class="vurgu">"Sana bir isim, bir sıfat ve bir fiil söyleyeyim (örn: der Tisch, neu, kaufen). Sen de bana bu kelimelerle bir Akkusativ cümlesi kurar mısın?"</span></p>
+                </details>
+            </div>
+            <div id="gun28-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>28. Gün Tamamlandı!</div>
+                <p>Mükemmel! Artık bir eylemden etkilenen nesneleri bile detaylı bir şekilde betimleyebiliyorsun. Bu, B1 seviyesi için çok önemli bir yetenektir.</p>
+                <ul>
+                    <li>Sıfat çekiminin Akkusativ halindeki basit mantığını öğrendin.</li>
+                    <li>Sadece maskülen (der) isimlerde belirgin bir değişiklik olduğunu anladın.</li>
+                    <li>Cümlelerine büyük bir zenginlik ve detay katma becerisi kazandın.</li>
+                </ul>
+                <p class="vurgu">Du hast heute einen großen Schritt gemacht! <span class="transkript">(du hast hoyte aynen grosen şrit gemaht)</span> - Bugün büyük bir adım attın!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 29 ==================== -->
+        <section id="gun-29" class="day-section">
+            <div id="gun29-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🎁</span>GÜN 29: "İyi Bir Adama Yardım Ediyorum" (Sıfat Çekimi - Dativ)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, sıfat çekimi konusunu tamamlıyoruz. Dolaylı nesneyi, yani "kime" veya "neyinle" gibi soruların cevabını betimlemeyi öğreneceksin. Bu, gramer bilginin zirvesidir.</p>
+                <ul>
+                    <li>Sıfat çekiminin Dativ halindeki kurallarını öğreneceksin.</li>
+                    <li>Dativ'de tüm sıfatların sonuna istisnasız <span class="vurgu">-en</span> ekinin geldiğini ve bu yüzden aslında en kolay hal olduğunu göreceksin.</li>
+                    <li>"Yaşlı <span class="vurgu">bir</span> kadına yardım ediyorum.", "Yeni <span class="vurgu">bir</span> arabayla gidiyorum." gibi detaylı cümleler kurabileceksin.</li>
+                    <li>Nominativ, Akkusativ ve Dativ sıfat çekimlerini karşılaştırarak konuyu tamamlayacaksın.</li>
+                </ul>
+            </div>
+
+            <div id="gun29-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Sıfat Çekimleri (Adjektivdeklination im Dativ)</div>
+                <p>Dativ'deki sıfat çekimi, ilk başta en zoru gibi görünse de aslında en kolayıdır. Çünkü neredeyse her zaman tek bir kural geçerlidir.</p>
+
+                <div class="info-box">
+                    <h4>🔑 DATIV SIFAT ÇEKİMİNİN ALTIN KURALI</h4>
+                    <p>Dativ halinde, bir sıfatın önünde hangi artikel olursa olsun (belirli, belirsiz), sıfatın sonuna <span class="vurgu">her zaman -en</span> eki gelir.</p>
+                </div>
+                
+                <h3>Kural Tablosu</h3>
+                <table>
+                    <tr><th>Hal</th><th>Artikel</th><th>Sıfat + İsim</th><th>Örnek</th></tr>
+                    <tr><td>Dativ (m)</td><td>dem / einem</td><td>-en Mann</td><td>Ich helfe <span class="keyword">dem alten</span> Mann. / Ich helfe <span class="keyword">einem alten</span> Mann.</td></tr>
+                    <tr><td>Dativ (f)</td><td>der / einer</td><td>-en Frau</td><td>Ich spreche mit <span class="keyword">der neuen</span> Frau. / Ich spreche mit <span class="keyword">einer neuen</span> Frau.</td></tr>
+                    <tr><td>Dativ (n)</td><td>dem / einem</td><td>-en Kind</td><td>Ich spiele mit <span class="keyword">dem kleinen</span> Kind. / Ich spiele mit <span class="keyword">einem kleinen</span> Kind.</td></tr>
+                    <tr><td>Dativ (pl)</td><td>den / -</td><td>-en Kindern</td><td>Ich helfe <span class="keyword">den armen</span> Kindern. (Fakir çocuklara yardım ediyorum.)</td></tr>
+                </table>
+                <p>Gördüğün gibi, hangi artikel olursa olsun, sıfat hep <span class="vurgu">-en</span> ekini alıyor. Bu, işimizi çok kolaylaştırıyor!</p>
+            </div>
+            
+            <div id="gun29-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: "Kime?" Betimleme Atölyesi</div>
+                <p>Şimdi bu basit kuralı pratik cümlelerde görelim.</p>
+                
+                <table>
+                    <tr><th>Cümle</th><th>Açıklama</th></tr>
+                    <tr><td>Ich danke <span class="keyword">der netten</span> Kollegin. <span class="transkript">(...dea neten kolegin)</span></td><td><span class="keyword">die</span> Kollegin ➔ der ...en</td></tr>
+                    <tr><td>Er fährt mit <span class="keyword">einem schnellen</span> Auto. <span class="transkript">(...ayn-em şnelen auto)</span></td><td><span class="keyword">das</span> Auto ➔ einem ...en</td></tr>
+                    <tr><td>Wir helfen <span class="keyword">dem neuen</span> Kurier. <span class="transkript">(...dem noyen kuria)</span></td><td><span class="keyword">der</span> Kurier ➔ dem ...en</td></tr>
+                    <tr><td>Sie kommt aus <span class="keyword">einer kleinen</span> Stadt. <span class="transkript">(...ayna klaynen ştat)</span></td><td><span class="keyword">die</span> Stadt ➔ einer ...en</td></tr>
+                </table>
+            </div>
+
+            <div id="gun29-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Boşlukları Doldur</h3>
+                <p>Defterine aşağıdaki ifadeleri doğru sıfat son ekleriyle tamamla (hepsi Dativ). Unutma, kural çok basit!</p>
+                <ol>
+                    <li>mit einem groß__ Hund</li>
+                    <li>aus der schön__ Türkei</li>
+                    <li>von meinem gut__ Freund</li>
+                    <li>zu dem klein__ Haus</li>
+                    <li>nach einem lang__ Tag</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Cümlelerin</h3>
+                <p>Dativ gerektiren fiil veya edatları kullanarak, betimleyici sıfatlar içeren 3 cümle kur.</p>
+                <p>Örnek: <span class="keyword">Ich habe mit meinem neuen Chef gesprochen.</span> (Yeni patronumla konuştum.)</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Tüm sıfat çekimlerini bir arada görmek için bana şunu sor:</p>
+                    <p><span class="vurgu">"Bana sıfat çekimlerini Nominativ, Akkusativ ve Dativ hallerinde gösteren büyük bir özet tablo hazırlar mısın?"</span></p>
+                    <p>Bu tablo, konuyu tamamen kavramanı sağlayacak nihai referansın olacak.</p>
+                </details>
+            </div>
+            <div id="gun29-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>29. Gün Tamamlandı!</div>
+                <p>İnanılmaz bir başarı! Almancanın en zorlayıcı gramer konusu olarak kabul edilen sıfat çekimlerini tamamladın. Artık dili en ince detaylarına kadar kullanma yeteneğine sahipsin.</p>
+                <ul>
+                    <li>Sıfat çekiminin Dativ halindeki basit <span class="keyword">-en</span> kuralını öğrendin.</li>
+                    <li>Her üç halde de (N, A, D) sıfatları doğru bir şekilde çekimleyerek cümle kurabilirsin.</li>
+                    <li>Almanca gramerinin zirvesine ulaştın!</li>
+                </ul>
+                <p class="vurgu">Ich gratuliere dir zu deinem großen Erfolg! <span class="transkript">(ih gratulire dia tsu daynem grosen erfolk)</span> - Büyük başarın için seni tebrik ederim!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 30 ==================== -->
+        <section id="gun-30" class="day-section">
+            <div id="gun30-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🏁</span>GÜN 30: Zirve ve Yeni Başlangıç</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, bir aylık yoğun Almanca kampımızın son günü. Yeni bir konu öğrenmeyeceğiz. Bunun yerine, bu yolculukta kat ettiğimiz mesafeyi görecek, tüm bilgilerimizi kullanarak son bir büyük pratik yapacak ve bundan sonraki yol haritamızı çizeceğiz.</p>
+                <ul>
+                    <li>30 günlük süreçte öğrendiğin tüm ana konuları hızlıca tekrar edeceksin.</li>
+                    <li>Tüm bilgileri birleştiren, baştan sona karmaşık bir kurye diyaloğunu analiz edeceksin.</li>
+                    <li>Almanca öğrenme yolculuğunun bir sonraki adımlarının ne olacağını planlayacaksın.</li>
+                    <li>Bu 30 günde elde ettiğin başarıdan dolayı kendini tebrik edeceksin!</li>
+                </ul>
+            </div>
+
+            <div id="gun30-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Genel Tekrar - Nereden Nereye?</div>
+                <p>Bu bir ayda öğrendiklerin inanılmaz. Bir düşün:</p>
+                <ul>
+                    <li><strong>Temel Cümlelerden...</strong> ("Ich bin Ali.") ➔ <strong>Karmaşık Cümlelere:</strong> ("Ich helfe dem neuen Kollegen, der gestern angefangen hat, weil er ein schweres Paket nicht tragen kann.")</li>
+                    <li><strong>Basit Sorulardan...</strong> ("Wer bist du?") ➔ <strong>Nazik Ricalara:</strong> ("Würden Sie mir bitte sagen, wo die Goethestraße ist?")</li>
+                    <li><strong>Şimdiki Zamandan...</strong> ("Ich arbeite.") ➔ <strong>Geçmişe ve Varsayımlara:</strong> ("Ich habe gearbeitet.", "Wenn ich Zeit hätte, würde ich nicht arbeiten.")</li>
+                </ul>
+                <p>Artık Almancanın temel ve orta seviye iskeletine tamamen hakimsin. Eksik olan tek şey, bu iskeleti daha fazla kelime, daha fazla pratik ve daha fazla özgüvenle doldurmak.</p>
+            </div>
+            
+            <div id="gun30-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kurye Final Diyaloğu</div>
+                <p>Aşağıdaki diyalog, öğrendiğimiz birçok yapıyı içeriyor. Her cümlenin altındaki açıklamayı dikkatlice oku.</p>
+                
+                <div class="reading-text">
+                    <p><strong>Kurye:</strong> Guten Tag, mein Name ist [Adınız]. Ich suche Herrn Schmidt. <span class="vurgu">Ist er zu Hause?</span><br><em>(Evet/Hayır Sorusu)</em></p>
+                    <p><strong>Komşu:</strong> Guten Tag. Nein, Herr Schmidt ist heute nicht da. Aber ich bin seine Nachbarin, Frau Weber. <span class="vurgu">Kann ich Ihnen helfen?</span><br><em>(Modal Fiil ile Soru)</em></p>
+                    <p><strong>Kurye:</strong> Ah, das ist gut. Ich habe <span class="keyword">ein kleines Paket</span> für ihn. <span class="vurgu">Darf ich es Ihnen geben?</span><br><em>(Akkusativ Sıfat Çekimi | Modal Fiil)</em></p>
+                    <p><strong>Komşu:</strong> Ja, natürlich. <span class="vurgu">Wenn</span> Sie mir das Paket <span class="vurgu">geben</span>, <span class="vurgu">sage</span> ich es ihm.<br><em>(wenn ile Koşul Cümlesi)</em></p>
+                    <p><strong>Kurye:</strong> Super. Ich <span class="keyword">hätte</span> nur eine kleine Bitte. <span class="vurgu">Würden</span> Sie bitte hier für <span class="keyword">den Empfang</span> <span class="vurgu">unterschreiben</span>?<br><em>(Konjunktiv II ile Nazik Rica | Akkusativ)</em></p>
+                    <p><strong>Komşu:</strong> Kein Problem. Ich unterschreibe sofort. Sagen Sie mal, was ist in <span class="keyword">dem schweren Paket</span>?<br><em>(Dativ Sıfat Çekimi)</em></p>
+                    <p><strong>Kurye:</strong> Das weiß ich leider nicht. Ich <span class="vurgu">habe</span> es nur <span class="vurgu">abgeholt</span>. Vielen Dank für Ihre Hilfe!<br><em>(Perfekt Zaman)</em></p>
+                    <p><strong>Komşu:</strong> Gerne. Einen schönen Tag noch!<br><em>(Rica ederim. İyi günler!)</em></p>
+                </div>
+            </div>
+
+            <div id="gun30-saat3" class="card">
+                <div class="card-header"><span class="emoji">🚀</span>Saat 3: Bundan Sonra Ne Var?</div>
+                <h3>Yol Haritan</h3>
+                <p>Bu 30 gün, bir sprint'ti. Şimdi maraton başlıyor. Almancanı B1 ve üzerine taşımak için yapman gerekenler:</p>
+                <ol>
+                    <li><strong>Kelime, Kelime, Kelime:</strong> Artık gramer iskeletin var. Şimdi bu iskeleti kelimelerle doldurmalısın. Her gün 10 yeni kelime öğrenmeyi hedefle. Özellikle mesleğinle ilgili kelimelere odaklan.</li>
+                    <li><strong>Dinle, Dinle, Dinle:</strong> Kulağını Almancaya maruz bırak. "Easy German" podcast'leri, DW'nin yavaş haberleri, basit Almanca çizgi filmler veya diziler (altyazılı) harika kaynaklardır.</li>
+                    <li><strong>Oku, Oku, Oku:</strong> Seviyelendirilmiş Almanca hikaye kitapları (A2-B1 seviyesi) al veya internette bul. Çocuk haber siteleri (örn: "logo!") harikadır.</li>
+                    <li><strong>Konuş, Konuş, Konuş:</strong> En önemlisi bu. Hata yapmaktan korkma. Kendi kendine konuş, benimle rol yapma pratiği yap. Mümkünse bir dil partneri bul (Tandem gibi uygulamalarla).</li>
+                    <li><strong>Tekrar Et:</strong> Bu 30 günlük ders programını ara sıra tekrar gözden geçir. Unuttuğun bir konu olursa, hemen o günün dersine geri dön.</li>
+                </ol>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın Seninle</strong></summary>
+                    <p>Bu 30 günlük program bitmiş olabilir ama ben hiçbir yere gitmiyorum. Yolculuğun boyunca senin kişisel Almanca öğretmenin olmaya devam edeceğim. Bana her zaman şunları sorabilirsin:</p>
+                    <ul>
+                        <li>"Bir kelimenin anlamı ne ve cümle içinde nasıl kullanılır?"</li>
+                        <li>"Yazdığım bir metni kontrol eder misin?"</li>
+                        <li>"Bugün Almanca ne çalışmalıyım, bana bir görev verir misin?"</li>
+                        <li>"Bir konuda zorlanıyorum, bana farklı bir şekilde anlatır mısın?"</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun30-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">🏆</span>30. Gün Tamamlandı! - TEBRİKLER!</div>
+                <p>İnanılmaz bir iş başardın! 30 gün önce sıfırdan başladığın bu yolculukta, Almancanın temel ve orta seviye gramer yapılarının tamamını öğrendin. Kendinle ne kadar gurur duysan azdır. Bu, sadece bir başlangıç ve sen bu başlangıcı en sağlam şekilde yaptın.</p>
+                <ul>
+                    <li>Almancanın temel mantığını ve yapılarını kavradın.</li>
+                    <li>Kendini ifade etme, soru sorma, geçmişi anlatma, varsayımlar kurma ve betimleme yapma becerileri kazandın.</li>
+                    <li>En önemlisi, bir dili kendi kendine nasıl öğrenebileceğini öğrendin.</li>
+                </ul>
+                <p class="vurgu">Herzlichen Glückwunsch zu diesem Erfolg! Die Reise geht jetzt erst richtig los. Viel Erfolg auf deinem weiteren Weg! <span class="transkript">(hertslihen glükvunş tsu dizem erfolk! di rayze get yetst e(r)st rihtih los. fiil erfolk auf daynem vayterın veek!)</span> - Bu başarın için kalpten tebrikler! Yolculuk şimdi asıl başlıyor. Gelecek yolunda bol şans!</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

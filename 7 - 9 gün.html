@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 3. Bölüm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #005A9C; /* Güven veren bir Kurumsal Mavi */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #e7f3fe;
+            --info-border: #007bff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword { font-weight: 700; color: var(--primary-color); }
+        .transkript { color: #6c757d; font-style: italic; }
+        .vurgu { color: var(--highlight-color); font-weight: 700; }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 7</li>
+                <li><a href="#gun7-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun7-saat1">📚 Modal Fiiller</a></li>
+                <li><a href="#gun7-saat2">🗣️ Cümle Kurma</a></li>
+                <li><a href="#gun7-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 8</li>
+                <li><a href="#gun8-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun8-saat1">📚 Emir Kipi (Imperativ)</a></li>
+                <li><a href="#gun8-saat2">🗣️ Kurye Emirleri</a></li>
+                <li><a href="#gun8-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 9</li>
+                <li><a href="#gun9-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun9-saat1">📚 Zamanı Söylemek</a></li>
+                <li><a href="#gun9-saat2">🗣️ Günler ve Zaman Edatları</a></li>
+                <li><a href="#gun9-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 7 ==================== -->
+        <section id="gun-7" class="day-section">
+            <div id="gun7-hedefler" class="card">
+                <div class="card-header"><span class="emoji">💪</span>GÜN 7: Süper Güçlerimi Kullanıyorum (Modal Fiiller)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, cümlelerine "süper güçler" ekleyeceksin. Yeteneklerini, zorunluluklarını ve isteklerini ifade etmeyi öğreneceksin. Bu konu, Almancanı çok daha esnek ve güçlü kılacak.</p>
+                <ul>
+                    <li>Modal Fiil nedir ve cümlenin yapısını nasıl değiştirir, bunu kavrayacaksın.</li>
+                    <li>En önemli 3 modal fiili (<span class="keyword">können, müssen, wollen</span>) ve çekimlerini öğreneceksin.</li>
+                    <li>"Adresi bulmak <span class="vurgu">zorundayım</span>.", "Burayı imzalay<span class="vurgu">abilir</span> misiniz?" gibi kritik cümleler kurabileceksin.</li>
+                    <li>Almanca cümle yapısının temel mantığını (fiilin sonda olması) pekiştireceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun7-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Modal Fiiller (Die Modalverben)</div>
+                <p>Modal fiiller, bir cümlenin ana fiilinin anlamını değiştiren yardımcı fiillerdir. "Gitmek" yerine "gitmek <span class="vurgu">zorunda olmak</span>" veya "gitmek <span class="vurgu">istemek</span>" gibi anlamlar katarlar.</p>
+
+                <div class="info-box">
+                    <h4>🔑 MODAL FİİL'İN ALTIN KURALI</h4>
+                    <p>Modal fiil kullandığında, cümlenin yapısı sihirli bir şekilde değişir. Bu kuralı asla unutma:</p>
+                    <p><span class="vurgu">1. Modal Fiil</span> cümlenin <span class="vurgu">ikinci pozisyonuna</span> gelir ve kişiye göre çekimlenir.</p>
+                    <p><span class="vurgu">2. Asıl Fiil</span> (gitmek, okumak, yapmak gibi) cümlenin <span class="vurgu">en sonuna</span> gider ve <span class="vurgu">mastar (yalın) halde</span> kalır.</p>
+                    <p>Örnek: Ich <span class="keyword">lese</span> das Buch. (Kitabı okuyorum.)<br>
+                    Ich <span class="keyword">muss</span> das Buch <span class="vurgu">lesen</span>. (Kitabı okumak zorundayım.)</p>
+                </div>
+                
+                <h3>En Önemli 3 Modal Fiil ve Çekimleri</h3>
+                <table>
+                    <tr><th>Şahıs</th><th>können (e-bilmek)</th><th>müssen (zorunda olmak)</th><th>wollen (istemek)</th></tr>
+                    <tr><td>ich</td><td><span class="keyword">kann</span></td><td><span class="keyword">muss</span></td><td><span class="keyword">will</span></td></tr>
+                    <tr><td>du</td><td>kannst</td><td>musst</td><td>willst</td></tr>
+                    <tr><td>er/sie/es</td><td><span class="keyword">kann</span></td><td><span class="keyword">muss</span></td><td><span class="keyword">will</span></td></tr>
+                    <tr><td>wir</td><td>können</td><td>müssen</td><td>wollen</td></tr>
+                    <tr><td>ihr</td><td>könnt</td><td>müsst</td><td>wollt</td></tr>
+                    <tr><td>sie/Sie</td><td>können</td><td>müssen</td><td>wollen</td></tr>
+                </table>
+                <p class="vurgu">Not: Gördüğün gibi "ich" ve "er/sie/es" çekimleri aynı! Bu, modal fiillerin bir özelliğidir ve işini kolaylaştırır.</p>
+            </div>
+            
+            <div id="gun7-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Cümle Kurma Atölyesi</div>
+                <p>Şimdi bu yeni yapıyı kullanarak cümleler oluşturalım. Cümle sonunda mastar halde kalan fiile dikkat et!</p>
+                
+                <h3><span class="keyword">können</span> <span class="transkript">(könın)</span> - Yetenek ve Rica</h3>
+                <ul>
+                    <li>Ich <span class="keyword">kann</span> Deutsch sprechen. <span class="transkript">(ih kan doyç şprehın)</span> - Almanca konuşabilirim.</li>
+                    <li><span class="vurgu">Können</span> Sie das Paket <span class="vurgu">nehmen</span>? <span class="transkript">(könın zii das paket nemın)</span> - Paketi alabilir misiniz? (Soru hali)</li>
+                    <li>Wir <span class="keyword">können</span> das Auto hier <span class="vurgu">parken</span>. <span class="transkript">(via könın das auto hia parkın)</span> - Arabayı buraya park edebiliriz.</li>
+                </ul>
+
+                <h3><span class="keyword">müssen</span> <span class="transkript">(müsın)</span> - Zorunluluk ve Gereklilik</h3>
+                <ul>
+                    <li>Ich <span class="keyword">muss</span> jetzt <span class="vurgu">arbeiten</span>. <span class="transkript">(ih mus yetst arbaytın)</span> - Şimdi çalışmak zorundayım.</li>
+                    <li>Du <span class="keyword">musst</span> die Adresse <span class="vurgu">suchen</span>. <span class="transkript">(du must di adrese zuhın)</span> - Adresi aramak zorundasın.</li>
+                    <li>Wir <span class="keyword">müssen</span> das Paket <span class="vurgu">finden</span>. <span class="transkript">(via müsın das paket findın)</span> - Paketi bulmak zorundayız.</li>
+                </ul>
+
+                <h3><span class="keyword">wollen</span> <span class="transkript">(volın)</span> - İstek ve Niyet</h3>
+                <ul>
+                    <li>Ich <span class="keyword">will</span> einen Kaffee <span class="vurgu">trinken</span>. <span class="transkript">(ih vil aynen kafe trinkın)</span> - Bir kahve içmek istiyorum.</li>
+                    <li><span class="vurgu">Willst</span> du das Buch <span class="vurgu">lesen</span>? <span class="transkript">(vilst du das buh lezın)</span> - Kitabı okumak istiyor musun? (Soru hali)</li>
+                    <li>Sie <span class="keyword">wollen</span> heute nicht <span class="vurgu">arbeiten</span>. <span class="transkript">(zii volın hoyte niht arbaytın)</span> - Onlar bugün çalışmak istemiyorlar.</li>
+                </ul>
+            </div>
+
+            <div id="gun7-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümle Dönüştürme</h3>
+                <p>Aşağıdaki normal cümleleri, parantez içindeki modal fiili kullanarak yeniden yaz. Fiilin sona gittiğini unutma!</p>
+                <ol>
+                    <li>Ich arbeite heute. (<span class="keyword">müssen</span>) ➔ Ich muss heute arbeiten.</li>
+                    <li>Du sprichst Deutsch. (<span class="keyword">können</span>) ➔ ____________________</li>
+                    <li>Wir kaufen ein Auto. (<span class="keyword">wollen</span>) ➔ ____________________</li>
+                    <li>Ich finde den Schlüssel nicht. (<span class="keyword">können</span>) ➔ ____________________</li>
+                    <li>Sie nehmen das Paket. (<span class="keyword">müssen</span>) ➔ ____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi "Süper Güçlerin"</h3>
+                <p>Kendin hakkında 3 cümle kur. Biri "yapabildiğin", biri "yapmak zorunda olduğun", biri de "yapmak istediğin" bir şey olsun.</p>
+                <p>Örnek: <span class="keyword">Ich kann Auto fahren. Ich muss Deutsch lernen. Ich will nach Deutschland fahren.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Modal fiilleri iyice pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"'müssen' ve 'sollen' (meli/malı) arasındaki fark nedir?"</li>
+                        <li>"Birine 'Bana yardım edebilir misiniz?' diye nasıl sorarım?"</li>
+                        <li>"Kuryelikle ilgili, içinde modal fiil geçen 3 tane örnek cümle daha verir misin?"</li>
+                        <li>"Bir diyalog yapalım. Sen bana 'Was musst du heute machen?' (Bugün ne yapmak zorundasın?) diye sor, ben de cevap vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun7-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>7. Gün Tamamlandı!</div>
+                <p>Harika! Artık sadece ne yaptığını değil, ne yapabildiğini, ne yapmak zorunda olduğunu ve ne yapmak istediğini de söyleyebiliyorsun. Bu, ifade gücünde dev bir sıçrama!</p>
+                <ul>
+                    <li>Modal fiillerin cümle yapısını nasıl değiştirdiğini (fiili sona atma kuralı) öğrendin.</li>
+                    <li><span class="keyword">können, müssen, wollen</span> fiillerini çekimlemeyi ve kullanmayı öğrendin.</li>
+                    <li>Cümlelerin çok daha anlamlı ve detaylı hale geldi.</li>
+                </ul>
+                <p class="vurgu">Das kannst du gut machen! <span class="transkript">(das kanst du gut mahın)</span> - Bunu iyi yapabiliyorsun!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 8 ==================== -->
+        <section id="gun-8" class="day-section">
+            <div id="gun8-hedefler" class="card">
+                <div class="card-header"><span class="emoji">👉</span>GÜN 8: Patron Sensin! (Emir Kipi)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, birinden bir şey yapmasını istemeyi, yani kibarca emir vermeyi öğreneceksin. Bu konu, özellikle kuryelik mesleği için <span class="vurgu">en hayati</span> konulardan biridir.</p>
+                <ul>
+                    <li>Emir Kipi (<span class="keyword">Imperativ</span>) nedir ve nasıl oluşturulur, bunu öğreneceksin.</li>
+                    <li>Farklı kişilere (samimi 'sen', resmi 'siz') nasıl emir verileceğini ayırt edebileceksin.</li>
+                    <li>"<span class="vurgu">İmzalayın</span> lütfen.", "<span class="vurgu">Bekleyin</span> bir saniye." gibi temel kurye komutlarını rahatlıkla kullanabileceksin.</li>
+                    <li>Almancada rica ve komut arasındaki ince çizgiyi <span class="keyword">bitte</span> (lütfen) kelimesiyle nasıl yöneteceğini kavrayacaksın.</li>
+                </ul>
+            </div>
+
+            <div id="gun8-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Emir Kipi (Der Imperativ)</div>
+                <p>Imperativ, bir eylemin yapılmasını istemek için kullanılır. Türkçedeki "gel, yap, bekle" gibi ifadelerin karşılığıdır. Almancada üç farklı kişiye emir verebiliriz:</p>
+
+                <h3>1. Resmi "Siz" (<span class="keyword">Sie</span>) - En Çok Kullanacağın Form!</h3>
+                <p>Bu en kolayı ve en önemlisidir. Müşterilerinle her zaman bu formu kullanacaksın.</p>
+                <p><strong>Kural:</strong> <span class="vurgu">Fiilin mastar hali + Sie + Geri Kalanlar.</span></p>
+                <ul>
+                    <li><span class="keyword">kommen Sie</span> bitte. <span class="transkript">(komın zii bite)</span> - Gelin lütfen.</li>
+                    <li><span class="keyword">unterschreiben Sie</span> hier. <span class="transkript">(untaşraybın zii hia)</span> - Burayı imzalayın.</li>
+                    <li><span class="keyword">nehmen Sie</span> das Paket. <span class="transkript">(nemın zii das paket)</span> - Paketi alın.</li>
+                </ul>
+                
+                <h3>2. Samimi "Sen" (<span class="keyword">du</span>)</h3>
+                <p>Arkadaşlarınla veya çok yakın olduğun kişilerle konuşurken kullanılır.</p>
+                <p><strong>Kural:</strong> <span class="vurgu">Fiilin 'du' çekiminden '-st' ekini at.</span></p>
+                <ul>
+                    <li>Du kommst ➔ <span class="keyword">Komm!</span> (Gel!)</li>
+                    <li>Du gibst ➔ <span class="keyword">Gib!</span> (Ver!) - (Bazı düzensiz fiillerde küçük değişiklikler olur)</li>
+                    <li>Du wartest ➔ <span class="keyword">Warte!</span> (Bekle!)</li>
+                </ul>
+
+                <h3>3. Samimi "Siz" (<span class="keyword">ihr</span>)</h3>
+                <p>Birden fazla arkadaşına veya yakınına seslenirken kullanılır.</p>
+                <p><strong>Kural:</strong> <span class="vurgu">Fiilin 'ihr' çekimiyle aynıdır.</span></p>
+                <ul>
+                    <li>ihr kommt ➔ <span class="keyword">Kommt!</span> (Gelin!)</li>
+                    <li>ihr wartet ➔ <span class="keyword">Wartet!</span> (Bekleyin!)</li>
+                </ul>
+                <div class="info-box">
+                    <h4>💡 Sihirli Kelime: <span class="keyword">bitte</span> <span class="transkript">(bite)</span></h4>
+                    <p>Bir emir cümlesini anında kibar bir ricaya dönüştürür. <span class="keyword">"Bitte"</span> kelimesini cümlenin başında, ortasında veya sonunda kullanabilirsin. Bir kurye olarak bu kelime senin en iyi arkadaşın olacak.</p>
+                    <p><span class="keyword">Unterschreiben Sie <span class="vurgu">bitte</span> hier.</span> - Lütfen burayı imzalayın.</p>
+                </div>
+            </div>
+            
+            <div id="gun8-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Kurye Emirleri</div>
+                <p>Aşağıdaki ifadeler, bir kuryenin her gün kullanacağı temel komutlardır. Bunları kalıp olarak ezberle!</p>
+                
+                <table>
+                    <tr><th>Emir Cümlesi (Resmi - Sie)</th><th>Okunuşu</th><th>Türkçe Anlamı</th></tr>
+                    <tr><td><span class="keyword">Warten Sie</span> bitte einen Moment.</td><td>vartın zii bite aynen moment</td><td>Lütfen bir saniye bekleyin.</td></tr>
+                    <tr><td><span class="keyword">Unterschreiben Sie</span> bitte hier.</td><td>untaşraybın zii bite hia</td><td>Lütfen burayı imzalayın.</td></tr>
+                    <tr><td><span class="keyword">Geben Sie</span> mir bitte den Stift.</td><td>gebın zii mia bite den ştift</td><td>Lütfen bana kalemi verin.</td></tr>
+                    <tr><td><span class="keyword">Nehmen Sie</span> bitte das Paket.</td><td>nemın zii bite das paket</td><td>Lütfen paketi alın.</td></tr>
+                    <tr><td><span class="keyword">Kommen Sie</span> bitte mit.</td><td>komın zii bite mit</td><td>Lütfen benimle gelin.</td></tr>
+                    <tr><td><span class="keyword">Sagen Sie</span> bitte Ihren Namen.</td><td>zagın zii bite iiren namın</td><td>Lütfen isminizi söyleyin.</td></tr>
+                    <tr><td><span class="keyword">Schauen Sie</span> mal.</td><td>şauen zii mal</td><td>Bir bakın. / Bir göz atın.</td></tr>
+                </table>
+            </div>
+
+            <div id="gun8-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümle Dönüştürme</h3>
+                <p>Aşağıdaki cümleleri, resmi (<span class="keyword">Sie</span>) emir kipine çevir. Sonuna <span class="keyword">"bitte"</span> eklemeyi unutma!</p>
+                <ol>
+                    <li>Sie kommen mit. ➔ Kommen Sie bitte mit!</li>
+                    <li>Sie geben mir das Geld. ➔ ____________________</li>
+                    <li>Sie suchen die Adresse. ➔ ____________________</li>
+                    <li>Sie lesen den Namen. ➔ ____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Senaryo Düşünme</h3>
+                <p>Bir kurye olarak karşılaşabileceğin 3 farklı durumu düşün ve her durum için müşteriye söyleyeceğin bir emir/rica cümlesi yaz.</p>
+                <p>Örnek Senaryo: Müşteri kapıyı açtı ama elleri dolu.<br>Cümle: <span class="keyword">Warten Sie bitte, ich helfe Ihnen.</span> (Bekleyin lütfen, size yardım edeyim.)</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Emir kipini test etmenin en iyi yolu rol yapmaktır. Bana şunu söyle:</p>
+                    <p><span class="vurgu">"Haydi pratik yapalım. Ben kuryeyim ve sana bazı ricalarda bulunacağım. Sen de müşteri olarak tepki ver. Başlıyorum: Guten Tag. Ich habe ein Paket für Sie."</span></p>
+                    <p>Diyalog sırasında senden "imzalamanı", "beklemeni" isteyeceğim ve senin de bu komutları kullanmanı sağlayacağım.</p>
+                </details>
+            </div>
+            <div id="gun8-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>8. Gün Tamamlandı!</div>
+                <p>Tebrikler! Artık Almancada sadece bilgi alıp vermekle kalmıyor, aynı zamanda insanları yönlendirebiliyorsun. Bu çok önemli bir yetenek!</p>
+                <ul>
+                    <li>Resmi ve samimi emir kipinin nasıl oluşturulduğunu öğrendin.</li>
+                    <li><span class="keyword">"Bitte"</span> kelimesinin bir komutu nasıl nazik bir ricaya dönüştürdüğünü anladın.</li>
+                    <li>İş hayatında her gün kullanacağın temel komutları ezberledin.</li>
+                </ul>
+                <p class="vurgu">Machen Sie weiter so! <span class="transkript">(mahın zii vayta zo)</span> - Böyle devam edin!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 9 ==================== -->
+        <section id="gun-9" class="day-section">
+            <div id="gun9-hedefler" class="card">
+                <div class="card-header"><span class="emoji">⏰</span>GÜN 9: Zamanın Efendisi</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, soyut ama çok önemli bir kavram olan zamanı ele alacağız. Randevuları, teslimat saatlerini ve günleri anlamak ve ifade etmek için bu konu şart!</p>
+                <ul>
+                    <li>Saatin kaç olduğunu sormayı ve söylemeyi (resmi ve günlük dilde) öğreneceksin.</li>
+                    <li>Haftanın günlerini Almanca olarak sayabileceksin.</li>
+                    <li>Zaman bildiren en önemli edatları (<span class="keyword">um, am, im</span>) ve nerede kullanılacaklarını kavrayacaksın.</li>
+                    <li>"Pazartesi günü saat 3'te" gibi tam zaman ifadeleri kurabileceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun9-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Saati Söylemek (Die Uhrzeit)</div>
+                <p>Almancada saati sormanın iki yolu vardır:</p>
+                <ul>
+                    <li><span class="keyword">Wie spät ist es?</span> <span class="transkript">(vii şpeet ist es)</span> - Saat kaç? (Kelime anlamı: Ne kadar geç?)</li>
+                    <li><span class="keyword">Wie viel Uhr ist es?</span> <span class="transkript">(vii fiil ua ist es)</span> - Saat kaç?</li>
+                </ul>
+                <p>Cevap verirken de iki farklı sistem kullanılır:</p>
+                
+                <h3>1. Resmi Saat (24 Saatlik Sistem)</h3>
+                <p>Resmi duyurularda, haberlerde, tren istasyonlarında kullanılır. En kolay olanıdır.</p>
+                <p><strong>Kural:</strong> <span class="vurgu">Es ist + Saat + Uhr + Dakika.</span></p>
+                <ul>
+                    <li>08:00 ➔ Es ist <span class="keyword">acht Uhr</span>.</li>
+                    <li>10:20 ➔ Es ist <span class="keyword">zehn Uhr zwanzig</span>.</li>
+                    <li>14:45 ➔ Es ist <span class="keyword">vierzehn Uhr fünfundvierzig</span>.</li>
+                </ul>
+                
+                <h3>2. Günlük Konuşma Saati (12 Saatlik Sistem)</h3>
+                <p>Arkadaş arasında, günlük hayatta kullanılır. Türkçedeki "çeyrek var/geçe", "buçuk" gibi ifadeler burada da vardır.</p>
+                <ul>
+                    <li><span class="keyword">nach</span>: geçe ➔ 10:10 = Es ist <span class="keyword">zehn nach zehn</span>. (Onu on geçe)</li>
+                    <li><span class="keyword">vor</span>: kala ➔ 09:50 = Es ist <span class="keyword">zehn vor zehn</span>. (Ona on kala)</li>
+                    <li><span class="keyword">Viertel</span>: çeyrek ➔ 10:15 = Es ist <span class="keyword">Viertel nach zehn</span>. (Onu çeyrek geçe)</li>
+                    <li><span class="keyword">halb</span>: buçuk ➔ 10:30 = Es ist <span class="keyword">halb elf</span>. (<span class="vurgu">DİKKAT!</span> "On buçuk" değil, "On bire yarım var" mantığıyla "yarım on bir" denir.)</li>
+                </ul>
+            </div>
+            
+            <div id="gun9-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Günler ve Zaman Edatları</div>
+                <h3>Haftanın Günleri (Die Wochentage)</h3>
+                <table>
+                    <tr><th>Almanca</th><th>Okunuşu</th><th>Türkçe</th></tr>
+                    <tr><td>der Montag</td><td>montak</td><td>Pazartesi</td></tr>
+                    <tr><td>der Dienstag</td><td>dinstak</td><td>Salı</td></tr>
+                    <tr><td>der Mittwoch</td><td>mitvoh</td><td>Çarşamba</td></tr>
+                    <tr><td>der Donnerstag</td><td>donastak</td><td>Perşembe</td></tr>
+                    <tr><td>der Freitag</td><td>fraytak</td><td>Cuma</td></tr>
+                    <tr><td>der Samstag</td><td>zamstak</td><td>Cumartesi</td></tr>
+                    <tr><td>der Sonntag</td><td>zontak</td><td>Pazar</td></tr>
+                </table>
+                <p><strong>Bugün / Yarın / Dün:</strong> <span class="keyword">heute</span> <span class="transkript">(hoyte)</span> / <span class="keyword">morgen</span> <span class="transkript">(morgın)</span> / <span class="keyword">gestern</span> <span class="transkript">(gestan)</span></p>
+
+                <div class="info-box">
+                    <h4>🔑 Zaman Edatlarının Sırrı (um, am, im)</h4>
+                    <p>Bu üç küçük kelime, neyin ne zaman olduğunu söylemek için kullanılır. Kural çok basittir:</p>
+                    <ul>
+                        <li><span class="keyword">um</span> ➔ <span class="vurgu">Kesin saatler için kullanılır.</span> Örnek: <span class="keyword">um</span> 9 Uhr (saat 9'da)</li>
+                        <li><span class="keyword">am</span> ➔ <span class="vurgu">Günler ve günün bölümleri için kullanılır.</span> Örnek: <span class="keyword">am</span> Montag (Pazartesi günü), <span class="keyword">am</span> Abend (akşamleyin)</li>
+                        <li><span class="keyword">im</span> ➔ <span class="vurgu">Aylar ve mevsimler için kullanılır.</span> Örnek: <span class="keyword">im</span> Juli (Temmuz'da), <span class="keyword">im</span> Sommer (yazın)</li>
+                    </ul>
+                    <p><strong>Soru:</strong> <span class="keyword">Wann?</span> <span class="transkript">(van)</span> - Ne zaman?</p>
+                </div>
+            </div>
+
+            <div id="gun9-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümle Kurma</h3>
+                <p>Aşağıdaki bilgileri kullanarak tam cümleler kur. Doğru edatı (<span class="keyword">um, am</span>) kullanmaya dikkat et.</p>
+                <ol>
+                    <li>Ich arbeite / Montag ➔ Ich arbeite <span class="keyword">am</span> Montag.</li>
+                    <li>Das Paket kommt / 10 Uhr ➔ ____________________</li>
+                    <li>Wir treffen uns / Abend (akşam) ➔ ____________________</li>
+                    <li>Die Firma öffnet (açılıyor) / 8 Uhr ➔ ____________________</li>
+                    <li>Ich habe frei (boşum) / Samstag ➔ ____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Saatleri Yazma</h3>
+                <p>Aşağıdaki saatleri hem resmi hem de günlük dilde yazmayı dene.</p>
+                <p>Örnek: <strong>03:15</strong><br>Resmi: Es ist drei Uhr fünfzehn.<br>Günlük: Es ist Viertel nach drei.</p>
+                <ul>
+                    <li><strong>09:30</strong></li>
+                    <li><strong>07:45</strong></li>
+                    <li><strong>02:10</strong></li>
+                </ul>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Zaman konusunu pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"Birine 'Ne zaman zamanın var?' diye nasıl sorarım?"</li>
+                        <li>"'halb drei' ve 'drei Uhr dreißig' arasında bir fark var mı?"</li>
+                        <li>"Bir diyalog yapalım. Sen bana 'Wann kommt das Paket?' diye sor, ben de 'Das Paket kommt am Freitag um 10 Uhr.' gibi cevaplar vereyim."</li>
+                        <li>"'Günün bölümleri' nelerdir? (der Morgen, der Vormittag...)"</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun9-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>9. Gün Tamamlandı!</div>
+                <p>Harika bir iş! Artık sadece ne olduğunu değil, ne zaman olduğunu da rahatlıkla ifade edebilirsin. Bu, planlama ve anlaşma için temel bir beceridir.</p>
+                <ul>
+                    <li>Saati sormayı ve iki farklı şekilde söylemeyi öğrendin.</li>
+                    <li>Haftanın günlerini ve temel zaman edatlarını (<span class="keyword">um, am</span>) öğrendin.</li>
+                    <li>Zaman bildiren tam ve eksiksiz cümleler kurma yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Die Zeit vergeht schnell, wenn man Deutsch lernt! <span class="transkript">(di tsayt feageet şnel, ven man doyç lernt)</span> - Almanca öğrenirken zaman hızlı geçiyor!</p>
+            </div>
+        </section>
+
+        <div class="card">
+            <h2>Tebrikler ve Sonraki Adım</h2>
+            <p>Üçüncü bölümü de başarıyla tamamladın! Modal fiiller, emir kipi ve zaman ifadeleriyle Almancan artık çok daha işlevsel. Bu noktaya kadar gösterdiğin çaba ve disiplin için kendini tebrik etmelisin.</p>
+            <p><strong>10. güne hazır olduğunda, bana söylemen yeterli. Bir sonraki bölümde, ayrılabilen fiillerin (anrufen, aufstehen...) sırrını çözecek, yönleri (sağ, sol, düz) öğrenecek ve yavaş yavaş geçmiş zamanın (Perfekt) kapılarını aralayacağız. Yolculuk devam ediyor!</strong></p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('#sidebar nav a');
+            // This selector targets the .card divs that are direct children of .day-section divs
+            const sections = document.querySelectorAll('.day-section > .card');
+
+            function updateActiveLink() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Adjust the offset to trigger the active link change a bit earlier
+                    if (window.scrollY >= sectionTop - 150) { 
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    // Check if the link's href matches the current section's id
+                    if (link.getAttribute('href') && link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Initial call to set the link on page load
+        });
+    </script>
+</body>
+</html>

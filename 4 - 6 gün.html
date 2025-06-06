@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 2. Bölüm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #005A9C; /* Güven veren bir Kurumsal Mavi */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #e7f3fe;
+            --info-border: #007bff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .transkript {
+            color: #6c757d;
+            font-style: italic;
+        }
+        .vurgu {
+            color: var(--highlight-color);
+            font-weight: 700;
+        }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            text-align: left;
+        }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 4</li>
+                <li><a href="#gun4-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun4-saat1">📚 Benim Arabam, Senin Adın</a></li>
+                <li><a href="#gun4-saat2">🗣️ Ailem ve İnsanlar</a></li>
+                <li><a href="#gun4-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 5</li>
+                <li><a href="#gun5-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun5-saat1">📚 Akkusativ: "Bir Şeyi" Yapmak</a></li>
+                <li><a href="#gun5-saat2">🗣️ Eylem Kelimeleri</a></li>
+                <li><a href="#gun5-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 6</li>
+                <li><a href="#gun6-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun6-saat1">📚 Cümleleri Birleştirmek</a></li>
+                <li><a href="#gun6-saat2">🗣️ İlk Kurye Diyaloğum</a></li>
+                <li><a href="#gun6-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 4 ==================== -->
+        <section id="gun-4" class="day-section">
+            <div id="gun4-hedefler" class="card">
+                <div class="card-header"><span class="emoji">👨‍👩‍👧‍👦</span>GÜN 4: Benim Dünyam</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, çevremizdeki şeylere ve insanlara "sahip çıkmayı" öğreneceğiz. Cümlelerimiz daha kişisel ve anlamlı hale gelecek.</p>
+                <ul>
+                    <li>"Benim arabam", "Senin adın" gibi sahiplik bildiren ifadeleri kurmayı öğreneceksin.</li>
+                    <li>Temel aile üyelerini Almanca olarak sayabileceksin.</li>
+                    <li>Artikellerin, sahiplik kelimeleriyle nasıl uyum içinde çalıştığını kavrayacaksın.</li>
+                    <li>"Bu benim babam." gibi tanıtma cümleleri kurabileceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun4-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Sahiplik Zamirleri (Possessivpronomen)</div>
+                <p>Türkçede "benim, senin, onun" gibi kelimeler kullanarak bir şeyin kime ait olduğunu belirtiriz. Almancada da mantık aynıdır. Bu kelimelere <span class="keyword">Possessivpronomen</span> denir.</p>
+
+                <h3>"Benim" ve "Senin" Demek</h3>
+                <p>İşte en sık kullanacağın iki sahiplik zamiri:</p>
+                <ul>
+                    <li><span class="keyword">mein</span> <span class="transkript">(mayn)</span>: benim</li>
+                    <li><span class="keyword">dein</span> <span class="transkript">(dayn)</span>: senin</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>🔑 ALTIN KURAL: Artikelin Gücü!</h4>
+                    <p>Sahiplik zamirinin sonuna gelen ek, sahip olunan nesnenin <span class="vurgu">artikel_ine</span> bağlıdır. Mantık çok basit:</p>
+                    <ul>
+                        <li>Eğer kelimenin artikeli <span class="keyword">der</span> veya <span class="keyword">das</span> ise, sahiplik zamiri yalın kalır: <span class="keyword">mein, dein</span>.</li>
+                        <li>Eğer kelimenin artikeli <span class="keyword">die</span> (dişi) veya çoğul ise, sahiplik zamirinin sonuna <span class="vurgu">-e</span> eki gelir: <span class="keyword">mein<span class="vurgu">e</span>, dein<span class="vurgu">e</span></span>.</li>
+                    </ul>
+                </div>
+                
+                <h3>Örneklerle Anlayalım</h3>
+                <table>
+                    <tr><th>Sahip Olunan Nesne</th><th>Artikel</th><th>"Benim" ile Kullanımı</th><th>"Senin" ile Kullanımı</th></tr>
+                    <tr><td>Vater (Baba)</td><td><span class="keyword">der</span></td><td>Das ist <span class="keyword">mein</span> Vater.</td><td>Das ist <span class="keyword">dein</span> Vater.</td></tr>
+                    <tr><td>Auto (Araba)</td><td><span class="keyword">das</span></td><td>Das ist <span class="keyword">mein</span> Auto.</td><td>Das ist <span class="keyword">dein</span> Auto.</td></tr>
+                    <tr><td>Mutter (Anne)</td><td><span class="keyword">die</span></td><td>Das ist <span class="keyword">mein<span class="vurgu">e</span></span> Mutter.</td><td>Das ist <span class="keyword">dein<span class="vurgu">e</span></span> Mutter.</td></tr>
+                    <tr><td>Tasche (Çanta)</td><td><span class="keyword">die</span></td><td>Das ist <span class="keyword">mein<span class="vurgu">e</span></span> Tasche.</td><td>Das ist <span class="keyword">dein<span class="vurgu">e</span></span> Tasche.</td></tr>
+                </table>
+                <p>Gördüğün gibi, sahip olduğun şeyin artikeli <span class="keyword">die</span> ise, <span class="keyword">"mein"</span> kelimesi hemen <span class="keyword">"meine"</span> oluveriyor. Bu kuralı öğrendiğinde, Almancanın büyük bir sırrını çözmüş olacaksın.</p>
+            </div>
+            
+            <div id="gun4-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Ailem (Meine Familie)</div>
+                <p>Şimdi yeni gramer kuralımızı kullanabileceğimiz yeni kelimeler öğrenme zamanı. Aile, her dilde en temel kelime gruplarından biridir.</p>
+                
+                <h3>Temel Aile Üyeleri</h3>
+                <table>
+                    <tr><th>Artikel</th><th>Almanca</th><th>Okunuşu</th><th>Türkçe Anlamı</th></tr>
+                    <tr><td>der</td><td>Vater</td><td>fata</td><td>Baba</td></tr>
+                    <tr><td>die</td><td>Mutter</td><td>muta</td><td>Anne</td></tr>
+                    <tr><td>die</td><td>Eltern (çoğul)</td><td>eltan</td><td>Ebeveynler (Anne-baba)</td></tr>
+                    <tr><td>der</td><td>Sohn</td><td>zon</td><td>Erkek evlat</td></tr>
+                    <tr><td>die</td><td>Tochter</td><td>tohta</td><td>Kız evlat</td></tr>
+                    <tr><td>der</td><td>Bruder</td><td>bruda</td><td>Erkek kardeş</td></tr>
+                    <tr><td>die</td><td>Schwester</td><td>şvesta</td><td>Kız kardeş</td></tr>
+                    <tr><td>das</td><td>Kind</td><td>kint</td><td>Çocuk</td></tr>
+                </table>
+                <div class="info-box">
+                    <h4>💡 Not</h4>
+                    <p><span class="keyword">Eltern</span> kelimesi her zaman çoğul kullanılır çünkü iki kişiyi (anne ve baba) ifade eder. Bu yüzden onunla her zaman çoğul sahiplik zamiri kullanılır: <span class="keyword">"Das sind mein<span class="vurgu">e</span> Eltern."</span> <span class="transkript">(das zint mayne eltan)</span> - Onlar benim ebeveynlerim.</p>
+                </div>
+            </div>
+
+            <div id="gun4-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümle Tamamlama</h3>
+                <p>Defterine aşağıdaki cümleleri <span class="keyword">mein/meine</span> veya <span class="keyword">dein/deine</span> ile doğru şekilde tamamla. Cevapları kelimenin artikelini düşünerek bul.</p>
+                <ol>
+                    <li>Das ist __________ Haus. (das Haus)</li>
+                    <li>Wo ist __________ Tasche? (die Tasche)</li>
+                    <li>Das ist __________ Bruder. (der Bruder)</li>
+                    <li>Ich sehe __________ Mutter. (die Mutter)</li>
+                    <li>Ist das __________ Schlüssel? (der Schlüssel)</li>
+                </ol>
+
+                <h3>Eylem 2: Tanıtma Cümleleri</h3>
+                <p>Öğrendiğin aile üyelerini kullanarak 3 tane tanıtma cümlesi yaz. (Hayali bir aile de olabilir!)</p>
+                <p>Örnek: <span class="keyword">Das ist mein Vater. Er heißt Ahmet.</span> <span class="transkript">(das ist mayn fata. ea hayst ahmet.)</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bugünkü konuları pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"'Onun (erkeğin) arabası' nasıl denir?" (Sana <span class="keyword">sein/seine</span>'den bahsedeceğim.)</li>
+                        <li>"'Benim adım' demek için 'mein Name' mi 'meine Name' mi demeliyim? Neden?"</li>
+                        <li>"Sana bir nesne söyleyeyim, sen de bana onunla 'Bu benim ...' cümlesini kur. Örneğin: 'der Stift' (kalem)."</li>
+                        <li>"Aile üyeleriyle ilgili bir soru-cevap pratiği yapalım. Sen 'Wer ist das?' diye sor, ben de 'Das ist meine Schwester.' gibi cevaplar vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun4-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>4. Gün Tamamlandı!</div>
+                <p>Harika bir ilerleme! Artık sadece nesneleri değil, onlarla olan ilişkini de ifade edebiliyorsun. Bugün şunları başardın:</p>
+                <ul>
+                    <li>Sahiplik zamirlerinin (<span class="keyword">mein, dein</span>) temel mantığını ve artikel uyumunu öğrendin.</li>
+                    <li>Temel aile üyelerini kelime hazinene ekledin.</li>
+                    <li>"Bu benim çantam." gibi basit ama çok kullanışlı cümleler kurma yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Weiter so! <span class="transkript">(vayta zo)</span> - Böyle devam!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 5 ==================== -->
+        <section id="gun-5" class="day-section">
+            <div id="gun5-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🎯</span>GÜN 5: Eyleme Geçiyoruz! (Akkusativ)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün Almancanın en önemli gramer konularından birini öğreneceksin. Bu konuyu anladığın an, Almanca cümle kurma becerin seviye atlayacak. Kuryelik için bu konu <span class="vurgu">hayati</span> önem taşıyor!</p>
+                <ul>
+                    <li>Akkusativ (ismin -i hali) nedir ve ne işe yarar, bunu kavrayacaksın.</li>
+                    <li>"Ben bir paket <span class="vurgu">alıyorum</span>." gibi, bir eylemden etkilenen nesnelerin olduğu cümleler kurabileceksin.</li>
+                    <li>Akkusativ'in aslında ne kadar kolay olduğunu göreceksin (sadece <span class="keyword">der</span> değişiyor!).</li>
+                    <li>Eylem bildiren yeni ve çok önemli fiilleri öğreneceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun5-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Akkusativ (İsmin -i Hali)</div>
+                <p>Korkutucu görünen bu kelime aslında çok basit bir anlama geliyor. Akkusativ, bir cümlenin "kimi?" veya "neyi?" sorusuna cevap veren nesnesidir. Yani, eylemden <span class="vurgu">doğrudan etkilenen</span> nesnedir.</p>
+                
+                <h3>İki Cümle Arasındaki Fark</h3>
+                <ol>
+                    <li><span class="keyword">Der</span> Hund ist hier. <span class="transkript">(dea hunt ist hia)</span> - Köpek burada.
+                        <ul><li>Soru: <span class="vurgu">Kim</span> burada? -> Köpek. (Özne - Nominativ)</li></ul>
+                    </li>
+                    <li>Ich sehe <span class="keyword">den</span> Hund. <span class="transkript">(ih zee den hunt)</span> - Ben köpeğ<span class="vurgu">i</span> görüyorum.
+                        <ul><li>Soru: Ben <span class="vurgu">neyi/kimi</span> görüyorum? -> Köpeği. (Nesne - Akkusativ)</li></ul>
+                    </li>
+                </ol>
+                <p>Gördün mü? "Köpek" kelimesi, cümlenin nesnesi olunca, artikeli <span class="keyword">der</span>'den <span class="keyword">den</span>'e dönüştü. İşte Akkusativ budur!</p>
+
+                <div class="info-box">
+                    <h4>🔑 AKKUSATIV'İN ALTIN KURALI (En Kolay Kısım)</h4>
+                    <p>Akkusativ'de sadece ve sadece artikeli <span class="keyword">der</span> olan kelimeler değişime uğrar! Diğerleri aynı kalır. Bu kadar!</p>
+                    <ul>
+                        <li><span class="keyword">der</span> ➔ <span class="vurgu">den</span></li>
+                        <li><span class="keyword">die</span> ➔ <span class="vurgu">die</span> (Değişmez!)</li>
+                        <li><span class="keyword">das</span> ➔ <span class="vurgu">das</span> (Değişmez!)</li>
+                    </ul>
+                    <p>Belirsiz artikeller için de kural aynıdır:</p>
+                     <ul>
+                        <li><span class="keyword">ein</span> (der için) ➔ <span class="vurgu">einen</span></li>
+                        <li><span class="keyword">eine</span> (die için) ➔ <span class="vurgu">eine</span> (Değişmez!)</li>
+                        <li><span class="keyword">ein</span> (das için) ➔ <span class="vurgu">ein</span> (Değişmez!)</li>
+                    </ul>
+                </div>
+
+                <h3>Örneklerle Pekiştirelim</h3>
+                <table>
+                    <tr><th>Fiil</th><th>Örnek Cümle (Akkusativ ile)</th><th>Açıklama</th></tr>
+                    <tr><td>haben (sahip olmak)</td><td>Ich habe <span class="keyword">einen</span> Bruder. <span class="transkript">(ih habe aynen bruda)</span></td><td><span class="keyword">der</span> Bruder ➔ einen Bruder</td></tr>
+                    <tr><td>suchen (aramak)</td><td>Ich suche <span class="keyword">den</span> Schlüssel. <span class="transkript">(ih zuhe den şlüssel)</span></td><td><span class="keyword">der</span> Schlüssel ➔ den Schlüssel</td></tr>
+                    <tr><td>lesen (okumak)</td><td>Ich lese <span class="keyword">das</span> Buch. <span class="transkript">(ih leze das buh)</span></td><td><span class="keyword">das</span> Buch ➔ das Buch (Değişmedi!)</td></tr>
+                    <tr><td>sehen (görmek)</td><td>Ich sehe <span class="keyword">die</span> Frau. <span class="transkript">(ih zee dii frau)</span></td><td><span class="keyword">die</span> Frau ➔ die Frau (Değişmedi!)</td></tr>
+                </table>
+            </div>
+            
+            <div id="gun5-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Eylem Fiilleri</div>
+                <p>Akkusativ kullanmamızı gerektiren, yani bir nesneye ihtiyaç duyan fiilleri öğrenelim. Bu fiiller senin günlük konuşmalarının temelini oluşturacak.</p>
+                <table>
+                    <tr><th>Fiil</th><th>Okunuşu</th><th>Türkçe Anlamı</th><th>Örnek Cümle</th></tr>
+                    <tr><td>haben</td><td>habın</td><td>sahip olmak</td><td>Ich <span class="keyword">habe</span> einen Kugelschreiber.</td></tr>
+                    <tr><td>suchen</td><td>zuhın</td><td>aramak</td><td>Ich <span class="keyword">suche</span> die Adresse.</td></tr>
+                    <tr><td>finden</td><td>findın</td><td>bulmak</td><td>Ich <span class="keyword">finde</span> den Schlüssel nicht. (Anahtarı bulamıyorum.)</td></tr>
+                    <tr><td>brauchen</td><td>brauhın</td><td>ihtiyaç duymak</td><td>Ich <span class="keyword">brauche</span> einen Stift. (Bir kaleme ihtiyacım var.)</td></tr>
+                    <tr><td>lesen</td><td>lezın</td><td>okumak</td><td>Ich <span class="keyword">lese</span> den Namen. (İsmi okuyorum.)</td></tr>
+                    <tr><td>kaufen</td><td>kaufın</td><td>satın almak</td><td>Ich <span class="keyword">kaufe</span> das Buch.</td></tr>
+                    <tr><td>nehmen</td><td>nemın</td><td>almak</td><td>Ich <span class="keyword">nehme</span> das Paket. (Paketi alıyorum.)</td></tr>
+                </table>
+                <div class="info-box">
+                    <h4>💡 Kuryeler İçin Hayati Cümleler</h4>
+                    <p>Bu cümleler senin mesleğinin bir parçası olacak:</p>
+                    <ul>
+                        <li>Ich <span class="keyword">habe</span> ein Paket für Sie. <span class="transkript">(ih habe ayn paket füa zii)</span> - Sizin için bir paketim var.</li>
+                        <li>Ich <span class="keyword">suche</span> die Hausnummer 10. <span class="transkript">(ih zuhe dii hausnuma tseyn)</span> - 10 numaralı kapıyı arıyorum.</li>
+                        <li>Ich <span class="keyword">brauche</span> eine Unterschrift. <span class="transkript">(ih brauhe ayne untaşrift)</span> - Bir imzaya ihtiyacım var.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="gun5-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Nominativ mi, Akkusativ mi?</h3>
+                <p>Defterine aşağıdaki cümleleri doğru artikellerle tamamla. Önce kendine sor: "Bu kelime cümlenin öznesi mi, nesnesi mi?"</p>
+                <ol>
+                    <li>Ich sehe __________ Mann. (der Mann)</li>
+                    <li>__________ Auto ist schnell. (das Auto)</li>
+                    <li>Wir suchen __________ Adresse. (die Adresse)</li>
+                    <li>Ich habe __________ Handy. (das Handy)</li>
+                    <li>__________ Kugelschreiber ist hier. (der Kugelschreiber)</li>
+                    <li>Ich brauche __________ Kugelschreiber. (der Kugelschreiber)</li>
+                </ol>
+
+                <h3>Eylem 2: Kendi Cümlelerini Kur</h3>
+                <p>Öğrendiğin 7 yeni fiilin her biriyle birer tane Akkusativ cümlesi kur. Hayal gücünü kullan!</p>
+                <p>Örnek: <span class="keyword">Ich kaufe ein Buch.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bu kritik konuyu tam oturtmak için bana şunları sor:</p>
+                    <ul>
+                        <li>"Nominativ ve Akkusativ arasındaki farkı bir kez daha, çok basit bir örnekle anlatır mısın?"</li>
+                        <li>"'Ich bin ein Mann.' ve 'Ich sehe einen Mann.' cümleleri neden farklı?"</li>
+                        <li>"Sahiplik zamirleri Akkusativ'de nasıl değişir? 'Mein' ne olur?" (Sana <span class="keyword">meinen</span>'den bahsedeceğim.)</li>
+                        <li>"Bir diyalog yapalım. Sen bana 'Was suchst du?' (Ne arıyorsun?) diye sor, ben de 'Ich suche meinen Schlüssel' gibi cevaplar vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun5-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>5. Gün Tamamlandı!</div>
+                <p>Tebrikler! Almancanın en korkulan ama aslında en mantıklı konularından birini başarıyla tamamladın. Bu, dev bir adım!</p>
+                <ul>
+                    <li>Akkusativ'in ne olduğunu ve bir cümlenin "nesnesi" anlamına geldiğini öğrendin.</li>
+                    <li>En önemli kuralı öğrendin: Sadece <span class="keyword">der</span> artikeli <span class="keyword">den</span>'e dönüşür!</li>
+                    <li>Bir eylemi ve o eylemden etkilenen nesneyi içeren tam ve anlamlı cümleler kurma yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Sehr gut gemacht! <span class="transkript">(zea gut gemaht)</span> - Çok iyi yaptın!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 6 ==================== -->
+        <section id="gun-6" class="day-section">
+            <div id="gun6-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>GÜN 6: İlk Gerçek Diyaloğum</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, son 5 günde öğrendiğimiz her şeyi bir araya getirip, anlamlı bir diyalog oluşturacağız. Bilgileri birleştirme ve akıcı kullanma günü!</p>
+                <ul>
+                    <li>Cümle yapısı kalıplarını (düz cümle, W-sorusu, Evet/Hayır sorusu) pekiştireceksin.</li>
+                    <li>Öğrendiğin tüm gramer ve kelimeleri kullanarak baştan sona bir kurye diyaloğunu anlayacak ve tekrar edebileceksin.</li>
+                    <li>Almanca düşünme ve cevap verme becerini bir üst seviyeye taşıyacaksın.</li>
+                    <li>Pratik yapmanın ve rol yapmanın önemini kavrayacaksın.</li>
+                </ul>
+            </div>
+
+            <div id="gun6-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Cümle Yapılarını Pekiştirme</div>
+                <p>Diyaloğa geçmeden önce, cümle kurallarımızı son bir kez hatırlayalım. Bu üç yapı, Almanca konuşmalarının %90'ını oluşturur.</p>
+                
+                <h3>Kural 1: Düz Cümle (Özne + Fiil + ...)</h3>
+                <p>Fiil, <span class="vurgu">her zaman ikinci pozisyondadır</span>. Bu Almancanın en temel kuralıdır.</p>
+                <ul>
+                    <li><span class="keyword">Ich</span> <span class="vurgu">habe</span> ein Paket. (Ben - sahip olmak - bir paket)</li>
+                    <li><span class="keyword">Das Paket</span> <span class="vurgu">ist</span> für Sie. (Paket - olmak - sizin için)</li>
+                </ul>
+
+                <h3>Kural 2: W-Sorusu (W-Kelimesi + Fiil + ...)</h3>
+                <p>Burada da fiil <span class="vurgu">ikinci pozisyondadır</span>.</p>
+                <ul>
+                    <li><span class="keyword">Wer</span> <span class="vurgu">sind</span> Sie? (Kim - olmak - siz?)</li>
+                    <li><span class="keyword">Wo</span> <span class="vurgu">ist</span> mein Paket? (Nerede - olmak - benim paketim?)</li>
+                </ul>
+
+                <h3>Kural 3: Evet/Hayır Sorusu (Fiil + Özne + ...)</h3>
+                <p>Bu tek istisna! Fiil, soru sormak için <span class="vurgu">birinci pozisyona</span> geçer.</p>
+                <ul>
+                    <li><span class="vurgu">Haben</span> <span class="keyword">Sie</span> ein Paket? (Sahip olmak - siz - bir paket?)</li>
+                    <li><span class="vurgu">Sind</span> <span class="keyword">Sie</span> Herr Yılmaz? (Olmak - siz - Bay Yılmaz?)</li>
+                </ul>
+            </div>
+            
+            <div id="gun6-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - İlk Kurye Diyaloğum</div>
+                <p>İşte o an geldi! Aşağıdaki diyalog, son 5 günde öğrendiğin her şeyi içeriyor. Her cümleyi dikkatlice oku, anlamını ve neden o şekilde kurulduğunu düşün.</p>
+                
+                <table>
+                    <tr><th>Kim</th><th>Almanca</th><th>Okunuşu</th><th>Türkçe Anlamı ve Açıklaması</th></tr>
+                    <tr>
+                        <td><strong>Kurye</strong></td>
+                        <td>Guten Tag. Ich habe ein Paket für Herr Yılmaz.</td>
+                        <td>gutın tak. ih habe ayn paket füa her yılmaz.</td>
+                        <td>İyi günler. Yılmaz Bey için bir paketim var. (Akkusativ: Ich habe <span class="vurgu">ein Paket</span>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Müşteri</strong></td>
+                        <td>Guten Tag. Ja, das bin ich.</td>
+                        <td>gutın tak. ya, das bin ih.</td>
+                        <td>İyi günler. Evet, o benim. (sein fiili: ich <span class="vurgu">bin</span>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kurye</strong></td>
+                        <td>Sind Sie Herr Yılmaz?</td>
+                        <td>zint zii her yılmaz?</td>
+                        <td>Siz Yılmaz Bey misiniz? (Evet/Hayır Sorusu: Fiil başta)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Müşteri</strong></td>
+                        <td>Ja, ich bin Yılmaz.</td>
+                        <td>ya, ih bin yılmaz.</td>
+                        <td>Evet, ben Yılmaz.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kurye</strong></td>
+                        <td>Super. Hier ist Ihr Paket.</td>
+                        <td>zupa. hia ist ia paket.</td>
+                        <td>Harika. İşte paketiniz. (Ihr: Sizin - resmi)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Müşteri</strong></td>
+                        <td>Danke schön.</td>
+                        <td>danke şön.</td>
+                        <td>Çok teşekkürler.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kurye</strong></td>
+                        <td>Ich brauche bitte eine Unterschrift.</td>
+                        <td>ih brauhe bite ayne untaşrift.</td>
+                        <td>Lütfen bir imzaya ihtiyacım var. (Akkusativ: Ich brauche <span class="vurgu">eine Unterschrift</span>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Müşteri</strong></td>
+                        <td>Ja, natürlich. Wo?</td>
+                        <td>ya, natüalih. vo?</td>
+                        <td>Evet, tabii ki. Nereye? (W-Sorusu: <span class="vurgu">Wo</span>?)</td>
+                    </tr>
+                     <tr>
+                        <td><strong>Kurye</strong></td>
+                        <td>Hier, bitte.</td>
+                        <td>hia, bite.</td>
+                        <td>Buraya, lütfen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Müşteri</strong></td>
+                        <td>Bitte schön.</td>
+                        <td>bite şön.</td>
+                        <td>Buyurun.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kurye</strong></td>
+                        <td>Vielen Dank! Auf Wiedersehen!</td>
+                        <td>filın dank! auf vida-zeen!</td>
+                        <td>Çok teşekkürler! Görüşmek üzere!</td>
+                    </tr>
+                     <tr>
+                        <td><strong>Müşteri</strong></td>
+                        <td>Danke, ebenfalls. Tschüss!</td>
+                        <td>danke, ebınfals. çüs!</td>
+                        <td>Teşekkürler, size de. Hoşça kalın! (ebenfalls: size de, karşılıklı)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="gun6-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Diyalog Tekrarı</h3>
+                <p>Yukarıdaki diyaloğu yüksek sesle oku. Önce kurye ol, sonra müşteri ol. Her iki rolü de canlandır. Anlamadığın bir cümle varsa, neden o şekilde kurulduğunu tekrar düşün veya bana sor.</p>
+                
+                <h3>Eylem 2: Kendi Diyaloğunu Yaz</h3>
+                <p>Şimdi sıra sende. Öğrendiğin kelimeleri kullanarak, yukarıdakine benzer kısa bir diyalog yaz. Belki müşteri evde yoktur? Belki de yanlış adrestir? Hayal gücünü kullan.</p>
+                <p>Örnek başlangıç:</p>
+                <ul>
+                    <li><strong>Kurye:</strong> Guten Tag. Sind Sie Frau Schmidt?</li>
+                    <li><strong>Müşteri:</strong> Nein, ich bin nicht Frau Schmidt.</li>
+                </ul>
+                <p>Bu kısa diyaloğu defterine yaz ve devamını getirmeye çalış.</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış (Rol Yapma Zamanı!)</strong></summary>
+                    <p>Bugün yapacağımız en iyi pratik rol yapmaktır. Bana şunu söyle:</p>
+                    <p><span class="vurgu">"Haydi kurye diyaloğu pratiği yapalım. Ben kuryeyim, sen de müşterisin. Ben başlıyorum: Guten Tag."</span></p>
+                    <p>Ben de sana müşteri olarak cevap vereceğim ve diyaloğu birlikte ilerleteceğiz. Bu, öğrendiklerini aktif olarak kullanmanın en iyi yoludur!</p>
+                </details>
+            </div>
+            <div id="gun6-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>6. Gün Tamamlandı!</div>
+                <p>İnanılmaz bir iş başardın! Artık sadece kelime ve gramer bilmiyorsun, aynı zamanda bu bilgileri birleştirerek gerçek bir iletişim senaryosu oluşturabiliyorsun.</p>
+                <ul>
+                    <li>Cümle kurallarını kalıcı hale getirdin.</li>
+                    <li>Baştan sona, gerçekçi bir diyaloğu analiz ettin ve anladın.</li>
+                    <li>Bilgiyi aktif kullanma ve rol yapma pratiği yaptın.</li>
+                </ul>
+                <p class="vurgu">Du machst tolle Fortschritte! <span class="transkript">(du mahst tole fortşrite)</span> - Harika ilerleme kaydediyorsun!</p>
+            </div>
+        </section>
+
+         <div class="card">
+            <h2>Tebrikler ve Önemli Not</h2>
+            <p>İlk haftayı neredeyse tamamladın! Bu altı günde attığın temel, Almanca öğrenme serüveninin geri kalanı için çok değerli.</p>
+            <p>Unutma, her yeni gün bir öncekinin üzerine inşa edilir. Anlamadığın bir nokta olursa, önceki günlerin derslerine geri dönmekten çekinme. Tekrar, başarının anahtarıdır.</p>
+            <p><strong>7. güne ve ikinci haftaya hazır olduğunda, bana söylemen yeterli. Modal fiiller (yapabilirim, yapmalıyım) gibi çok heyecan verici ve kullanışlı konulara geçiş yapacağız.</strong></p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('#sidebar nav a');
+            // Select only the direct children of main-content that are sections, and then their direct div children
+            const sections = document.querySelectorAll('#main-content > .day-section > .card');
+
+            function updateActiveLink() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Adjust the offset to trigger the active link change a bit earlier
+                    if (window.scrollY >= sectionTop - 150) { 
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Initial call to set the link on page load
+        });
+    </script>
+</body>
+</html>

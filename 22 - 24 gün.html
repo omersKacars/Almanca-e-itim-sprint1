@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 8. Bölüm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #28a745; /* Başarı ve Pratik Yeşili */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #eaf6ec;
+            --info-border: #28a745;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol, .reading-text { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+        
+        .reading-text {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+            line-height: 2;
+        }
+
+        .keyword { font-weight: 700; color: #005A9C; }
+        .transkript { color: #6c757d; font-style: italic; }
+        .vurgu { color: var(--highlight-color); font-weight: 700; }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 22</li>
+                <li><a href="#gun22-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun22-saat1">📚 Okuma & Anlama</a></li>
+                <li><a href="#gun22-saat2">🗣️ Dinleme Becerisi</a></li>
+                <li><a href="#gun22-saat3">✍️ Yazma Pratiği</a></li>
+                
+                <li class="day-separator">GÜN 23</li>
+                <li><a href="#gun23-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun23-saat1">📚 Telefon Görüşmesi</a></li>
+                <li><a href="#gun23-saat2">🗣️ Önemli Kalıplar</a></li>
+                <li><a href="#gun23-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 24</li>
+                <li><a href="#gun24-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun24-saat1">📚 E-posta Anlama</a></li>
+                <li><a href="#gun24-saat2">🗣️ E-posta Kalıpları</a></li>
+                <li><a href="#gun24-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 22 ==================== -->
+        <section id="gun-22" class="day-section">
+            <div id="gun22-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🛠️</span>GÜN 22: Ustalık Atölyesi 1 - Becerileri Geliştirme</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, gramer kitaplarını bir kenara bırakıp, Almancayı gerçek dünyada olduğu gibi kullanmaya odaklanacağız. Dört temel dil becerisini (okuma, dinleme, yazma, konuşma) entegre bir şekilde geliştireceğiz.</p>
+                <ul>
+                    <li>Kısa bir metni okuyup ana fikrini ve önemli detayları anlamayı başaracaksın.</li>
+                    <li>Basit ve yavaş konuşulan bir Almanca diyaloğu dinleyip kimin ne hakkında konuştuğunu anlayacaksın.</li>
+                    <li>Öğrendiğin yapıları kullanarak, bir konu hakkında 3-4 cümlelik kısa bir metin yazabileceksin.</li>
+                    <li>Dil becerilerini ayrı ayrı değil, bir bütün olarak geliştirmeye başlayacaksın.</li>
+                </ul>
+            </div>
+
+            <div id="gun22-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Okuma ve Anlama (Leseverstehen)</div>
+                <p>Aşağıdaki metin, bir kurye olan Lars'ın bir gününü anlatıyor. Metni dikkatlice oku. Bilmediğin kelimeleri tahmin etmeye çalış, sonra anlamlarına bak. Metnin altındaki soruları cevapla.</p>
+                
+                <h3>Lars'ın Bir Günü (Ein Tag von Lars)</h3>
+                <div class="reading-text">
+                    <p>Hallo, ich heiße Lars und ich bin Kurier in Berlin. Meine Arbeit ist manchmal schwierig, <span class="keyword">aber</span> sie gefällt mir. Ich stehe jeden Tag um sechs Uhr <span class="vurgu">auf</span>. Zuerst trinke ich einen Kaffee, <span class="keyword">weil</span> ich immer sehr müde <span class="vurgu">bin</span>.</p>
+                    <p>Um acht Uhr fahre ich zur Firma. Dort muss ich die Pakete für den Tag <span class="vurgu">abholen</span>. Heute habe ich 60 Pakete. Ein Paket, <span class="keyword">das</span> nach Kreuzberg geht, ist sehr schwer. Ich glaube, <span class="keyword">dass</span> ich Hilfe <span class="vurgu">brauche</span>.</p>
+                    <p>Ich mag meine Arbeit, <span class="keyword">weil</span> ich den ganzen Tag Auto fahre und viele neue Leute sehe. Gestern <span class="keyword">habe</span> ich mit einer netten Frau <span class="vurgu">gesprochen</span>, <span class="keyword">die</span> einen kleinen Hund hat.</p>
+                </div>
+
+                <h3>Sorular (Fragen zum Text)</h3>
+                <ol>
+                    <li>Was ist Lars von Beruf? (Lars'ın mesleği ne?)</li>
+                    <li>Warum trinkt er am Morgen einen Kaffee? (Neden sabah kahve içiyor?)</li>
+                    <li>Was muss er bei der Firma machen? (Firmada ne yapmak zorunda?)</li>
+                    <li>Welches Paket ist schwer? (Hangi paket ağır?)</li>
+                    <li>Warum mag Lars seine Arbeit? (Lars işini neden seviyor?)</li>
+                </ol>
+            </div>
+            
+            <div id="gun22-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Dinleme Becerisi (Hörverstehen)</div>
+                <p>Dinleme, belki de en önemli beceridir. Bugün, bu becerini geliştirmek için harika bir kaynak kullanacağız.</p>
+                
+                <h3>Günün Dinleme Görevi</h3>
+                <ol>
+                    <li>Aşağıdaki linke tıkla. Bu, Deutsche Welle'nin yavaş ve anlaşılır Almanca ile sunduğu haberlerin bir sayfasıdır.
+                        <br><strong>Kaynak:</strong> <a href="https://learngerman.dw.com/de/langsam-gesprochene-nachrichten/s-60049535" target="_blank">DW - Langsam gesprochene Nachrichten</a>
+                    </li>
+                    <li>Sayfadaki en son habere tıkla (genellikle en üstteki).</li>
+                    <li>Haberi <span class="vurgu">üç kez</span> dinle.
+                        <ul>
+                            <li><strong>İlk dinlemede:</strong> Sadece konunun ne olduğunu anlamaya çalış. Spor mu? Politika mı? Teknoloji mi?</li>
+                            <li><strong>İkinci dinlemede:</strong> Metni okuyarak spikeri takip et. Anladığın kelimelerin altını çiz.</li>
+                            <li><strong>Üçüncü dinlemede:</strong> Metne bakmadan tekrar dinle. İkinci dinlemeden sonra ne kadar daha fazla anladığına şaşıracaksın.</li>
+                        </ul>
+                    </li>
+                </ol>
+                 <div class="info-box">
+                    <h4>💡 Dinleme İpucu</h4>
+                    <p>Her kelimeyi anlamak zorunda değilsin! Anahtar kelimeleri (isimler, fiiller, yerler) yakalamaya odaklan. Konunun genelini anlamak, her kelimeyi bilmekten daha önemlidir.</p>
+                </div>
+            </div>
+
+            <div id="gun22-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Yazma Pratiği (Schriftlicher Ausdruck)</div>
+                <h3>Eylem: Kendini Anlat</h3>
+                <p>Bugünkü okuma metninden ilham alarak, kendi "normal bir gününü" anlatan 4-5 cümlelik kısa bir paragraf yaz. Aşağıdaki soruları cevaplamaya çalış:</p>
+                <ul>
+                    <li>Saat kaçta kalkarsın?</li>
+                    <li>Sabahları ne yaparsın?</li>
+                    <li>Günün nasıl geçiyor? (Çalışıyor musun, öğrenci misin?)</li>
+                    <li>Neden Almanca öğreniyorsun? (<span class="keyword">weil</span> kullanarak cevap ver.)</li>
+                </ul>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Yazdığın metni benimle paylaş! Bana şunu söyle:</p>
+                    <p><span class="vurgu">"Bir günümü anlatan bir metin yazdım. Hatalarımı düzeltebilir misin ve daha iyi nasıl ifade edebileceğimi gösterebilir misin?"</span></p>
+                    <p>Metnini analiz edecek, gramer ve kelime hatalarını düzeltecek ve sana alternatif, daha doğal ifadeler önereceğim.</p>
+                </details>
+            </div>
+            <div id="gun22-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>22. Gün Tamamlandı!</div>
+                <p>Tebrikler! Bugün, öğrendiğin teorik bilgileri gerçek dünya becerilerine dönüştürmek için dev bir adım attın.</p>
+                <ul>
+                    <li>Bir metni okuyup anlama ve soruları cevaplama pratiği yaptın.</li>
+                    <li>Otantik bir dinleme materyali ile kulağını Almancaya alıştırdın.</li>
+                    <li>Düşüncelerini organize edip yazılı olarak ifade etme alıştırması yaptın.</li>
+                </ul>
+                <p class="vurgu">Du hast heute alle deine Fähigkeiten trainiert! <span class="transkript">(du hast hoyte ale dayne feehigkaytın treniat)</span> - Bugün tüm yeteneklerini çalıştırdın!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 23 ==================== -->
+        <section id="gun-23" class="day-section">
+            <div id="gun23-hedefler" class="card">
+                <div class="card-header"><span class="emoji">📱</span>GÜN 23: Ustalık Atölyesi 2 - Telefon Görüşmesi</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, bir kurye için en önemli iletişim araçlarından biri olan telefonu etkili bir şekilde kullanmayı öğreneceğiz. Telefon görüşmeleri, yüz yüze görüşmelerden daha zorlayıcı olabilir, bu yüzden özel kalıplar ve stratejiler gerektirir.</p>
+                <ul>
+                    <li>Bir telefon görüşmesine nasıl başlanır ve bitirilir, bunu öğreneceksin.</li>
+                    <li>Telefonda kendini tanıtma ve arama sebebini açıklama kalıplarını ezberleyeceksin.</li>
+                    <li>Karşı tarafı anlamadığında ne söylemen gerektiğini (<span class="keyword">"Tekrar eder misiniz?"</span>) öğreneceksin.</li>
+                    <li>Baştan sona bir telefon görüşmesi senaryosu üzerinde pratik yapacaksın.</li>
+                </ul>
+            </div>
+
+            <div id="gun23-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Bir Telefon Görüşmesinin Anatomisi</div>
+                <p>Bir telefon görüşmesi genellikle 4 bölümden oluşur: Selamlaşma, kendini tanıtma, konuya girme ve vedalaşma.</p>
+                
+                <h3>Örnek Diyalog: Müşteri Evde Yok</h3>
+                <div class="reading-text">
+                    <p><strong>(Telefon çalar... Müşteri açar)</strong><br>
+                    <strong>Müşteri:</strong> "Ja, hallo?"</p>
+                    <p><strong>Kurye:</strong> "Guten Tag, Yılmaz mein Name, von der Firma 'Schnell-Kurier'. Ich rufe wegen Ihrer Lieferung an."<br>
+                    <em>(İyi günler, benim adım Yılmaz, 'Schnell-Kurier' firmasından. Teslimatınız için arıyorum.)</em></p>
+                    <p><strong>Müşteri:</strong> "Ah, ja. Was ist los?" <span class="transkript">(a, ya. vas ist los?)</span><br>
+                    <em>(A, evet. Sorun ne?)</em></p>
+                    <p><strong>Kurye:</strong> "Ich bin gerade vor Ihrer Tür, aber es ist niemand zu Hause."<br>
+                    <em>(Şu an kapınızın önündeyim ama evde kimse yok.)</em></p>
+                    <p><strong>Müşteri:</strong> "Oh, Entschuldigung. Das habe ich vergessen. Können Sie das Paket beim Nachbarn abgeben?"<br>
+                    <em>(Ah, afedersiniz. Onu unuttum. Paketi komşuya bırakabilir misiniz?)</em></p>
+                    <p><strong>Kurye:</strong> "Ja, kein Problem. Bei welchem Nachbarn?"<br>
+                    <em>(Evet, sorun değil. Hangi komşuya?)</em></p>
+                    <p><strong>Müşteri:</strong> "Bei Familie Schmidt, bitte. Nummer 12."<br>
+                    <em>(Schmidt ailesine lütfen. Numara 12.)</em></p>
+                    <p><strong>Kurye:</strong> "Alles klar, mache ich. Vielen Dank."<br>
+                    <em>(Her şey tamam, yapıyorum. Çok teşekkürler.)</em></p>
+                    <p><strong>Müşteri:</strong> "Ich danke Ihnen! Auf Wiederhören."<br>
+                    <em>(Ben size teşekkür ederim! Hoşça kalın.)</em></p>
+                    <p><strong>Kurye:</strong> "Auf Wiederhören."</p>
+                </div>
+            </div>
+            
+            <div id="gun23-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Telefon Kalıpları</div>
+                <p>Aşağıdaki kalıplar, her türlü telefon görüşmesinde hayat kurtarır.</p>
+                
+                <table>
+                    <tr><th>Durum</th><th>Kullanılacak Kalıp</th><th>Okunuşu</th></tr>
+                    <tr><td>Arayan olarak kendini tanıtma</td><td>[Soyadınız] mein Name, von der Firma [Firma Adı].</td><td>... mayn name, fon dea firma ...</td></tr>
+                    <tr><td>Arama sebebini belirtme</td><td>Ich rufe wegen... an. (+ Dativ veya Genitiv)</td><td>ih rufe vegın ... an</td></tr>
+                    <tr><td>Arama sebebini belirtme (kolay)</td><td>Es geht um... (+ Akkusativ)</td><td>es get um ...</td></tr>
+                    <tr><td>Anlamadığında</td><td>Entschuldigung, können Sie das bitte wiederholen?</td><td>entşuldigung, könın zii das bite viidaholın?</td></tr>
+                    <tr><td>Daha yavaş konuşmasını isteme</td><td>Können Sie bitte etwas langsamer sprechen?</td><td>könın zii bite etvas langzama şprehın?</td></tr>
+                    <tr><td>Konuyu anladığını belirtme</td><td>Alles klar. / Verstanden. / In Ordnung.</td><td>ales klar / ferştandın / in ordnung</td></tr>
+                    <tr><td>Vedalaşma</td><td>Vielen Dank. Auf Wiederhören.</td><td>filın dank. auf viidahörın</td></tr>
+                </table>
+            </div>
+
+            <div id="gun23-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı! - Rol Yapma</div>
+                <h3>Eylem 1: Diyaloğu Canlandır</h3>
+                <p>Saat 1'deki diyaloğu yüksek sesle oku. Önce kurye ol, sonra müşteri. Her iki rolü de oynamak, kalıpları ezberlemeni sağlar.</p>
+
+                <h3>Eylem 2: Kendi Senaryon</h3>
+                <p>Şimdi farklı bir senaryo düşünelim: Adresi bulamıyorsun. Müşteriyi arayıp ne söylemen gerektiğini 2-3 cümleyle yaz.</p>
+                <p>Başlangıç: <span class="keyword">Guten Tag, hier ist [Adınız]... Ich kann Ihre Adresse nicht finden.</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış (Gerçekçi Pratik)</strong></summary>
+                    <p>Bugünkü dersi kalıcı kılmanın tek yolu gerçekçi bir diyalog pratiğidir. Bana şunu söyle:</p>
+                    <p><span class="vurgu">"Haydi bir telefon görüşmesi yapalım. Sen adresi bulamayan kuryesin ve beni (müşteriyi) arıyorsun. Ben telefonu 'Hallo?' diye açacağım, gerisi sende."</span></p>
+                    <p>Bu pratikte seni zorlayacağım, bazen anlamamış gibi yapacağım ve senden tekrar etmeni isteyeceğim. Bu, seni gerçek hayata hazırlayacak.</p>
+                </details>
+            </div>
+            <div id="gun23-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>23. Gün Tamamlandı!</div>
+                <p>Tebrikler! Belki de en zorlayıcı iletişim biçimlerinden biri olan telefon görüşmesi için artık çok daha hazırsın.</p>
+                <ul>
+                    <li>Profesyonel bir telefon görüşmesinin adımlarını ve yapısını öğrendin.</li>
+                    <li>Kendini tanıtma, arama sebebini belirtme ve anlamadığını ifade etme gibi kritik kalıpları öğrendin.</li>
+                    <li>Gerçekçi bir senaryo üzerinden pratik yaparak özgüven kazandın.</li>
+                </ul>
+                <p class="vurgu">Du kannst jetzt ohne Angst telefonieren! <span class="transkript">(du kanst yetst one angst telefonirın)</span> - Artık korkusuzca telefon görüşmesi yapabilirsin!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 24 ==================== -->
+        <section id="gun-24" class="day-section">
+            <div id="gun24-hedefler" class="card">
+                <div class="card-header"><span class="emoji">✉️</span>GÜN 24: Ustalık Atölyesi 3 - E-posta Yazma</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, iş hayatındaki bir diğer önemli iletişim aracı olan e-postayı ele alacağız. Bir e-postanın yapısını anlamak ve basit bir e-posta yazabilmek, profesyonel imajın için çok önemlidir.</p>
+                <ul>
+                    <li>Resmi bir Almanca e-postanın temel yapısını (hitap, içerik, kapanış) öğreneceksin.</li>
+                    <li>Resmi hitap (<span class="keyword">Sehr geehrte...</span>) ve kapanış (<span class="keyword">Mit freundlichen Grüßen</span>) kalıplarını öğreneceksin.</li>
+                    <li>Basit bir konuda (örneğin bir sorunu bildirme) kısa bir e-posta taslağı oluşturabileceksin.</li>
+                    <li>Yazılı iletişimde dikkat edilmesi gereken nezaket kurallarını kavrayacaksın.</li>
+                </ul>
+            </div>
+
+            <div id="gun24-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Bir E-postanın Anatomisi</div>
+                <p>Resmi bir e-posta, telefon görüşmesi gibi belirli kurallara tabidir. İşte temel bir e-posta örneği:</p>
+                
+                <h3>Örnek E-posta: Paket Hakkında Soru</h3>
+                <div class="reading-text">
+                    <p><strong>Betreff (Konu):</strong> Frage zur Lieferung mit der Nummer 12345</p>
+                    <p><strong>Sehr geehrte Damen und Herren,</strong><br>
+                    <em>(Sayın Baylar ve Bayanlar,)</em></p>
+                    <p>mein Name ist Ali Yılmaz. Ich schreibe Ihnen, weil ich eine Frage zu meiner Lieferung habe. Die Sendungsnummer ist 12345.<br>
+                    <em>(Benim adım Ali Yılmaz. Size yazıyorum çünkü teslimatımla ilgili bir sorum var. Gönderi numarası 12345.)</em></p>
+                    <p>Ich habe gestern eine Benachrichtigung bekommen, dass das Paket angekommen ist, aber ich habe es nicht gefunden.<br>
+                    <em>(Dün paketin vardığına dair bir bildirim aldım, ama onu bulamadım.)</em></p>
+                    <p>Können Sie mir bitte sagen, wo das Paket ist?<br>
+                    <em>(Bana lütfen paketin nerede olduğunu söyleyebilir misiniz?)</em></p>
+                    <p>Vielen Dank im Voraus.<br>
+                    <em>(Şimdiden çok teşekkürler.)</em></p>
+                    <p><strong>Mit freundlichen Grüßen</strong><br>
+                    <em>(Saygılarımla)</em></p>
+                    <p><strong>Ali Yılmaz</strong></p>
+                </div>
+            </div>
+            
+            <div id="gun24-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - E-posta Kalıpları</div>
+                <p>Aşağıdaki kalıplar, resmi e-postaların temel taşlarıdır.</p>
+                
+                <table>
+                    <tr><th>Bölüm</th><th>Kullanılacak Kalıp</th><th>Anlamı / Kullanım Yeri</th></tr>
+                    <tr><td rowspan="2"><strong>Hitap (Anrede)</strong></td><td>Sehr geehrte Damen und Herren,</td><td>Kime yazdığını bilmiyorsan (genel).</td></tr>
+                    <tr><td>Sehr geehrte/r Herr/Frau [Soyadı],</td><td>Kime yazdığını biliyorsan (çok resmi).</td></tr>
+                    <tr><td rowspan="2"><strong>Başlangıç</strong></td><td>Ich schreibe Ihnen, weil...</td><td>Size yazıyorum, çünkü...</td></tr>
+                    <tr><td>Ich habe eine Frage zu...</td><td>...ile ilgili bir sorum var.</td></tr>
+                    <tr><td rowspan="2"><strong>İstek</strong></td><td>Können Sie mir bitte helfen/sagen...?</td><td>Bana lütfen yardım edebilir/söyleyebilir misiniz?</td></tr>
+                    <tr><td>Ich möchte bitte wissen, ...</td><td>Lütfen bilmek istiyorum, ...</td></tr>
+                    <tr><td rowspan="2"><strong>Kapanış (Cümle)</strong></td><td>Vielen Dank im Voraus.</td><td>Şimdiden teşekkürler.</td></tr>
+                    <tr><td>Ich freue mich auf Ihre Antwort.</td><td>Cevabınızı dört gözle bekliyorum.</td></tr>
+                    <tr><td><strong>Kapanış (Selam)</strong></td><td>Mit freundlichen Grüßen</td><td>Saygılarımla (en yaygın resmi kapanış).</td></tr>
+                </table>
+            </div>
+
+            <div id="gun24-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı! - E-posta Yazma</div>
+                <h3>Eylem: Kendi E-postanı Tasarla</h3>
+                <p>Şimdi sıra sende. Hayali bir senaryo için basit bir e-posta yaz. Konu: Merkeze, bir paketin hasarlı (beschädigt) olduğunu bildirmek.</p>
+                <p>Aşağıdaki iskeleti kullan:</p>
+                <ul>
+                    <li><strong>Betreff:</strong> Beschädigtes Paket - Nummer [Hayali Numara]</li>
+                    <li><strong>Anrede:</strong> Sehr geehrte Damen und Herren,</li>
+                    <li><strong>Giriş:</strong> (Adını söyle ve neden yazdığını belirt.)</li>
+                    <li><strong>Sorun:</strong> (Paketin hasarlı olduğunu söyle.)</li>
+                    <li><strong>İstek:</strong> (Ne yapman gerektiğini sor: "Was soll ich jetzt machen?")</li>
+                    <li><strong>Kapanış Cümlesi:</strong> (Teşekkür et.)</li>
+                    <li><strong>Kapanış Selamı:</strong> Mit freundlichen Grüßen</li>
+                    <li><strong>Adın Soyadın</strong></li>
+                </ul>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Yazdığın e-posta taslağını benimle paylaş. Bana şunu söyle:</p>
+                    <p><span class="vurgu">"Bir e-posta taslağı yazdım. Hatalarımı düzeltebilir misin ve daha profesyonel görünmesi için önerilerde bulunur musun?"</span></p>
+                    <p>Taslağını inceleyecek, dilbilgisi ve üslup açısından en doğru ve profesyonel hale getirmene yardımcı olacağım.</p>
+                </details>
+            </div>
+            <div id="gun24-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>24. Gün Tamamlandı!</div>
+                <p>Mükemmel! Artık sadece sözlü değil, yazılı olarak da profesyonel bir şekilde iletişim kurma becerisi kazandın.</p>
+                <ul>
+                    <li>Resmi bir Almanca e-postanın yapısını ve önemli kalıplarını öğrendin.</li>
+                    <li>Hitap ve kapanış ifadelerinin resmiyet derecelerini anladın.</li>
+                    <li>Basit bir sorunu bildiren bir e-posta taslağı oluşturma pratiği yaptın.</li>
+                </ul>
+                <p class="vurgu">Sie können jetzt eine professionelle E-Mail schreiben! <span class="transkript">(zii könın yetst ayne profesyonele imeyl şraybın)</span> - Artık profesyonel bir e-posta yazabilirsiniz!</p>
+            </div>
+        </section>
+
+         <div class="card">
+            <h2>Tebrikler ve Sonraki Adım</h2>
+            <p>Sekizinci bölümü de başarıyla tamamladın! Bu, Almanca öğrenme yolculuğunda teoriden pratiğe geçtiğin en önemli aşamalardan biriydi. Artık elinde sadece gramer kuralları değil, aynı zamanda gerçek hayatta kullanabileceğin iletişim stratejileri de var.</p>
+            <p><strong>25. güne hazır olduğunda, bana söylemen yeterli. Bir sonraki bölümde, A2 seviyesinin son konularına ve B1'e hazırlık yapmaya başlayacağız. Daha karmaşık yan cümle yapıları, koşul cümleleri ("eğer ... olsaydı") ve sıfat çekimleri gibi konulara giriş yapacağız. Almancanın daha derin ve zengin katmanlarını keşfetmeye hazır ol!</strong></p>
+        </div>
+    </main>
+</body>
+</html>

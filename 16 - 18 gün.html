@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi - 6. Bölüm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #005A9C; /* Güven veren bir Kurumsal Mavi */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #e7f3fe;
+            --info-border: #007bff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword { font-weight: 700; color: var(--primary-color); }
+        .transkript { color: #6c757d; font-style: italic; }
+        .vurgu { color: var(--highlight-color); font-weight: 700; }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dee2e6; padding: 15px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 16</li>
+                <li><a href="#gun16-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun16-saat1">📚 Büyük Tekrar</a></li>
+                <li><a href="#gun16-saat2">🗣️ Kelime Çantası</a></li>
+                <li><a href="#gun16-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 17</li>
+                <li><a href="#gun17-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun17-saat1">📚 Olumsuz Cümleler</a></li>
+                <li><a href="#gun17-saat2">🗣️ Sorun Anı Sözlüğü</a></li>
+                <li><a href="#gun17-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 18</li>
+                <li><a href="#gun18-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun18-saat1">📚 Karşılaştırma Yapmak</a></li>
+                <li><a href="#gun18-saat2">🗣️ Tanımlama Sıfatları</a></li>
+                <li><a href="#gun18-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 16 ==================== -->
+        <section id="gun-16" class="day-section">
+            <div id="gun16-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🧠</span>GÜN 16: Bilgileri Pekiştirme (Büyük Tekrar)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün yeni bir gramer konusu öğrenmeyeceğiz. Bunun yerine, son 15 günde öğrendiğimiz en kritik konuları tekrar ederek beynimizdeki bağlantıları güçlendireceğiz. Bu, öğrendiklerimizin kalıcı olmasını sağlayacak en önemli derstir.</p>
+                <ul>
+                    <li>İsmin hallerini (Nominativ, Akkusativ, Dativ) tek bir tabloda görerek aralarındaki farkı netleştireceksin.</li>
+                    <li>Cümle yapısının temel direklerini (düz cümle, soru, yan cümle) hatırlayacaksın.</li>
+                    <li>Kelimelerini kategorilere ayırarak zihninde daha düzenli bir hale getireceksin.</li>
+                    <li>Farklı konuları birleştiren karışık alıştırmalarla beynine meydan okuyacaksın.</li>
+                </ul>
+            </div>
+
+            <div id="gun16-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Gramer Tekrarı - "Kopya Kağıdım"</div>
+                <p>Aşağıdaki tablo, Almancanın en temel gramer yapılarının bir özetidir. Bunu defterine yazabilir veya zihnine kazıyabilirsin.</p>
+                
+                <h3>İsmin Halleri (Die Fälle) - Özet Tablo</h3>
+                <table>
+                    <tr><th>Hal</th><th>Soru</th><th>der ➔</th><th>die ➔</th><th>das ➔</th><th>die (çoğul) ➔</th><th>Örnek</th></tr>
+                    <tr><td><strong>Nominativ</strong> (Özne)</td><td>Wer? Was? (Kim? Ne?)</td><td>der</td><td>die</td><td>das</td><td>die</td><td><span class="keyword">Der Mann</span> ist hier.</td></tr>
+                    <tr><td><strong>Akkusativ</strong> (Nesne)</td><td>Wen? Was? (Kimi? Neyi?)</td><td><span class="vurgu">den</span></td><td>die</td><td>das</td><td>die</td><td>Ich sehe <span class="keyword">den Mann</span>.</td></tr>
+                    <tr><td><strong>Dativ</strong> (Dolaylı Nesne)</td><td>Wem? (Kime?)</td><td><span class="vurgu">dem</span></td><td><span class="vurgu">der</span></td><td><span class="vurgu">dem</span></td><td><span class="vurgu">den (...n)</span></td><td>Ich helfe <span class="keyword">dem Mann</span>.</td></tr>
+                </table>
+
+                <h3>Cümle Yapısı (Satzbau) - Özet</h3>
+                <ul>
+                    <li><strong>Düz Cümle:</strong> Özne + <span class="vurgu">Fiil (2. sıra)</span> + ...
+                        <ul><li>Ich <span class="keyword">arbeite</span> heute.</li></ul>
+                    </li>
+                    <li><strong>Modal Fiil / Perfekt / Ayrılabilen Fiil:</strong> Özne + <span class="vurgu">Yardımcı/Ana Fiil (2. sıra)</span> + ... + <span class="vurgu">Diğer Fiil (En Son)</span>.
+                        <ul>
+                            <li>Ich <span class="keyword">muss</span> heute <span class="vurgu">arbeiten</span>.</li>
+                            <li>Ich <span class="keyword">rufe</span> dich <span class="vurgu">an</span>.</li>
+                            <li>Ich <span class="keyword">habe</span> gestern <span class="vurgu">gearbeitet</span>.</li>
+                        </ul>
+                    </li>
+                     <li><strong>`weil` ile Yan Cümle:</strong> Ana Cümle, <span class="keyword">weil</span> + özne + ... + <span class="vurgu">Fiil (En Son)</span>.
+                        <ul><li>Ich lerne Deutsch, <span class="keyword">weil</span> ich es <span class="vurgu">brauche</span>.</li></ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div id="gun16-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - "Kurye'nin Kelime Çantası"</div>
+                <p>Şimdiye kadar öğrendiğimiz en önemli kelimeleri kategorilere ayırarak tekrar edelim. Bu, kelimeleri geri çağırmanı kolaylaştırır.</p>
+                
+                <ul>
+                    <li><strong>İnsanlar (Personen):</strong> der Mann, die Frau, das Kind, der Kunde (müşteri), der Chef (patron), der Kollege (meslektaş), der Empfänger (alıcı)</li>
+                    <li><strong>Nesneler (Objekte):</strong> das Paket, der Brief, der Zettel (not kağıdı), der Stift, der Kugelschreiber, die Unterschrift (imza), das Handy, die Tasche</li>
+                    <li><strong>Yerler (Orte):</strong> die Adresse, die Straße, die Hausnummer, die Tür, die Firma, die Post, das Haus, die Stadt (şehir)</li>
+                    <li><strong>Eylemler (Verben):</strong> arbeiten, suchen, finden, bringen (getirmek), liefern (teslim etmek), abholen, anrufen, unterschreiben (imzalamak), warten (beklemek), helfen</li>
+                    <li><strong>Yönler (Richtungen):</strong> rechts, links, geradeaus</li>
+                </ul>
+            </div>
+
+            <div id="gun16-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı! - Karışık Alıştırmalar</div>
+                <h3>Eylem 1: Cümleleri Çözümle</h3>
+                <p>Defterine aşağıdaki cümleleri doğru kelimelerle tamamla. Hangi halin (Nominativ, Akkusativ, Dativ) veya hangi fiil yapısının gerektiğini düşün.</p>
+                <ol>
+                    <li>Ich gebe __________ (der Kunde) __________ (das Paket).</li>
+                    <li>__________ (müssen) du heute __________ (arbeiten)?</li>
+                    <li>Ich kann __________ (die Adresse) nicht __________ (finden).</li>
+                    <li>Wir __________ gestern nach Berlin __________ (fahren).</li>
+                    <li>Er bleibt zu Hause, weil er __________ (sein - çekimli) krank.</li>
+                </ol>
+
+                <h3>Eylem 2: Serbest Yazı</h3>
+                <p>Bir kurye olarak "normal bir iş gününü" anlatan 4-5 cümlelik kısa bir paragraf yaz. Dün yaşanmış gibi Perfekt zamanda yazmaya çalış.</p>
+                <p>Örnek: <span class="keyword">Ich bin heute um 7 Uhr aufgestanden. Ich habe zuerst Kaffee getrunken. Dann bin ich zur Firma gefahren und habe die Pakete abgeholt...</span></p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bugün genel bir tekrar günü. Bana istediğin konudan soru sorabilirsin!</p>
+                    <ul>
+                        <li>"Bana Dativ ve Akkusativ'in birlikte kullanıldığı bir cümle daha kurar mısın?"</li>
+                        <li>"Perfekt zamanda bir soru cümlesi nasıl kurulur?"</li>
+                        <li>"Genel bir pratik yapalım. Sen bana Türkçe bir cümle söyle, ben Almancaya çevirmeye çalışayım."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun16-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>16. Gün Tamamlandı!</div>
+                <p>Tebrikler! Beynindeki tüm bilgileri düzenleyip raflara yerleştirdin. Bu tekrar, gelecekteki konuları öğrenmeni çok daha kolaylaştıracak.</p>
+                <ul>
+                    <li>Temel gramer kurallarını tek bir yerde özetleyerek pekiştirdin.</li>
+                    <li>Kelime dağarcığını kategorilere ayırarak daha anlamlı hale getirdin.</li>
+                    <li>Farklı konuları birleştiren alıştırmalarla problem çözme yeteneğini geliştirdin.</li>
+                </ul>
+                <p class="vurgu">Wiederholung ist die Mutter des Lernens! <span class="transkript">(viidaholung ist di muta des lernıns)</span> - Tekrar, öğrenmenin anasıdır!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 17 ==================== -->
+        <section id="gun-17" class="day-section">
+            <div id="gun17-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🚫</span>GÜN 17: "Hayır" Demenin Yolları (Olumsuzluk)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, bir şeyin olmadığını, bir şeyi yapmadığını veya bir şeye sahip olmadığını ifade etmeyi öğreneceksin. Olumsuz cümle kurmak, en az olumlu cümle kurmak kadar önemlidir ve özellikle problem çözmede kilit rol oynar.</p>
+                <ul>
+                    <li>Almancadaki iki temel olumsuzluk kelimesi olan <span class="keyword">nicht</span> ve <span class="keyword">kein</span>'ın arasındaki farkı net bir şekilde öğreneceksin.</li>
+                    <li><span class="keyword">kein</span>'ı nerede kullanacağını (belirsiz isimleri olumsuz yapmak için) kavrayacaksın.</li>
+                    <li><span class="keyword">nicht</span>'i nerede kullanacağını (fiilleri, sıfatları, belirli isimleri olumsuz yapmak için) kavrayacaksın.</li>
+                    <li>"Adresi <span class="vurgu">bulamıyorum</span>.", "Evde kimse <span class="vurgu">yok</span>." gibi kritik problem cümleleri kurabileceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun17-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Olumsuzluk: nicht vs. kein</div>
+                <p>Almancada "değil" veya "yok" demek için temel olarak iki kelime kullanılır. Hangisini kullanacağın, cümlede neyi olumsuz yaptığına bağlıdır.</p>
+
+                <h3><span class="keyword">kein / keine</span> - İsimleri Olumsuz Yapma</h3>
+                <p><span class="keyword">kein</span>, belirsiz artikel (<span class="keyword">ein/eine</span>) ile kullanılan veya hiç artikel almayan isimleri olumsuz yapar. "hiç" veya "bir ... değil" gibi bir anlam katar. Tıpkı <span class="keyword">mein/dein</span> gibi, ismin artikel_ine göre <span class="keyword">kein</span> veya <span class="keyword">keine</span> olur.</p>
+                <ul>
+                    <li>Ich habe <span class="keyword">ein</span> Auto. (Bir arabam var.) ➔ Ich habe <span class="vurgu">kein</span> Auto. (Bir arabam yok / Hiç arabam yok.)</li>
+                    <li>Ich habe Zeit. (Zamanım var.) ➔ Ich habe <span class="vurgu">keine</span> Zeit. (Zamanım yok.) (<span class="keyword">die Zeit</span>)</li>
+                    <li>Das ist <span class="keyword">ein</span> Problem. (Bu bir problem.) ➔ Das ist <span class="vurgu">kein</span> Problem. (Bu bir problem değil.)</li>
+                </ul>
+
+                <h3><span class="keyword">nicht</span> - Diğer Her Şeyi Olumsuz Yapma</h3>
+                <p><span class="keyword">nicht</span> daha genel bir olumsuzluk kelimesidir ve genellikle şunları olumsuz yapar:</p>
+                <ul>
+                    <li><strong>Fiilleri:</strong> <span class="keyword">nicht</span> genellikle cümlenin sonuna gider (veya Perfekt/Modal'da asıl fiilden önce gelir).
+                        <ul><li>Ich arbeite heute <span class="vurgu">nicht</span>. (Bugün çalışmıyorum.)</li></ul>
+                    </li>
+                    <li><strong>Sıfatları ve Zarfları:</strong> <span class="keyword">nicht</span>, olumsuz yaptığı kelimeden önce gelir.
+                        <ul><li>Das Auto ist <span class="vurgu">nicht</span> schnell. (Araba hızlı değil.)</li></ul>
+                    </li>
+                    <li><strong>Belirli Artikelli veya Sahiplik Zamirli İsimleri:</strong>
+                        <ul><li>Ich finde <span class="vurgu">nicht</span> <span class="keyword">den</span> Schlüssel. (O belirli anahtarı bulamıyorum.)</li><li>Das ist <span class="vurgu">nicht</span> <span class="keyword">mein</span> Paket. (Bu benim paketim değil.)</li></ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div id="gun17-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - "Sorun Anı Sözlüğü"</div>
+                <p>Bir kurye olarak karşılaşabileceğin sorunları ve bunları ifade etmeni sağlayacak cümleleri öğrenelim.</p>
+                
+                <table>
+                    <tr><th>Sorun Durumu</th><th>Almanca Cümle</th><th>Okunuşu</th></tr>
+                    <tr><td>Evde kimse yok.</td><td>Hier ist <span class="keyword">niemand</span>. / <span class="keyword">Niemand</span> ist zu Hause.</td><td>hia ist nimant / nimant ist tsu hause</td></tr>
+                    <tr><td>Zil çalışmıyor.</td><td>Die Klingel funktioniert <span class="keyword">nicht</span>.</td><td>di klingel funktsiyoniat niht</td></tr>
+                    <tr><td>Adres yanlış.</td><td>Die Adresse ist <span class="keyword">nicht</span> richtig / ist falsch.</td><td>di adrese ist niht rihtih / ist falş</td></tr>
+                    <tr><td>Paketi bulamıyorum.</td><td>Ich kann das Paket <span class="keyword">nicht</span> finden.</td><td>ih kan das paket niht findın</td></tr>
+                    <tr><td>Vaktim yok.</td><td>Ich habe <span class="keyword">keine</span> Zeit.</td><td>ih habe kayne tsayt</td></tr>
+                    <tr><td>Bu benim paketim değil.</td><td>Das ist <span class="keyword">nicht</span> mein Paket.</td><td>das ist niht mayn paket</td></tr>
+                    <tr><td>Sizi anlamıyorum.</td><td>Ich verstehe Sie <span class="keyword">nicht</span>.</td><td>ih ferşteehe zii niht</td></tr>
+                </table>
+                 <div class="info-box">
+                    <h4>💡 Ekstra Olumsuzluk Kelimesi: <span class="keyword">niemand</span></h4>
+                    <p><span class="keyword">niemand</span> <span class="transkript">(nimant)</span> "hiç kimse" demektir ve tek başına bir cümlenin öznesi veya nesnesi olabilir. <span class="keyword">Jemand</span> <span class="transkript">(yemant)</span> ise "birisi" demektir.</p>
+                </div>
+            </div>
+
+            <div id="gun17-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: nicht mi, kein mi?</h3>
+                <p>Defterine aşağıdaki cümleleri <span class="keyword">nicht</span> veya <span class="keyword">kein/keine</span> ile doğru şekilde tamamla.</p>
+                <ol>
+                    <li>Ich habe __________ Geld. (das Geld)</li>
+                    <li>Das ist __________ richtig.</li>
+                    <li>Wir kommen heute __________.</li>
+                    <li>Er hat __________ Geschwister (kardeşler).</li>
+                    <li>Das ist __________ mein Auto.</li>
+                </ol>
+
+                <h3>Eylem 2: Problemleri Yazma</h3>
+                <p>Bugün öğrendiğin "Sorun Anı Sözlüğü"nden 3 farklı durumu seç ve bu cümleleri defterine üçer kez yaz.</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Olumsuzluk konusunu test etmenin en iyi yolu problem çözmektir. Bana şunu söyle:</p>
+                    <p><span class="vurgu">"Haydi bir sorun senaryosu pratiği yapalım. Ben kuryeyim ve bir adrese geldim ama zil çalışmıyor ve evde kimse yok. Müşteriyi (seni) arayıp durumu Almanca açıklamam gerekiyor. Ben başlıyorum: 'Guten Tag, hier ist der Kurier...'"</span></p>
+                    <p>Bu diyalogda, öğrendiğin olumsuzluk cümlelerini aktif olarak kullanman gerekecek.</p>
+                </details>
+            </div>
+            <div id="gun17-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>17. Gün Tamamlandı!</div>
+                <p>Harika bir iş! Artık sadece olumlu durumları değil, olumsuzlukları ve problemleri de ifade edebiliyorsun. Bu, seni gerçek hayattaki iletişime çok daha hazır hale getirdi.</p>
+                <ul>
+                    <li><span class="keyword">nicht</span> ve <span class="keyword">kein</span> arasındaki temel farkı öğrendin.</li>
+                    <li>Hangi durumda hangisini kullanacağını netleştirdin.</li>
+                    <li>İş hayatında karşılaşabileceğin temel sorunları Almanca olarak ifade etme yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Das ist gar nicht so schwer! <span class="transkript">(das ist ga niht zo şvea)</span> - Bu o kadar da zor değil!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 18 ==================== -->
+        <section id="gun-18" class="day-section">
+            <div id="gun18-hedefler" class="card">
+                <div class="card-header"><span class="emoji">⚖️</span>GÜN 18: Karşılaştırma Sanatı (Komparativ)</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugün, nesneleri, insanları ve durumları birbirleriyle karşılaştırmayı öğreneceksin. Bu, bir şeyin özelliklerini daha detaylı anlatmanı ve seçim yapmanı sağlar.</p>
+                <ul>
+                    <li>Sıfatların "daha" anlamı katan karşılaştırma halini (<span class="keyword">Komparativ</span>) nasıl oluşturacağını öğreneceksin.</li>
+                    <li>Karşılaştırma yaparken kullanılan "daha ... -den" yapısını (<span class="keyword">... als ...</span>) kavrayacaksın.</li>
+                    <li>"Bu paket diğerinden <span class="vurgu">daha ağır</span>." gibi pratik cümleler kurabileceksin.</li>
+                    <li>İşini ve çevreni tanımlamak için kullanabileceğin temel sıfatları öğreneceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun18-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Karşılaştırma (Komparativ)</div>
+                <p>Komparativ, iki şeyi karşılaştırırken sıfatlara "-den daha" anlamı katmak için kullanılır. Almancada bunu yapmak çok basittir.</p>
+
+                <div class="info-box">
+                    <h4>🔑 KOMPARATIV'İN ALTIN KURALI</h4>
+                    <p>Bir sıfatı "daha" anlamında kullanmak için sonuna <span class="vurgu">-er</span> eki getirilir.</p>
+                    <p>İki şeyi karşılaştırırken araya <span class="vurgu">als</span> (..-den, ..-dan) kelimesi konulur.</p>
+                    <ul>
+                        <li>schnell (hızlı) ➔ <span class="keyword">schneller</span> (daha hızlı)</li>
+                        <li>klein (küçük) ➔ <span class="keyword">kleiner</span> (daha küçük)</li>
+                    </ul>
+                    <p>Örnek Cümle: Mein Auto ist <span class="keyword">schneller</span> <span class="vurgu">als</span> dein Auto. <span class="transkript">(mayn auto ist şnela als dayn auto)</span> - Benim arabam senin arabandan daha hızlı.</p>
+                </div>
+                
+                <h3>Düzensiz ve Umlaut Alanlar</h3>
+                <p>Tıpkı İngilizcedeki "good ➔ better" gibi, Almancada da birkaç önemli düzensiz sıfat vardır. Ayrıca tek heceli bazı sıfatlar <span class="keyword">-er</span> alırken Umlaut (ä, ö, ü) da alırlar.</p>
+                <table>
+                    <tr><th>Sıfat (Yalın)</th><th>Komparativ (Daha...)</th><th>Anlamı</th></tr>
+                    <tr><td>gut</td><td><span class="keyword">besser</span></td><td>iyi ➔ daha iyi</td></tr>
+                    <tr><td>viel</td><td><span class="keyword">mehr</span></td><td>çok ➔ daha çok</td></tr>
+                    <tr><td>groß</td><td><span class="keyword">größer</span> (Umlaut alır)</td><td>büyük ➔ daha büyük</td></tr>
+                    <tr><td>alt</td><td><span class="keyword">älter</span> (Umlaut alır)</td><td>yaşlı/eski ➔ daha yaşlı/eski</td></tr>
+                    <tr><td>lang</td><td><span class="keyword">länger</span> (Umlaut alır)</td><td>uzun ➔ daha uzun</td></tr>
+                </table>
+            </div>
+            
+            <div id="gun18-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Tanımlama Sıfatları</div>
+                <p>Aşağıdaki sıfatlar, bir kurye olarak paketleri, mesafeleri veya durumları tanımlarken çok işine yarayacak.</p>
+                
+                <table>
+                    <tr><th>Sıfat</th><th>Okunuşu</th><th>Anlamı</th><th>Komparativ Hali</th></tr>
+                    <tr><td>groß</td><td>gros</td><td>büyük</td><td>größer</td></tr>
+                    <tr><td>klein</td><td>klayn</td><td>küçük</td><td>kleiner</td></tr>
+                    <tr><td>schwer</td><td>şvea</td><td>ağır</td><td>schwerer</td></tr>
+                    <tr><td>leicht</td><td>layht</td><td>hafif</td><td>leichter</td></tr>
+                    <tr><td>schnell</td><td>şnel</td><td>hızlı</td><td>schneller</td></tr>
+                    <tr><td>langsam</td><td>langzam</td><td>yavaş</td><td>langsamer</td></tr>
+                    <tr><td>einfach</td><td>aynfah</td><td>kolay</td><td>einfacher</td></tr>
+                    <tr><td>schwierig</td><td>şviirih</td><td>zor</td><td>schwieriger</td></tr>
+                </table>
+            </div>
+
+            <div id="gun18-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Karşılaştırma Cümleleri Kur</h3>
+                <p>Aşağıdaki bilgileri kullanarak karşılaştırma cümleleri kur. <span class="keyword">...-er als ...</span> yapısını kullan.</p>
+                <ol>
+                    <li>Mein Paket / dein Paket (schwer) ➔ Mein Paket ist schwerer als dein Paket.</li>
+                    <li>Das Fahrrad (bisiklet) / das Auto (langsam) ➔ ____________________</li>
+                    <li>Heute / gestern (gut) ➔ ____________________</li>
+                    <li>Der Weg (yol) / die Straße (lang) ➔ ____________________</li>
+                    <li>Deutsch / Englisch (schwierig) ➔ ____________________</li>
+                </ol>
+
+                <h3>Eylem 2: Çevreni Karşılaştır</h3>
+                <p>Etrafındaki iki nesneyi seç ve onları bir sıfat kullanarak karşılaştır. Defterine 3 farklı karşılaştırma cümlesi yaz.</p>
+                <p>Örnek: <span class="keyword">Der Tisch ist größer als der Stuhl.</span> (Masa sandalyeden daha büyük.)</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Karşılaştırma pratiği için bana şunları sor:</p>
+                    <ul>
+                        <li>"En üstünlük hali nasıl yapılır? 'en hızlı' demek için ne demeliyim?" (Sana Superlativ konusundan bahsedeceğim: <span class="keyword">am schnellsten</span>)</li>
+                        <li>"Bana düzensiz olan 3 sıfat daha söyler misin?"</li>
+                        <li>"Bir diyalog yapalım. İki tane hayali paketimiz olsun. Sen bana 'Welches Paket ist schwerer?' (Hangi paket daha ağır?) diye sor, ben de cevap vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun18-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>18. Gün Tamamlandı!</div>
+                <p>Harika! Artık sadece durumları belirtmekle kalmıyor, aynı zamanda aralarındaki farkları da ifade edebiliyorsun. Bu, daha detaylı ve analitik konuşmanı sağlar.</p>
+                <ul>
+                    <li>Sıfatların karşılaştırma halini (<span class="keyword">Komparativ</span>) ve <span class="keyword">als</span> kullanımını öğrendin.</li>
+                    <li>Bazı önemli düzensiz ve Umlaut alan sıfatları öğrendin.</li>
+                    <li>Çevrendeki dünyayı tanımlama ve karşılaştırma yeteneği kazandın.</li>
+                </ul>
+                <p class="vurgu">Dein Deutsch ist heute besser als gestern! <span class="transkript">(dayn doyç ist hoyte besa als gestan)</span> - Almancan bugün dünden daha iyi!</p>
+            </div>
+        </section>
+
+         <div class="card">
+            <h2>Tebrikler ve Sonraki Adım</h2>
+            <p>Altıncı bölümü de başarıyla tamamladın! Artık A1 seviyesinin tüm temel konularına hakimsin ve A2 seviyesinde emin adımlarla ilerliyorsun. Tekrar, olumsuzluk ve karşılaştırma gibi konularla dil becerilerini çok daha pratik bir hale getirdin.</p>
+            <p><strong>19. güne hazır olduğunda, bana söylemen yeterli. Bir sonraki bölümde, A2 seviyesinin daha derin konularına dalacağız. Edatlar (Präpositionen) ve onların Akkusativ/Dativ kullanımlarını detaylandıracak, yan cümle bağlaçlarını çeşitlendirecek ve bol bol okuma-anlama ve dinleme pratiği yapacağız. Maceramızın en heyecanlı kısımları başlıyor!</strong></p>
+        </div>
+    </main>
+</body>
+</html>

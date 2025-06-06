@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Almanca Akademisi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --primary-color: #005A9C; /* Güven veren bir Kurumsal Mavi */
+            --secondary-color: #333; /* Koyu Gri */
+            --background-color: #f4f6f8;
+            --text-color: #212529;
+            --card-bg-color: #ffffff;
+            --sidebar-width: 280px;
+            --success-color: #28a745;
+            --highlight-color: #D22B2B; /* Vurgu Kırmızı */
+            --info-bg: #e7f3fe;
+            --info-border: #007bff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, #3a4750 0%, #2c3e50 100%);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        #sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #6c757d;
+            padding-bottom: 20px;
+        }
+
+        #sidebar nav ul { list-style-type: none; }
+        #sidebar nav ul li a {
+            display: block;
+            color: #dee2e6;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #sidebar nav ul li a:hover, #sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(8px);
+        }
+        
+        #sidebar .day-separator {
+            font-family: 'Poppins', sans-serif;
+            color: #ffc107;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+
+        #main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .day-section { margin-bottom: 50px; }
+
+        .card {
+            background-color: var(--card-bg-color);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .card-header .emoji { font-size: 1.5em; margin-right: 15px; }
+
+        .card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .card p, .card ul, .card ol { margin-bottom: 15px; }
+        .card ul, .card ol { padding-left: 25px; }
+        .card li { margin-bottom: 10px; }
+
+        details {
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        details:hover { background-color: #f0f0f0; }
+        summary { font-weight: 700; color: var(--secondary-color); font-size: 1.1em; }
+
+        .keyword {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .transkript {
+            color: #6c757d;
+            font-style: italic;
+        }
+        .vurgu {
+            color: var(--highlight-color);
+            font-weight: 700;
+        }
+        
+        .info-box {
+            background-color: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        .info-box h4 { font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            text-align: left;
+        }
+        th { background-color: #f8f9fa; font-weight: 700; font-family: 'Poppins', sans-serif;}
+        
+        .final-card { border-top: 4px solid var(--success-color); }
+        .final-card h2 { color: var(--success-color); }
+
+        @media (max-width: 992px) {
+            body { flex-direction: column; }
+            #sidebar { position: relative; width: 100%; height: auto; }
+            #main-content { margin-left: 0; width: 100%; padding: 20px; }
+            .card-header { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h1>Almanca Akademim</h1>
+        <nav>
+            <ul>
+                <li class="day-separator">GÜN 1</li>
+                <li><a href="#gun1-hedefler" class="active">🎯 Hedefler</a></li>
+                <li><a href="#gun1-saat1">📚 Alfabe & Sesler</a></li>
+                <li><a href="#gun1-saat2">🗣️ İlk Kelimeler</a></li>
+                <li><a href="#gun1-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 2</li>
+                <li><a href="#gun2-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun2-saat1">📚 İlk Cümlelerim</a></li>
+                <li><a href="#gun2-saat2">🗣️ Artikeller & Nesneler</a></li>
+                <li><a href="#gun2-saat3">✍️ Pratik Zamanı</a></li>
+                
+                <li class="day-separator">GÜN 3</li>
+                <li><a href="#gun3-hedefler">🎯 Hedefler</a></li>
+                <li><a href="#gun3-saat1">📚 Soru Sormak</a></li>
+                <li><a href="#gun3-saat2">🗣️ Sayılar & Eşyalar</a></li>
+                <li><a href="#gun3-saat3">✍️ Pratik Zamanı</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==================== GÜN 1 ==================== -->
+        <section id="gun-1" class="day-section">
+            <div id="gun1-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🚀</span>GÜN 1: Yolculuk Başlıyor!</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Bugünkü 3 saatlik çalışmanın sonunda, bir binanın temelini atmış gibi olacaksın. Bu adımları başarıyla tamamlayacaksın:</p>
+                <ul>
+                    <li>Alman alfabesindeki tüm harfleri ve okunuşlarını öğreneceksin.</li>
+                    <li>Almancaya özgü en önemli sesleri (ch, sch, ei, ie, umlautlar...) doğru bir şekilde telaffuz edebileceksin.</li>
+                    <li>En temel selamlaşma ve vedalaşma ifadelerini öğrenip, anlamlarını ve nerede kullanılacaklarını bileceksin.</li>
+                    <li>Almanca öğrenmeye karşı sağlam bir özgüven ve motivasyon kazanacaksın!</li>
+                </ul>
+            </div>
+
+            <div id="gun1-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Alfabe ve Sesler (Das Alphabet und die Laute)</div>
+                <p>Her dil, seslerden oluşur. Bu sesleri doğru öğrenmek, ileride kelimeleri hem doğru anlaman hem de doğru söylemen için en önemli adımdır. Almanca alfabesi Türkçeye çok benzer, bu bizim için büyük bir avantaj! Sadece birkaç farklı sese odaklanacağız.</p>
+                
+                <h3>Alman Alfabesi (Das deutsche Alphabet)</h3>
+                <p>Aşağıdaki tabloyu dikkatlice incele. Her harfi önce benim verdiğim okunuşuyla, sonra da örnek kelimeyi sesli olarak tekrar et. Bu, kas hafızası oluşturmanı sağlayacak.</p>
+                <table>
+                    <tr><th>Harf</th><th>Okunuşu <span class="transkript">(Türkçe gibi)</span></th><th>Örnek Kelime</th><th>Örnek Kelimenin Okunuşu</th></tr>
+                    <tr><td>A a</td><td>a</td><td><span class="keyword">A</span>uto <span class="transkript">(auto)</span></td><td>Araba</td></tr>
+                    <tr><td>B b</td><td>be</td><td><span class="keyword">B</span>all <span class="transkript">(bal)</span></td><td>Top</td></tr>
+                    <tr><td>C c</td><td>tse</td><td><span class="keyword">C</span>omputer <span class="transkript">(kompyuta)</span></td><td>Bilgisayar</td></tr>
+                    <tr><td>D d</td><td>de</td><td><span class="keyword">D</span>eutschland <span class="transkript">(doyçlant)</span></td><td>Almanya</td></tr>
+                    <tr><td>E e</td><td>e</td><td><span class="keyword">E</span>lefant <span class="transkript">(elefant)</span></td><td>Fil</td></tr>
+                    <tr><td>F f</td><td>ef</td><td><span class="keyword">F</span>enster <span class="transkript">(fensta)</span></td><td>Pencere</td></tr>
+                    <tr><td>G g</td><td>ge</td><td><span class="keyword">G</span>arten <span class="transkript">(garten)</span></td><td>Bahçe</td></tr>
+                    <tr><td>H h</td><td>ha</td><td><span class="keyword">H</span>aus <span class="transkript">(haus)</span></td><td>Ev</td></tr>
+                    <tr><td>I i</td><td>i</td><td><span class="keyword">I</span>ch <span class="transkript">(ih)</span></td><td>Ben</td></tr>
+                    <tr><td>J j</td><td>yot</td><td><span class="keyword">J</span>a <span class="transkript">(ya)</span></td><td>Evet</td></tr>
+                    <tr><td>K k</td><td>ka</td><td><span class="keyword">K</span>affee <span class="transkript">(kafe)</span></td><td>Kahve</td></tr>
+                    <tr><td>L l</td><td>el</td><td><span class="keyword">L</span>ampe <span class="transkript">(lampe)</span></td><td>Lamba</td></tr>
+                    <tr><td>M m</td><td>em</td><td><span class="keyword">M</span>ann <span class="transkript">(man)</span></td><td>Adam</td></tr>
+                    <tr><td>N n</td><td>en</td><td><span class="keyword">N</span>ame <span class="transkript">(name)</span></td><td>İsim</td></tr>
+                    <tr><td>O o</td><td>o</td><td><span class="keyword">O</span>bst <span class="transkript">(opst)</span></td><td>Meyve</td></tr>
+                    <tr><td>P p</td><td>pe</td><td><span class="keyword">P</span>aket <span class="transkript">(paket)</span></td><td>Paket</td></tr>
+                    <tr><td>Q q</td><td>ku</td><td><span class="keyword">Q</span>uelle <span class="transkript">(kvelle)</span></td><td>Kaynak</td></tr>
+                    <tr><td>R r</td><td>er</td><td><span class="keyword">R</span>adio <span class="transkript">(radyo)</span></td><td>Radyo</td></tr>
+                    <tr><td>S s</td><td>es</td><td><span class="keyword">S</span>onne <span class="transkript">(zone)</span></td><td>Güneş</td></tr>
+                    <tr><td>T t</td><td>te</td><td><span class="keyword">T</span>isch <span class="transkript">(tiş)</span></td><td>Masa</td></tr>
+                    <tr><td>U u</td><td>u</td><td><span class="keyword">U</span>hr <span class="transkript">(ua)</span></td><td>Saat</td></tr>
+                    <tr><td>V v</td><td>fau</td><td><span class="keyword">V</span>ater <span class="transkript">(fata)</span> - <span class="vurgu">'f' gibi okunur!</span></td><td>Baba</td></tr>
+                    <tr><td>W w</td><td>ve</td><td><span class="keyword">W</span>asser <span class="transkript">(vasa)</span> - <span class="vurgu">'v' gibi okunur!</span></td><td>Su</td></tr>
+                    <tr><td>X x</td><td>iks</td><td>Ta<span class="keyword">x</span>i <span class="transkript">(taksi)</span></td><td>Taksi</td></tr>
+                    <tr><td>Y y</td><td>üpsilon</td><td><span class="keyword">Y</span>acht <span class="transkript">(yaht)</span></td><td>Yat</td></tr>
+                    <tr><td>Z z</td><td>tset</td><td><span class="keyword">Z</span>eit <span class="transkript">(tsayt)</span> - <span class="vurgu">'ts' gibi okunur!</span></td><td>Zaman</td></tr>
+                </table>
+
+                <h3>Özel Karakterler: Almancanın Baharatları</h3>
+                <p>Bu harfler Almancaya o karakteristik sesini veren şeylerdir. Neyse ki bizim dilimizde de benzerleri var!</p>
+                <ul>
+                    <li><span class="keyword">Ä, ä</span>: "elma" kelimesindeki 'e' gibi, ince bir sestir. Örnek: <span class="keyword">Äpfel</span> <span class="transkript">(epfel)</span> - Elmalar.</li>
+                    <li><span class="keyword">Ö, ö</span>: Türkçedeki 'ö' ile tamamen aynıdır. Örnek: <span class="keyword">Öl</span> <span class="transkript">(öl)</span> - Yağ.</li>
+                    <li><span class="keyword">Ü, ü</span>: Türkçedeki 'ü' ile tamamen aynıdır. Örnek: <span class="keyword">Tür</span> <span class="transkript">(tüa)</span> - Kapı.</li>
+                    <li><span class="keyword">ß</span>: "Eszett" denir. Keskin bir 'ss' sesidir. Bu harf sadece küçük harf olarak bulunur. Örnek: <span class="keyword">Straße</span> <span class="transkript">(ştrase)</span> - Cadde.</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>🔑 Kilit Telaffuz Kuralları (Bunu Ezberle!)</h4>
+                    <p>Bu kombinasyonlar kelimelerin içinde sürekli karşına çıkacak. Bunları öğrenirsen, kelimelerin %80'ini doğru okursun.</p>
+                    <ol>
+                        <li><span class="keyword">ei</span> ➔ <span class="vurgu">"ay"</span> diye okunur. Örnek: <span class="keyword">drei</span> <span class="transkript">(dray)</span> - üç, <span class="keyword">mein</span> <span class="transkript">(mayn)</span> - benim.</li>
+                        <li><span class="keyword">ie</span> ➔ <span class="vurgu">Uzun "i" (ii)</span> diye okunur. Örnek: <span class="keyword">die</span> <span class="transkript">(dii)</span>, <span class="keyword">sie</span> <span class="transkript">(zii)</span> - o/onlar.</li>
+                        <li><span class="keyword">eu, äu</span> ➔ <span class="vurgu">"oy"</span> diye okunur. Örnek: <span class="keyword">neu</span> <span class="transkript">(noy)</span> - yeni, <span class="keyword">Häuser</span> <span class="transkript">(hoyza)</span> - evler.</li>
+                        <li><span class="keyword">sch</span> ➔ <span class="vurgu">"ş"</span> diye okunur. Örnek: <span class="keyword">Schule</span> <span class="transkript">(şule)</span> - okul, <span class="keyword">Tisch</span> <span class="transkript">(tiş)</span> - masa.</li>
+                        <li><span class="keyword">sp, st</span> (kelime başında) ➔ <span class="vurgu">"şp" ve "şt"</span> diye okunur. Örnek: <span class="keyword">sprechen</span> <span class="transkript">(şprehen)</span> - konuşmak, <span class="keyword">Straße</span> <span class="transkript">(ştrase)</span> - cadde.</li>
+                        <li><span class="keyword">ch</span> ➔ Bu sesin iki durumu var:
+                            <ul>
+                                <li><strong>İnce Ses (ich-Laut):</strong> 'e', 'i', 'ä', 'ö', 'ü' harflerinden sonra gelirse, sanki "hih" der gibi, dilin önünden çıkan yumuşak bir 'h' sesiyle okunur. Örnek: <span class="keyword">Ich</span> <span class="transkript">(ih)</span> - Ben, <span class="keyword">Milch</span> <span class="transkript">(milh)</span> - Süt.</li>
+                                <li><strong>Kalın Ses (ach-Laut):</strong> 'a', 'o', 'u' harflerinden sonra gelirse, boğazın arkasından gelen hırıltılı bir 'h' sesiyle okunur. Örnek: <span class="keyword">machen</span> <span class="transkript">(mahın)</span> - yapmak, <span class="keyword">Buch</span> <span class="transkript">(buh)</span> - Kitap.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div id="gun1-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - İlk Selamlaşmalar</div>
+                <p>Tebrikler, en zor kısmı atlattın! Şimdi sesleri kelimelere dönüştürme zamanı. Bu ifadeler, Almanya'da bir kapıyı açan sihirli anahtarlar gibidir.</p>
+                <table>
+                    <tr><th>Almanca İfade</th><th>Okunuşu <span class="transkript">(Türkçe)</span></th><th>Türkçe Anlamı</th><th>Ne Zaman ve Nerede Kullanılır?</th></tr>
+                    <tr><td><span class="keyword">Hallo</span></td><td>halo</td><td>Merhaba</td><td>En yaygın ve samimi selamlaşma. Her zaman, her yerde.</td></tr>
+                    <tr><td><span class="keyword">Guten Tag</span></td><td>gutın tak</td><td>İyi günler</td><td>Daha resmi. Mağazada, resmi dairelerde, tanımadığınız kişilere karşı. (Saat 11:00-18:00 arası)</td></tr>
+                    <tr><td><span class="keyword">Guten Morgen</span></td><td>gutın morgın</td><td>Günaydın</td><td>Sabah saatlerinde (uyanınca saat 11:00'e kadar).</td></tr>
+                    <tr><td><span class="keyword">Guten Abend</span></td><td>gutın abınt</td><td>İyi akşamlar</td><td>Akşam saatlerinde (18:00'den sonra).</td></tr>
+                    <tr><td><span class="keyword">Tschüss</span></td><td>çüs</td><td>Hoşça kal / Bay bay</td><td>En yaygın ve samimi vedalaşma.</td></tr>
+                    <tr><td><span class="keyword">Auf Wiedersehen</span></td><td>auf vida-zeen</td><td>Görüşmek üzere</td><td>Daha resmi vedalaşma. Kelime anlamı "tekrar görüşene dek".</td></tr>
+                </table>
+                <div class="info-box">
+                    <h4>💡 Kuryeler İçin Profesyonel İpucu</h4>
+                    <p>Bir paketi teslim ederken kapıyı açan kişiye <span class="keyword">"Guten Tag"</span> demek her zaman en güvenli ve profesyonel seçenektir. Ayrılırken de <span class="keyword">"Auf Wiedersehen"</span> veya daha samimi bir tonda <span class="keyword">"Tschüss, schönen Tag noch!"</span> <span class="transkript">(çüs, şönın tak noh - Hoşça kal, iyi günler!)</span> diyebilirsin.</p>
+                </div>
+            </div>
+
+            <div id="gun1-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <p>Bilgi, pratikle kalıcı hale gelir. Şimdi öğrendiklerimizi beynimize kazıyalım.</p>
+                
+                <h3>Eylem 1: Dinle ve Tekrar Et (Hören und Wiederholen)</h3>
+                <ol>
+                    <li>Yukarıdaki tablolardaki tüm harfleri, kelimeleri ve ifadeleri yüksek sesle en az 3'er kez tekrar et. Sesinin çıktığından emin ol.</li>
+                    <li><strong>Google Translate</strong>'i aç. Almanca kelimeleri yaz ve hoparlör simgesine basarak doğru telaffuzlarını dinle. Özellikle <span class="vurgu">'v', 'w', 'z', 'ei', 'ie', 'ch'</span> seslerine odaklan. Duyduğun sesi taklit etmeye çalış.</li>
+                </ol>
+
+                <h3>Eylem 2: Defter Çalışması (Heftübung)</h3>
+                <ol>
+                    <li>Kendine bir Almanca defteri edin. Bu senin kutsal kitabın olacak.</li>
+                    <li>Bugün öğrendiğin 6 selamlaşma/vedalaşma ifadesini ve Türkçe anlamlarını defterine <span class="vurgu">beşer kez</span> yaz. Yazarken hem Almancasını hem de Türkçesini sesli olarak tekrar et. Bu, görsel, işitsel ve kinestetik öğrenmeyi birleştirir.</li>
+                </ol>
+                
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış (Benimle Pratik Yap)</strong></summary>
+                    <p>Pratiğini bir adım öteye taşımak için şimdi sıra bende! Bana şunları sorabilirsin:</p>
+                    <ul>
+                        <li>"Bana içinde 'eu' sesi geçen 3 tane basit kelime söyler misin? Okunuşlarıyla birlikte."</li>
+                        <li>"Auf Wiedersehen' ve 'Tschüss' arasındaki farkı tekrar anlatır mısın?"</li>
+                        <li>"'sprechen' ve 'machen' kelimelerindeki 'ch' sesleri neden farklı okunuyor?"</li>
+                        <li>"Seninle selamlaşma pratiği yapalım. Sen 'Guten Morgen' de, ben cevap vereyim."</li>
+                    </ul>
+                </details>
+            </div>
+            
+            <div id="gun1-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>1. Gün Tamamlandı!</div>
+                <p>Muhteşem bir başlangıç! Kendinle gurur duy. Bugün şunları başardın:</p>
+                <ul>
+                    <li>Almancanın ses haritasını çıkardın. Artık gördüğün birçok kelimeyi telaffuz etme konusunda bir fikrin var.</li>
+                    <li>En temel sosyal ifadeleri öğrendin. Artık bir Alman'a selam verip vedalaşabilirsin.</li>
+                    <li>En önemlisi, bu işi başarabileceğine dair ilk ve en büyük adımı attın!</li>
+                </ul>
+                <p class="vurgu">Bis morgen! <span class="transkript">(bis morgın)</span> - Yarın görüşürüz!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 2 ==================== -->
+        <section id="gun-2" class="day-section">
+            <div id="gun2-hedefler" class="card">
+                <div class="card-header"><span class="emoji">🧱</span>GÜN 2: İlk Tuğlaları Koyuyoruz</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>Dün temeli attık, bugün üzerine ilk duvarı örmeye başlıyoruz. Artık sadece kelime değil, tam cümle kurmaya başlayacağız!</p>
+                <ul>
+                    <li>En temel 3 fiili ("olmak", "adı olmak", "gelmek") ve kişilere göre çekimlerini öğreneceksin.</li>
+                    <li>"Ben [İsim].", "Ben Türk'üm." gibi ilk tam cümlelerini kurabileceksin.</li>
+                    <li>Almancanın en meşhur konusu olan Artikelleri (<span class="keyword">der, die, das</span>) tanıyacak ve mantığını anlayacaksın.</li>
+                    <li>Kuryelik ve günlük hayat için ilk 10 nesneni Almanca isimleriyle öğreneceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun2-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - İlk Cümlelerim (Meine ersten Sätze)</div>
+                <p>Bir cümleyi cümle yapan şey fiildir. Bugün Almancanın en temel 3 fiilini öğreneceğiz. Türkçede fiillerin sonuna ekler getiririz (gel-iyorum, gel-iyorsun). Almancada da benzer bir mantık var. Buna "fiil çekimi" (<span class="keyword">Konjugation</span> <span class="transkript">(konyugatsiyon)</span>) denir.</p>
+
+                <h3>1. En Önemli Fiil: <span class="keyword">sein</span> <span class="transkript">(zayn)</span> - olmak</h3>
+                <p>Bu fiil, kim veya ne olduğunu, nerede olduğunu söylemek için kullanılır. Düzensizdir, yani her kişide farklı bir şekle bürünür. Bunu ezberlemek zorundayız.</p>
+                <table>
+                    <tr><th>Şahıs</th><th>Almanca</th><th>Okunuşu</th><th>Anlamı</th><th>Örnek Cümle (ve okunuşu)</th></tr>
+                    <tr><td>Ben</td><td>ich <span class="keyword">bin</span></td><td>ih bin</td><td>-im / -ım</td><td>Ich bin Ali. <span class="transkript">(ih bin ali)</span> - Ben Ali'yim.</td></tr>
+                    <tr><td>Sen</td><td>du <span class="keyword">bist</span></td><td>du bist</td><td>-sin / -sın</td><td>Du bist schnell. <span class="transkript">(du bist şnel)</span> - Sen hızlısın.</td></tr>
+                    <tr><td>O (erkek)</td><td>er <span class="keyword">ist</span></td><td>ea ist</td><td>-dir / -dır</td><td>Er ist hier. <span class="transkript">(ea ist hia)</span> - O burada.</td></tr>
+                    <tr><td>O (kadın)</td><td>sie <span class="keyword">ist</span></td><td>zii ist</td><td>-dir / -dır</td><td>Sie ist nett. <span class="transkript">(zii ist net)</span> - O kibar.</td></tr>
+                    <tr><td>O (nötr)</td><td>es <span class="keyword">ist</span></td><td>es ist</td><td>-dir / -dır</td><td>Es ist kalt. <span class="transkript">(es ist kalt)</span> - Hava soğuk.</td></tr>
+                    <tr><td>Biz</td><td>wir <span class="keyword">sind</span></td><td>via zint</td><td>-iz / -ız</td><td>Wir sind hier. <span class="transkript">(via zint hia)</span> - Biz buradayız.</td></tr>
+                    <tr><td>Siz (çoğul)</td><td>ihr <span class="keyword">seid</span></td><td>ia zayt</td><td>-siniz / -sınız</td><td>Ihr seid schnell. <span class="transkript">(ia zayt şnel)</span> - Siz hızlısınız.</td></tr>
+                    <tr><td>Onlar</td><td>sie <span class="keyword">sind</span></td><td>zii zint</td><td>-ler / -lar</td><td>Sie sind da. <span class="transkript">(zii zint da)</span> - Onlar orada.</td></tr>
+                    <tr><td>Siz (resmi)</td><td>Sie <span class="keyword">sind</span></td><td>zii zint</td><td>-siniz / -sınız</td><td>Sie sind Herr Yılmaz. <span class="transkript">(zii zint her yılmaz)</span> - Siz Yılmaz Bey'siniz.</td></tr>
+                </table>
+
+                <h3>2. Diğer Temel Fiiller</h3>
+                <ul>
+                    <li><span class="keyword">heißen</span> <span class="transkript">(haysın)</span> - adı olmak: Sadece ismini söylerken kullanılır. <br> Örnek: Ich <span class="keyword">heiße</span> Ali. <span class="transkript">(ih hayse ali)</span> - Benim adım Ali.</li>
+                    <li><span class="keyword">kommen</span> <span class="transkript">(komın)</span> - gelmek: Nereli olduğunu söylerken kullanılır.<br> Örnek: Ich <span class="keyword">komme</span> aus der Türkei. <span class="transkript">(ih kome aus dea türkay)</span> - Ben Türkiye'den geliyorum (Türk'üm).</li>
+                </ul>
+            </div>
+            
+            <div id="gun2-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Almancanın Kalbi: Artikeller</div>
+                <p>Almanca öğrenirken herkesin bahsettiği o meşhur konuya geldik: Artikeller! Korkma, mantığını anladıktan sonra gözünde büyümeyecek.</p>
+                <h3>Artikeller Nedir? (<span class="keyword">Die Artikel</span>)</h3>
+                <p>Artikeller, bir ismin önünde duran ve onun hakkında bize bilgi veren küçük kelimelerdir. İngilizcedeki "the" gibi düşünebilirsin. Ama Almancada bu "the" kelimesinin üç hali vardır:</p>
+                <ol>
+                    <li><span class="keyword">der</span> <span class="transkript">(dea)</span>: Erkek (maskülen) cinsiyetteki kelimeler için.</li>
+                    <li><span class="keyword">die</span> <span class="transkript">(dii)</span>: Dişi (feminen) cinsiyetteki kelimeler için.</li>
+                    <li><span class="keyword">das</span> <span class="transkript">(das)</span>: Nötr cinsiyetteki kelimeler için.</li>
+                </ol>
+                <div class="info-box">
+                    <h4>⚠️ EN ÖNEMLİ KURAL</h4>
+                    <p>Bir kelimenin artikelinin ne olacağını tahmin etmenin <span class="vurgu">kolay bir yolu yoktur</span>. Kelimelerin cinsiyeti biyolojik cinsiyetle her zaman aynı değildir. Örneğin, "kız" kelimesi nötrdür (<span class="keyword">das Mädchen</span>). Bu yüzden, <span class="vurgu">her yeni kelimeyi artikeliyle birlikte bir bütün olarak ezberlemelisin.</span> "Tisch" diye değil, "<span class="keyword">der Tisch</span>" diye öğren!</p>
+                </div>
+                
+                <h3>İlk Kelime Listemiz</h3>
+                <p>Aşağıdaki kelimeleri, artikelleriyle birlikte defterine yaz ve yüksek sesle tekrar et.</p>
+                <table>
+                    <tr><th>Artikel</th><th>Almanca</th><th>Okunuşu</th><th>Türkçe Anlamı</th><th>Kategori</th></tr>
+                    <tr><td>der</td><td>Brief</td><td>brif</td><td>Mektup</td><td>Kurye</td></tr>
+                    <tr><td>der</td><td>Name</td><td>name</td><td>İsim</td><td>Kurye</td></tr>
+                    <tr><td>der</td><td>Mann</td><td>man</td><td>Adam</td><td>Günlük</td></tr>
+                    <tr><td>der</td><td>Tisch</td><td>tiş</td><td>Masa</td><td>Günlük</td></tr>
+                    <tr><td>die</td><td>Straße</td><td>ştrase</td><td>Cadde</td><td>Kurye</td></tr>
+                    <tr><td>die</td><td>Nummer</td><td>numa</td><td>Numara</td><td>Kurye</td></tr>
+                    <tr><td>die</td><td>Frau</td><td>frau</td><td>Kadın</td><td>Günlük</td></tr>
+                    <tr><td>die</td><td>Tür</td><td>tüa</td><td>Kapı</td><td>Günlük</td></tr>
+                    <tr><td>das</td><td>Paket</td><td>paket</td><td>Paket</td><td>Kurye</td></tr>
+                    <tr><td>das</td><td>Haus</td><td>haus</td><td>Ev</td><td>Kurye</td></tr>
+                    <tr><td>das</td><td>Auto</td><td>auto</td><td>Araba</td><td>Günlük</td></tr>
+                    <tr><td>das</td><td>Buch</td><td>buh</td><td>Kitap</td><td>Günlük</td></tr>
+                </table>
+            </div>
+
+            <div id="gun2-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Cümle Kurma (Sätze bilden)</h3>
+                <p>Aşağıdaki yapıları kullanarak kendini tanıtan 3 cümle kur ve defterine yaz.</p>
+                <ol>
+                    <li>Ich bin __________. (Mesleğini veya bir özelliğini yaz. Örn: <span class="keyword">Ich bin Kurier.</span> <span class="transkript">(ih bin kuria)</span> - Ben kuryeyim.)</li>
+                    <li>Ich heiße __________. (Adını yaz.)</li>
+                    <li>Ich komme aus __________. (Ülkeni yaz.)</li>
+                </ol>
+
+                <h3>Eylem 2: Artikel Hafıza Oyunu</h3>
+                <p>Bugün öğrendiğin 12 kelimeyi bir kağıda Almanca olarak yaz. Sonra başka bir kağıda sadece artikellerini (<span class="keyword">der, die, das</span>) yaz. Kelimelerle doğru artikelleri eşleştirmeye çalış. Kendi kendini test et!</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bugünkü konuları pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"'Sen Ali'sin.' cümlesini Almanca nasıl söylerim?"</li>
+                        <li>"Neden 'kız' kelimesinin artikeli 'das'?"</li>
+                        <li>"Bana artikeli 'die' olan 3 tane yeni kelime söyler misin? Okunuşlarıyla birlikte."</li>
+                        <li>"Seninle tanışma diyaloğu pratiği yapalım. Ben kendimi tanıtayım, sen de bana sorular sor."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun2-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>2. Gün Tamamlandı!</div>
+                <p>Harikasın! Artık sadece kelimeleri değil, tam cümleleri de tanıyorsun. Bugün şunları başardın:</p>
+                <ul>
+                    <li>Almancanın en temel fiili olan <span class="keyword">sein</span>'ı ve kullanımını öğrendin.</li>
+                    <li>Kendini tanıtabilecek 3 farklı cümle yapısını öğrendin.</li>
+                    <li>Artikellerin ne olduğunu, neden önemli olduğunu ve onlara nasıl yaklaşman gerektiğini anladın.</li>
+                    <li>Kuryelik ve günlük yaşamla ilgili ilk 12 nesneni öğrendin!</li>
+                </ul>
+                <p class="vurgu">Gute Arbeit! <span class="transkript">(gute arbayt)</span> - İyi iş!</p>
+            </div>
+        </section>
+
+        <!-- ==================== GÜN 3 ==================== -->
+        <section id="gun-3" class="day-section">
+            <div id="gun3-hedefler" class="card">
+                <div class="card-header"><span class="emoji">❓</span>GÜN 3: Soru Sorma Sanatı</div>
+                <h3>🎯 Bugünkü Hedeflerin</h3>
+                <p>İletişim tek taraflı değildir. Bugün, bilgi almanın anahtarı olan soru sormayı öğreneceğiz.</p>
+                <ul>
+                    <li>Almancada en temel soru kelimelerini (<span class="keyword">Wer? Was? Wo?</span>) öğreneceksin.</li>
+                    <li>Bu kelimelerle basit ama etkili sorular kurabileceksin: "Bu ne?", "Siz kimsiniz?".</li>
+                    <li>Evet/Hayır soruları sormanın basit mantığını kavrayacaksın.</li>
+                    <li>Kuryelik için hayati olan sayıları (0-20) öğreneceksin.</li>
+                </ul>
+            </div>
+
+            <div id="gun3-saat1" class="card">
+                <div class="card-header"><span class="emoji">📚</span>Saat 1: Ana Konu - Soru Cümleleri (Fragesätze)</div>
+                <p>Almancada iki temel soru tipi vardır. İkisi de çok kolay!</p>
+                
+                <h3>Tip 1: W-Soruları (W-Fragen)</h3>
+                <p>"W" harfi ile başlayan soru kelimeleriyle kurulur. Cevabı genellikle bir bilgi içerir. Cümle yapısı çok basittir: <span class="vurgu">W-Soru Kelimesi + Fiil + Geri Kalanlar?</span></p>
+                <table>
+                    <tr><th>Soru Kelimesi</th><th>Okunuşu</th><th>Anlamı</th><th>Örnek Soru ve Okunuşu</th><th>Olası Cevap</th></tr>
+                    <tr><td><span class="keyword">Wer?</span></td><td>vea</td><td>Kim?</td><td><span class="keyword">Wer</span> bist du? <span class="transkript">(vea bist du)</span></td><td>Ich bin Ali.</td></tr>
+                    <tr><td><span class="keyword">Was?</span></td><td>vas</td><td>Ne?</td><td><span class="keyword">Was</span> ist das? <span class="transkript">(vas ist das)</span></td><td>Das ist ein Paket.</td></tr>
+                    <tr><td><span class="keyword">Wo?</span></td><td>vo</td><td>Nerede?</td><td><span class="keyword">Wo</span> ist das Haus? <span class="transkript">(vo ist das haus)</span></td><td>Das Haus ist hier.</td></tr>
+                    <tr><td><span class="keyword">Wie?</span></td><td>vii</td><td>Nasıl?</td><td><span class="keyword">Wie</span> heißen Sie? <span class="transkript">(vii haysın zii)</span></td><td>Ich heiße Yılmaz.</td></tr>
+                    <tr><td><span class="keyword">Woher?</span></td><td>vo-hea</td><td>Nereden?</td><td><span class="keyword">Woher</span> kommst du? <span class="transkript">(vohea komst du)</span></td><td>Ich komme aus der Türkei.</td></tr>
+                </table>
+                
+                <h3>Tip 2: Evet/Hayır Soruları (Ja/Nein-Fragen)</h3>
+                <p>Cevabı "evet" (<span class="keyword">Ja</span> <span class="transkript">(ya)</span>) veya "hayır" (<span class="keyword">Nein</span> <span class="transkript">(nayn)</span>) olan sorulardır. Bunu yapmak daha da kolay! Tek yapman gereken, normal cümlenin fiilini en başa almaktır.</p>
+                <ul>
+                    <li>Normal Cümle: Du <span class="vurgu">bist</span> Ali. (Sen Ali'sin.)</li>
+                    <li>Soru Cümlesi: <span class="vurgu">Bist</span> du Ali? (Sen Ali misin?)</li>
+                </ul>
+                <ul>
+                    <li>Normal Cümle: Das <span class="vurgu">ist</span> ein Paket. (Bu bir paket.)</li>
+                    <li>Soru Cümlesi: <span class="vurgu">Ist</span> das ein Paket? (Bu bir paket mi?)</li>
+                </ul>
+                <div class="info-box">
+                    <h4>💡 Kurye Diyaloğu</h4>
+                    <p>Kapıyı açtın ve doğru kişiyi arıyorsun: <span class="keyword">"Guten Tag. <span class="vurgu">Sind</span> Sie Herr Yılmaz?"</span> <span class="transkript">(gutın tak. zint zii her yılmaz - İyi günler. Siz Yılmaz Bey misiniz?)</span> Cevap ya <span class="keyword">"Ja"</span> ya da <span class="keyword">"Nein"</span> olacaktır. Bu basit soru, işinin en kritik anlarından biridir!</p>
+                </div>
+            </div>
+
+            <div id="gun3-saat2" class="card">
+                <div class="card-header"><span class="emoji">🗣️</span>Saat 2: Kelime Hazinesi - Sayılar ve Yeni Eşyalar</div>
+                <p>Adresler, kat numaraları, telefon numaraları... Sayılar senin için çok önemli! Bugün ilk bölümü öğrenelim.</p>
+                <h3>Sayılar (0-12) - Die Zahlen</h3>
+                <table>
+                    <tr><th>Sayı</th><th>Almanca</th><th>Okunuşu</th><th>Sayı</th><th>Almanca</th><th>Okunuşu</th></tr>
+                    <tr><td>0</td><td>null</td><td>nul</td><td>7</td><td>sieben</td><td>ziibın</td></tr>
+                    <tr><td>1</td><td>eins</td><td>ayns</td><td>8</td><td>acht</td><td>aht</td></tr>
+                    <tr><td>2</td><td>zwei</td><td>tsvay</td><td>9</td><td>neun</td><td>noyn</td></tr>
+                    <tr><td>3</td><td>drei</td><td>dray</td><td>10</td><td>zehn</td><td>tseyn</td></tr>
+                    <tr><td>4.</td><td>vier</td><td>fia</td><td>11</td><td>elf</td><td>elf</td></tr>
+                    <tr><td>5</td><td>fünf</td><td>fünf</td><td>12</td><td>zwölf</td><td>tsvölf</td></tr>
+                    <tr><td>6</td><td>sechs</td><td>zeks</td><td></td><td></td><td></td></tr>
+                </table>
+                <p class="vurgu">Not: 13'ten sonra sayılar farklı bir mantıkla kuruluyor, onu sonraki derslerde göreceğiz.</p>
+                
+                <h3>Yeni Kelimeler</h3>
+                <table>
+                    <tr><th>Artikel</th><th>Almanca</th><th>Okunuşu</th><th>Türkçe Anlamı</th><th>Kategori</th></tr>
+                    <tr><td>der</td><td>Schlüssel</td><td>şlüssel</td><td>Anahtar</td><td>Günlük</td></tr>
+                    <tr><td>der</td><td>Kugelschreiber</td><td>kugıl-şrayba</td><td>Tükenmez kalem</td><td>Kurye (imza için!)</td></tr>
+                    <tr><td>die</td><td>Tasche</td><td>taşe</td><td>Çanta</td><td>Günlük</td></tr>
+                    <tr><td>die</td><td>Firma</td><td>firma</td><td>Firma / Şirket</td><td>Kurye</td></tr>
+                    <tr><td>das</td><td>Handy</td><td>hendi</td><td>Cep telefonu</td><td>Günlük</td></tr>
+                    <tr><td>das</td><td>Geld</td><td>gelt</td><td>Para</td><td>Günlük</td></tr>
+                </table>
+            </div>
+
+            <div id="gun3-saat3" class="card">
+                <div class="card-header"><span class="emoji">✍️</span>Saat 3: Pratik Zamanı!</div>
+                <h3>Eylem 1: Soru-Cevap Alıştırması</h3>
+                <p>Defterine aşağıdaki soruları yaz ve kendin cevaplamaya çalış.</p>
+                <ol>
+                    <li><span class="keyword">Wer bist du?</span> ➔ Cevap: Ich bin __________.</li>
+                    <li><span class="keyword">Woher kommst du?</span> ➔ Cevap: Ich komme __________.</li>
+                    <li><span class="keyword">Was ist das?</span> (Masana bakarak) ➔ Cevap: Das ist <span class="keyword">der Tisch</span>.</li>
+                    <li><span class="keyword">Ist das ein Schlüssel?</span> (Kalemine bakarak) ➔ Cevap: <span class="keyword">Nein</span>, das ist ein Kugelschreiber.</li>
+                </ol>
+
+                <h3>Eylem 2: Sayı Tekrarı</h3>
+                <p>0'dan 12'ye kadar olan sayıları yüksek sesle, ileri ve geri doğru say. Telefon numaranın rakamlarını tek tek Almanca söylemeye çalış. Bu, sayıları aklına kazıyacak.</p>
+
+                <details>
+                    <summary><strong>🤖 Yapay Zeka Asistanın ile Çalış</strong></summary>
+                    <p>Bugünkü konuları pekiştirmek için bana şunları sor:</p>
+                    <ul>
+                        <li>"'Nasıl' ve 'Nerede' kelimelerinin Almancası neydi?"</li>
+                        <li>"Bana 'Bu bir araba mı?' diye Almanca sorar mısın?"</li>
+                        <li>"Birine 'Adınız ne?' diye sormanın resmi yolu neydi?"</li>
+                        <li>"Sayıları kullanarak basit bir diyalog kuralım. Sen bana bir numara söyle, ben de Almanca tekrar edeyim."</li>
+                    </ul>
+                </details>
+            </div>
+            <div id="gun3-ozet" class="card final-card">
+                <div class="card-header"><span class="emoji">✅</span>3. Gün Tamamlandı!</div>
+                <p>Süpersin! Artık sadece kendini tanıtmakla kalmıyor, aynı zamanda bilgi de alabiliyorsun. İletişimin ikinci yarısını da çözdün!</p>
+                <ul>
+                    <li>W-soruları ile nasıl soru sorulacağını ve cümle yapısını öğrendin.</li>
+                    <li>Evet/Hayır sorularının basit mantığını kavradın.</li>
+                    <li>Sayıları ve yeni temel nesneleri kelime hazinene ekledin.</li>
+                </ul>
+                <p class="vurgu">Das war super! <span class="transkript">(das va zupa)</span> - Bu harikaydı!</p>
+            </div>
+        </section>
+        
+        <div class="card">
+            <h2>Tebrikler ve Önemli Not</h2>
+            <p>İlk üç günü başarıyla tamamladın! Bu, Almanca öğrenme yolculuğundaki en zorlu ve en önemli adımdı. Temeli sağlam attın.</p>
+            <p>Bu dosya, senin kişisel ders kitabın. Her gün bitirdiğinde, o günkü konuları tekrar gözden geçir. Unutma, tekrar en iyi öğretmendir.</p>
+            <p><strong>4. güne hazır olduğunda, bana söylemen yeterli. Aynı detay ve özenle bir sonraki dersini hazırlayacağım.</strong></p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('#sidebar nav a');
+
+            function updateActiveLink() {
+                let current = '';
+                const sections = document.querySelectorAll('#main-content > section > div');
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Initial call
+        });
+    </script>
+</body>
+</html>
